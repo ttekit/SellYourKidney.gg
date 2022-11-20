@@ -23,13 +23,13 @@ class mailingList extends \App\DBEngine
         $mailM = new mailingList();
         $subject = "test";
         $message = "test";
-        foreach ($mailM->getAllEmails() as $key=>$mail){
+        foreach ($mailM->getAllEmails() as $key=>$email){
             mail
             (
-                $mail,
+                $email,
                 $subject,
                 $message,
-                "From BootstrapShop.gg",
+                'From: gofukcyoursself@gmail.com'
             );
         }
     }
