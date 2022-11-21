@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Models\mailingList;
 use Models\options;
 use Models\post;
 
@@ -162,13 +163,31 @@ class admin extends Controller
             $this->Login();
         }
     }
-
+    public function mail() {
+        if (UserAuthorisation::isUserAuthorized()) {
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainMail" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+    public function newMail() {
+        if (UserAuthorisation::isUserAuthorized()) {
+            if(isset($_POST["content"]) && isset($_POST["subject"])){
+                $mail = new mailingList();
+                $res = $mail->sendAllEmails($_POST["subject"], $_POST["content"]);
+                if($res == true){
+                    header("Location: /admin/");
+                }
+                else{
+                    header("Location: /admin/error");
+                }
+            }
+        }
+    }
     public
     function updatePost()
     {
         if (UserAuthorisation::isUserAuthorized()) {
-            varDump("ASDASD");
-            varDump($_POST);
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if (isset($_POST['title']) && isset($_POST['slogan']) && isset($_POST['content']) && isset($_POST['files'])) {
                     $postM = new post();

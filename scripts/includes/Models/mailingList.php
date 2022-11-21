@@ -18,19 +18,24 @@ class mailingList extends \App\DBEngine
         return $this->getManyRows();
     }
 
-    public function sendAllEmails()
+    public function sendAllEmails($subject, $message)
     {
         $mailM = new mailingList();
-        $subject = "test";
-        $message = "test";
+
+        $message = str_replace("\n.", "\n..", $message);
+        $message = wordwrap($message, 70, "\r\n");
+
         foreach ($mailM->getAllEmails() as $key=>$email){
-            mail
+            $res = mail
             (
                 $email,
                 $subject,
-                $message,
-                'From: gofukcyoursself@gmail.com'
+                $message
             );
+            if($res === false){
+                return false;
+            }
         }
+        return true;
     }
 }

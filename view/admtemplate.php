@@ -75,9 +75,11 @@ $data['options']['lang']?>">
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="/admin/buttons">Buttons</a>
-                    <a class="collapse-item" href="/admin/cards">Cards</a>
+                    <h6 class="collapse-header">Options</h6>
+                    <a class="collapse-item" href="/admin/userManage">user accounts</a>
+                    <a class="collapse-item" href="/admin/productManage">Products</a>
+                    <a class="collapse-item" href="/admin/blogManage">Blog</a>
+                    <a class="collapse-item" href="/admin/tables">Options</a>
                 </div>
             </div>
         </li>
@@ -139,26 +141,10 @@ $data['options']['lang']?>">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Contact</span></a>
         </li>
-        <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="/admin/tables">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/blogManage">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Blog Edit</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/productManage">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Products Edit</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/userManage">
-                <i class="fas fa-fw fa-table"></i>
-                <span>User Acc Edit</span></a>
+            <a class="nav-link" href="/admin/mail">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Mail</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
