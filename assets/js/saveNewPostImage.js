@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-    var files;
+    let files;
 
     $('input[type=file]').on('change', prepareUpload);
 
@@ -44,14 +44,14 @@ window.addEventListener("load", () => {
                                     location.href = "/Admin/products";
                                 });
                             } else {
-                                swal("Why are you so close?");
+                                swal("Ok :( ");
                             }
                         });
                 },
                 error: function (err, errmsg) {
                     swal({
                         title: "Error",
-                        text: "Try later pls: " + errmsg,
+                        text: "Pls try later",
                         icon: "error"
                     })
                 },

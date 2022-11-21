@@ -14,7 +14,6 @@
 
                                 <div class="tag-sort-content">
                                     <?php
-                                    //TODO: on data
                                     /** @var $data */
                                     \App\Pagination::printTagsPanel($data["posts"]["tags"], $data["href"]);
                                     ?>
@@ -27,7 +26,6 @@
                                 </div>
                                 <div class="categories-sort-content">
                                     <?php
-                                    //TODO: on data
                                     foreach ($data["posts"]["categories"] as $key => $value) {
                                         echo "<button class='filterBtn'><h6>" . $value["category"] . ".</h6></button>";
                                     } ?>

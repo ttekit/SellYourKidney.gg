@@ -2,7 +2,6 @@
     <!-- Main content -->
     <section class="content col-12">
         <div class="row">
-<!--            TODO: remake on js      -->
             <form method="post" action="/admin/updateProd" class="row">
                 <div class="col-md-12 file-input">
                     <div class="card card-primary">

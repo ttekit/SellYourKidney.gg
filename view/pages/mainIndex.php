@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div data-aos="flip-right" class="col-md-4">
                 <div class="box ">
                     <div class="img-box">
                         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div data-aos="flip-down" class="col-md-4">
                 <div class="box ">
                     <div class="img-box">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +225,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div data-aos="flip-left" class="col-md-4">
                 <div class="box ">
                     <div class="img-box">
                         <svg id="_30_Premium" height="512" viewBox="0 0 512 512" width="512"
@@ -255,15 +255,15 @@
 <!-- arrival section -->
 <section class="arrival_section">
     <div class="arrival_section-text">
-        <h4 >Смотрите записи всех вдохновляющих сессий GTC</h4>
-        <p>Доступны сотни сессий с недавней конференции GTC, которые помогут расширить ваши возможности и вдохновят на очередные инновации. Посмотрите основной доклад, погрузитесь в технические сессии и узнайте о возможностях, предоставляемых ИИ, в удобное для вас время.</p>
+        <h4 data-aos="flip-left">Смотрите записи всех вдохновляющих сессий GTC</h4>
+        <p data-aos="flip-right">Доступны сотни сессий с недавней конференции GTC, которые помогут расширить ваши возможности и вдохновят на очередные инновации. Посмотрите основной доклад, погрузитесь в технические сессии и узнайте о возможностях, предоставляемых ИИ, в удобное для вас время.</p>
         <button>Смотреть</button>
     </div>
     <img src="/images/arrival-bg.png" alt="">
 </section>
 <!-- end arrival section -->
 
-<section class="product_section layout_padding">
+<section class="product_section layout_padding" data-aos="fade-left">
     <?php require_once "mainProducts.php"?>
 </section>
 <!-- end product section -->

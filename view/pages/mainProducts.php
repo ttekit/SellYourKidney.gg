@@ -17,7 +17,7 @@
                     <div class="product-box box">
                         <div class="option_container">
                             <div class="options">
-                                <div class="d-none product-id">
+                                <div class="d-none product-id" data-aos="fade-zoom-in">
                                     <?php echo $value["id"] ?>
                                 </div>
                                 <h5 class="name">

@@ -4,7 +4,7 @@
     </div>
     <div id="customCarousel1" class="carousel slide" data-ride="carousel">
 
-        <div class="carousel-inner">
+        <div class="carousel-inner" >
             <div class="carousel-item active">
                 <div class="container ">
                     <div class="row">

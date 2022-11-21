@@ -2,7 +2,7 @@
 
 /** @var $data */
 ?>
-<!-- TODO: remake on js -->
+
 <div class="content-wrapper adminBlogCont">
     <!-- Main content -->
     <form method="post" action="./updatePost" enctype="multipart/form-data">

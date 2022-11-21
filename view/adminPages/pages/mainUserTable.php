@@ -12,6 +12,7 @@
                         <?php
 
 
+                        /** @var $data */
                         foreach ($data["user"] as $index => $post) {
                             ?>
                             <div class="card-body">

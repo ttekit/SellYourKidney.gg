@@ -30,7 +30,6 @@
                                     <fieldset>
                                         <div class="field">
                                             <input type="email" placeholder="Enter Your Mail" name="email"/>
-                                            <!-- TODO: new database for same info-->
                                             <input type="submit" value="Subscribe"/>
                                         </div>
                                     </fieldset>
