@@ -2,26 +2,28 @@
     <!-- Main content -->
     <section class="content col-12">
         <div class="row">
-            <div class="col-md-12 file-input">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Logo</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        Отправить этот файл: <input name="userfile" type="file" value="<?= /** @var $data */
-                        $data["prodData"]["img_src"] ?>"/>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
-            </div>
+<!--            TODO: remake on js      -->
             <form method="post" action="/admin/updateProd" class="row">
+                <div class="col-md-12 file-input">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Logo</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Отправить этот файл: <input name="userfile" type="file" value="<?= /** @var $data */
+                            $data["prodData"]["img_src"] ?>"/>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
                 <input type="text" name="id" id="id" class="d-none" value="<?=
                 $data["prodId"] ?>"/>
                 <div class="col-md-6">
@@ -77,6 +79,7 @@
 
                     <!-- /.card -->
                 </div>
+
         </div>
         <div class="row">
             <div class="col-12">
@@ -84,8 +87,9 @@
                 <input type="submit" value="Save Changes" id="submit" class="btn btn-success float-right">
             </div>
         </div>
+        </form>
     </section>
-    </form>
+
     <!-- /.content -->
 </div>
 

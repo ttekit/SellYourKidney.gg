@@ -1,9 +1,8 @@
 <?php
-$postM = new \Models\post();
-/** @var $data */
-$postData = $postM->getById($data["postId"]);
-?>
 
+/** @var $data */
+?>
+<!-- TODO: remake on js -->
 <div class="content-wrapper adminBlogCont">
     <!-- Main content -->
     <form method="post" action="./updatePost" enctype="multipart/form-data">
@@ -43,21 +42,21 @@ $postData = $postM->getById($data["postId"]);
                             <div class="form-group">
                                 <label for="inputName">Title</label>
                                 <input type="text" id="inputName" name="title" class="form-control"
-                                       value="<?= $postData["title"] ?>">
+                                       value="<?= $data["postData"]["title"] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="inputDescription">Slogan</label>
                                 <textarea id="inputDescription" class="form-control" name="slogan"
-                                          rows="4"><?= $postData["slogan"] ?></textarea>
+                                          rows="4"><?= $data["postData"]["slogan"] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="inputClientCompany">Categories</label>
                                 <div class="categories">
-                                    <div class="postId hidden"><?= $postData["id"] ?></div>
+                                    <div class="postId hidden"><?= $data["postData"]["id"] ?></div>
                                     <div class="categories-active-categories">
                                         <?php
                                         $catM = new \Models\categories();
-                                        $catsData = $catM->getCategoryByPostId($postData["id"]);
+                                        $catsData = $catM->getCategoryByPostId($data["postData"]["id"]);
                                         foreach ($catsData as $key => $value) {
                                             ?>
                                             <button class="category-elem"><?= $value["category"] ?></button>
@@ -75,9 +74,10 @@ $postData = $postM->getById($data["postId"]);
                                 <label for="inputProjectLeader">Tags</label>
                                 <div class="tags">
                                     <div class="tags-active-tags">
+<!--                                        FIX                                                                      -->
                                         <?php
                                         $tagM = new \Models\tags();
-                                        $tagsData = $tagM->getByPostId($postData["id"]);
+                                        $tagsData = $tagM->getByPostId($data["postData"]["id"]);
                                         foreach ($tagsData as $key => $value) {
                                             ?>
                                             <button class="tag-elem"><?= $value["tag"] ?></button>
@@ -109,7 +109,7 @@ $postData = $postM->getById($data["postId"]);
                         <div class="card-body">
                             <div class="form-group">
                                 <textarea id="summernote" class="main-content"
-                                          name="content"> <?= $postData["content"] ?></textarea>
+                                          name="content"> <?= $data["postData"]["content"] ?></textarea>
                             </div>
                         </div>
                     </div>

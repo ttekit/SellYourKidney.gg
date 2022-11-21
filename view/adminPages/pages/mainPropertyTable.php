@@ -15,7 +15,8 @@
                                     <input type="text" name="Id" readonly value="Id" class="form-control">
                                 </div>
                                 <div class="col-2">
-                                    <input type="text" name="name" readonly value="Название свойства" class="form-control">
+                                    <input type="text" name="name" readonly value="Название свойства"
+                                           class="form-control">
                                 </div>
                                 <div class="col-4">
                                     <input type="text" readonly class="form-control" value="Значение свойства">
@@ -41,13 +42,14 @@
                                             <div class="row">
                                                 <div class="col-2">
                                                     <input type="text" name="name" placeholder="Название свойства"
-                                                           class="form-control" >
+                                                           class="form-control">
                                                 </div>
                                                 <div class="col-6">
                                                     <textarea rows="1" name="value" class="form-control"> </textarea>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="text" name="group" class="form-control" placeholder="Группирование">
+                                                    <input type="text" name="group" class="form-control"
+                                                           placeholder="Группирование">
                                                 </div>
                                                 <div class="col-2"
                                                 <div class="btn-group w-100">
@@ -55,7 +57,8 @@
                                                         <button class="btn btn-success" aria-controls="collapseExample">
                                                             Создать
                                                         </button>
-                                                        <button type="reset" class="btn btn-danger" aria-controls="collapseExample">
+                                                        <button type="reset" class="btn btn-danger"
+                                                                aria-controls="collapseExample">
                                                             Отмена
                                                         </button>
                                                     </p>
@@ -69,8 +72,8 @@
                         <?php
                         $tmp = [];
                         /** @var $data */
-                        for ($i = 0; $i<count($data["options"]); $i++){
-                            if(isset($data["options"][$i]["id"])){
+                        for ($i = 0; $i < count($data["options"]); $i++) {
+                            if (isset($data["options"][$i]["id"])) {
                                 array_push($tmp, $data["options"][$i]);
                             }
                         }

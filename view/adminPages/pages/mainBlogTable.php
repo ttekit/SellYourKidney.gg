@@ -9,10 +9,9 @@
                             <h3 class="card-title">Управление постами в блоге</h3>
                         </div>
                         <?php
-                        $postM = new \Models\post();
-                        $posts = $postM->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.state, blogposts.imgSrc, blogposts.altSrc FROM blogposts");
-                        $data["status"] = ["created", "published", "archived"];
-                        foreach ($posts
+
+                        /** @var $data */
+                        foreach ($data["posts"]
 
                                  as $index => $post) {
                             ?>

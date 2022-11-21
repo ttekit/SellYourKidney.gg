@@ -24,9 +24,14 @@ class admin extends Controller
     {
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAdminLogin" . EXT, $this->data);
     }
+
     public function blogManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
+            $postM = new \Models\post();
+            $this->data["posts"] = $postM->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.state, blogposts.imgSrc, blogposts.altSrc FROM blogposts");
+            $this->data["status"] = ["created", "published", "archived"];
+
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainBlogTable" . EXT, $this->data);
         }
     }
@@ -43,6 +48,8 @@ class admin extends Controller
         if (UserAuthorisation::isUserAuthorized()) {
             if (isset($_GET["postId"])) {
                 $this->data["postId"] = $_GET["postId"];
+                $postM = new \Models\post();
+                $this->data["postData"] = $postM->getById($_GET["postId"]);
                 View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "editPostTable" . EXT, $this->data);
             }
         }
@@ -58,7 +65,6 @@ class admin extends Controller
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainProductTable" . EXT, $this->data);
         }
     }
-
 
 
     public function OneProductEdit()
@@ -158,32 +164,40 @@ class admin extends Controller
     function userManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
+            $userM = new \Models\userAcc();
+            $this->data["user"] = $userM->getManyRows();
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainUserTable" . EXT, $this->data);
         } else {
             $this->Login();
         }
     }
-    public function mail() {
+
+    public
+    function mail()
+    {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainMail" . EXT, $this->data);
         } else {
             $this->Login();
         }
     }
-    public function newMail() {
+
+    public
+    function newMail()
+    {
         if (UserAuthorisation::isUserAuthorized()) {
-            if(isset($_POST["content"]) && isset($_POST["subject"])){
+            if (isset($_POST["content"]) && isset($_POST["subject"])) {
                 $mail = new mailingList();
                 $res = $mail->sendAllEmails($_POST["subject"], $_POST["content"]);
-                if($res == true){
+                if ($res == true) {
                     header("Location: /admin/");
-                }
-                else{
+                } else {
                     header("Location: /admin/error");
                 }
             }
         }
     }
+
     public
     function updatePost()
     {
@@ -199,7 +213,7 @@ class admin extends Controller
                 }
             }
         }
-      //  header("Location: /admin/blogManage");
+          header("Location: /admin/blogManage");
     }
 
     public
@@ -221,7 +235,6 @@ class admin extends Controller
     public
     function updateRow()
     {
-        if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if (isset($_POST['name']) && isset($_POST['value']) && isset($_POST['group']) && isset($_POST['id'])) {
                     $newData = $_POST;
@@ -243,15 +256,13 @@ class admin extends Controller
             }
             header("Location: /admin/tables");
         }
-    }
 
 
     public
     function updateProd()
     {
-        if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if (isset($_POST["id"]) &&isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
+                if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
                     $postM = new \Models\products();
                     $postM->updateRow($_POST["id"], [
                         "name" => $_POST['name'],
@@ -261,27 +272,24 @@ class admin extends Controller
                     ]);
                 }
             }
-        }
         header("Location: /admin/productManage");
     }
 
     public
     function addNewProd()
     {
-        if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if ( isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
+                if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
                     $postM = new \Models\products();
                     $postM->AddProduct($_POST['name'], $_POST["files"], "/", $_POST["price"], $_POST["content"]);
                     echo $_FILES['file'];
-                    if ($_FILES['file']!= "") {
+                    if ($_FILES['file'] != "") {
                         $postM->updateRow($_POST["id"], [
-                            "img_src" => "/images/products/".$_FILES['file']['name']
+                            "img_src" => "/images/products/" . $_FILES['file']['name']
                         ]);
                     }
                 }
             }
-        }
         header("Location: /admin/productManage");
     }
 
@@ -302,44 +310,6 @@ class admin extends Controller
             }
         }
     }
-
-    public
-    function uploadImage(){
-        $uploaddir = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR."products".DIRECTORY_SEPARATOR;
-        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
-
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-            $out = "Файл корректен и был успешно загружен.\n";
-        } else {
-            $out = "Возможная атака с помощью файловой загрузки!\n";
-        }
-
-        $productDataBase = new \Models\products();
-        $productDataBase->UpdateImagePathOfPostById($_POST["productId"], "/images/products/".$_FILES['file']['name']);
-
-
-        echo $out;
-    }
-
-    public
-    function uploadPostImage(){
-        $uploaddir = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR."blog".DIRECTORY_SEPARATOR;
-        $uploadfile = $uploaddir . basename($_FILES['file']['name']);
-
-        if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-            $out = "Файл корректен и был успешно загружен.\n";
-        } else {
-            $out = "Возможная атака с помощью файловой загрузки!\n";
-        }
-
-        $productDataBase = new \Models\post();
-        $productDataBase->UpdateImagePathOfProdById($_POST["productId"], "/images/blog/".$_FILES['file']['name']);
-
-
-        echo $out;
-    }
-
-
 
     public
     function logOut()

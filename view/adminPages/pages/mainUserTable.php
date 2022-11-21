@@ -11,10 +11,8 @@
                         </div>
                         <?php
 
-                        $userM = new \Models\userAcc();
-                        $acc = $userM->getManyRows();
 
-                        foreach ($acc as $index => $post) {
+                        foreach ($data["user"] as $index => $post) {
                             ?>
                             <div class="card-body">
                                 <div class="post">
@@ -44,8 +42,8 @@
             <!--/.col (right) -->
         </div>
         <!-- /.row -->
-</div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+    </section>
 </div>
+<!-- /.container-fluid -->
+<!-- /.content -->
 <script src="/assets/js/userAccWork.js"></script>
