@@ -523,6 +523,9 @@ a:focus {
     border: 0;
     height: 10%;
 }
+.arrival_section img {
+    width:50%;
+}
 
 .product_section .option_container {
     position: absolute;
