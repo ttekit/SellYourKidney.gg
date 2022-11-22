@@ -213,7 +213,7 @@ class admin extends Controller
                 }
             }
         }
-          header("Location: /admin/blogManage");
+        header("Location: /admin/blogManage");
     }
 
     public
@@ -235,61 +235,62 @@ class admin extends Controller
     public
     function updateRow()
     {
-            if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if (isset($_POST['name']) && isset($_POST['value']) && isset($_POST['group']) && isset($_POST['id'])) {
-                    $newData = $_POST;
-                    $optM = new options();
-                    $row = $optM->executeQuery("SELECT * FROM options WHERE id=" . $newData['id']);
-                    $row = $row[0];
-                    if ($newData["group"] == "") {
-                        $newData["group"] = "NULL";
-                    }
-                    if ($row->name != $newData["name"] || $row->value != $newData["value"] || $row->group != $newData["group"]) {
-                        $optM->updateRow($row->id, [
-                            "name" => $newData["name"],
-                            "value" => $newData["value"],
-                            "group" => $newData["group"]
-                        ]);
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['name']) && isset($_POST['value']) && isset($_POST['group']) && isset($_POST['id'])) {
+                $newData = $_POST;
+                $optM = new options();
+                $row = $optM->executeQuery("SELECT * FROM options WHERE id=" . $newData['id']);
+                $row = $row[0];
+                if ($newData["group"] == "") {
+                    $newData["group"] = "NULL";
+                }
+                varDump($newData);
+                if ($row["name"] != $newData["name"] || $row["value"] != $newData["value"] || $row["group"] != $newData["group"]) {
+                    $optM->updateRow($row["id"], [
+                        "name" => $newData["name"],
+                        "value" => $newData["value"],
+                        "group" => $newData["group"]
+                    ]);
 
-                    }
                 }
             }
-            header("Location: /admin/tables");
         }
+        header("Location: /admin/tables");
+    }
 
 
     public
     function updateProd()
     {
-            if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
-                    $postM = new \Models\products();
-                    $postM->updateRow($_POST["id"], [
-                        "name" => $_POST['name'],
-                        "price" => $_POST['price'],
-                        "content" => $_POST['content'],
-                        "img_src" => $_POST["file"]
-                    ]);
-                }
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
+                $postM = new \Models\products();
+                $postM->updateRow($_POST["id"], [
+                    "name" => $_POST['name'],
+                    "price" => $_POST['price'],
+                    "content" => $_POST['content'],
+                    "img_src" => $_POST["file"]
+                ]);
             }
+        }
         header("Location: /admin/productManage");
     }
 
     public
     function addNewProd()
     {
-            if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
-                    $postM = new \Models\products();
-                    $postM->AddProduct($_POST['name'], $_POST["files"], "/", $_POST["price"], $_POST["content"]);
-                    echo $_FILES['file'];
-                    if ($_FILES['file'] != "") {
-                        $postM->updateRow($_POST["id"], [
-                            "img_src" => "/images/products/" . $_FILES['file']['name']
-                        ]);
-                    }
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
+                $postM = new \Models\products();
+                $postM->AddProduct($_POST['name'], $_POST["files"], "/", $_POST["price"], $_POST["content"]);
+                echo $_FILES['file'];
+                if ($_FILES['file'] != "") {
+                    $postM->updateRow($_POST["id"], [
+                        "img_src" => "/images/products/" . $_FILES['file']['name']
+                    ]);
                 }
             }
+        }
         header("Location: /admin/productManage");
     }
 

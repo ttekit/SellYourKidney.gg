@@ -73,16 +73,20 @@ class Pagination
 
 ?>
 <script>
-    var goPrew = function () {
-        var id = window.location.href.split("?pageCount=");
-        if (id[1] > 0) {
-            window.location.href = "http://bootstrapshop.co/blog?pageCount=" + (id[1] - 1);
+    let goPrew = function () {
+        let pageCount = window.location.href.split("?pageCount=");
+        console.log(pageCount);
+        if (pageCount[1] > 0) {
+            window.location.href = "http://bootstrapshop.gg/blog?pageCount=" + (pageCount[1] - 1);
         }
     }
-    var goNext = function (leng) {
-        var id = window.location.href.split("?pageCount=");
-        if (id[1] < leng) {
-            window.location.href = "http://bootstrapshop.co/blog?pageCount=" + (parseInt(id[1]) + 1);
+    let goNext = function (leng) {
+        let pageCount = window.location.href.split("?pageCount=");
+        if(pageCount === undefined){
+            pageCount = 1;
+        }
+        if (pageCount[1] < leng) {
+            window.location.href = "http://bootstrapshop.gg/blog?pageCount=" + (parseInt(pageCount[1]) + 1);
         }
     }
 </script>

@@ -82,7 +82,7 @@
                         foreach ($data['options'] as $index => $option) {
                             ?>
                             <div class="card-body">
-                                <form action="updateRow" method="post">
+                                <form action="/admin/updateRow" method="post">
                                     <div class="row">
                                         <div class="col-1">
                                             <input type="text" name="id" readonly value="<?= $option["id"] ?>"

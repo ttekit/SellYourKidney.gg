@@ -1,5 +1,5 @@
 <?php
-
+require 'PHPMailerAutoload.php';
 namespace Models;
 
 class mailingList extends \App\DBEngine
