@@ -1,6 +1,13 @@
 <?php
-require 'PHPMailerAutoload.php';
+
+
+require '../core/PHPMailer/src/Exception.php';
+require '../core/PHPMailer/src/PHPMailer.php';
+require '../core/PHPMailer/src/SMTP.php';
+
 namespace Models;
+
+use PHPMailer\PHPMailer\PHPMailer;
 
 class mailingList extends \App\DBEngine
 {
@@ -21,9 +28,6 @@ class mailingList extends \App\DBEngine
     public function sendAllEmails($subject, $message)
     {
         $mailM = new mailingList();
-
-        $message = str_replace("\n.", "\n..", $message);
-        $message = wordwrap($message, 70, "\r\n");
 
         foreach ($mailM->getAllEmails() as $key=>$email){
             $res = mail

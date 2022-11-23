@@ -17,8 +17,39 @@ $data['options']['lang'] ?>">
 
 <div class="">
     <!--    Preloader-->
-    <div id="preloader" class="visible"></div>
+    <div id="gp" class="color-picker d-none">
+        <div class="container">
+            <div class="grapick-cont">
+                <div id="grapick"></div>
+                <div class="inputs">
+                    <select class="form-control" id="switch-type">
+                        <option value="">- Select Type -</option>
+                        <option value="radial">Radial</option>
+                        <option value="linear">Linear</option>
+                        <option value="repeating-radial">Repeating Radial</option>
+                        <option value="repeating-linear">Repeating Linear</option>
+                    </select>
 
+                    <select class="form-control" id="switch-angle">
+                        <option value="">- Select Direction -</option>
+                        <option value="top">Top</option>
+                        <option value="right">Right</option>
+                        <option value="center">Center</option>
+                        <option value="bottom">Bottom</option>
+                        <option value="left">Left</option>
+                    </select>
+                </div>
+                <div class="copy-grid">
+                    <textarea class="txt-value" readonly></textarea>
+                </div>
+                <div class="buttons">
+                    <button class="submit">submit</button>
+                    <button class="cancel">cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="preloader" class="visible"></div>
     <!-- header section starts -->
     <div class="gradient-choose-container ml-5" data-aos="flip-up">
         <div class="d-flex">
@@ -30,7 +61,11 @@ $data['options']['lang'] ?>">
             </button>
             <button class="choose-gradient-button" id="pink-darkpink" data-aos="flip-left">
             </button>
+            <button class="choose-gradient-button" id="custom-bg" data-aos="flip-left">
+            </button>
         </div>
+
+
     </div>
     <div>
 
@@ -69,9 +104,12 @@ $data['options']['lang'] ?>">
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/nav-item-color.js"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="/assets/js/scrollRevAnimation.js"></script>
+
+<script src="/assets/js/grapick.min.js"></script>
 
 </body>
 </html>

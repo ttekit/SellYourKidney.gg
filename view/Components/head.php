@@ -19,4 +19,7 @@
     <link href="/assets/css/style.css" rel="stylesheet"/>
     <!-- responsive style -->
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="/assets/css/grapick.min.css">
+
 </head>
