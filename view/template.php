@@ -22,14 +22,6 @@ $data['options']['lang'] ?>">
             <div class="grapick-cont">
                 <div id="grapick"></div>
                 <div class="inputs">
-                    <select class="form-control" id="switch-type">
-                        <option value="">- Select Type -</option>
-                        <option value="radial">Radial</option>
-                        <option value="linear">Linear</option>
-                        <option value="repeating-radial">Repeating Radial</option>
-                        <option value="repeating-linear">Repeating Linear</option>
-                    </select>
-
                     <select class="form-control" id="switch-angle">
                         <option value="">- Select Direction -</option>
                         <option value="top">Top</option>

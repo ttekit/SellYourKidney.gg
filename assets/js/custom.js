@@ -65,14 +65,37 @@ window.addEventListener("load", () => {
 
         var createGrapick = function () {
             let resultValue = "";
+            let prewBg = document.cookie
+                .split('; ')
+                .find((row) => row.startsWith('bg='))
+                ?.split('=')[1];
+            prewBg = prewBg.split(" ");
+
+            let colors = [];
+            let sizes = [];
+
+            for (let i=0;i<prewBg.length;i++) {
+                if (prewBg[i][0] === "#") {
+                    colors.push(prewBg[i]);
+                }
+                if (prewBg[i][0] >= 0 ||prewBg[i][0] <= 9) {
+                    sizes.push(prewBg[i]);
+                }
+
+            }
+
+
             gp = new Grapick({
                 el: '#grapick',
-                direction: 'right',
+                direction: prewBg[1].slice(0, -1),
                 min: 1,
                 max: 99,
             });
-            gp.addHandler(1, '#085078', 1);
-            gp.addHandler(99, '#85D8CE', 1, {keepSelect: 1});
+            for (let i = 0; i < colors.length; i++){
+                gp.addHandler(sizes[i].slice(0, -2), colors[i], 1);
+            }
+
+
             gp.on('change', function (complete) {
                 const value = gp.getValue();
                 document.body.style.backgroundImage = value;
