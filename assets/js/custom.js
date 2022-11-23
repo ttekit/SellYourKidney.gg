@@ -25,18 +25,18 @@ window.addEventListener("load", () => {
     let colors = [
         {
             color: "",
-            code: "linear-gradient(203deg, rgb(0, 0, 0) 0%, rgb(245, 167, 255) 100%)"
+            code: "linear-gradient(0.68turn, #000000 0%, #f5a7ff 100%)"
         },
         {
             color: "",
-            code: "linear-gradient(234deg, rgb(131, 58, 180) 0%, rgb(69, 252, 187) 100%)"
+            code: "linear-gradient(0.68turn, #833ab4 0%, #45fcbb 100%)"
         },
         {
             color: "",
-            code:"linear-gradient(203deg, rgb(255, 108, 108) 0%, rgb(245, 167, 255) 100%)"},
+            code:"linear-gradient(0.68turn, #ff6c6c 0%, #f5a7ff 100%)"},
         {
             color: "",
-            code: "linear-gradient(203deg, rgb(255, 183, 243) 0%, rgb(103, 56, 63) 100%)"
+            code: "linear-gradient(0.68turn, #ffb7f5 0%, #67383f 100%)"
         },
     ];
 
@@ -47,6 +47,7 @@ window.addEventListener("load", () => {
         button.on("click", ()=>{
             console.log("test 1: " + colors[i].code);
             document.cookie = `bg=${colors[i].code}`;
+            document.body.style.background = colors[i].code;
         })
         allButtons.append(button);
     }
@@ -61,13 +62,6 @@ window.addEventListener("load", () => {
         document.body.style.background = cookieValue;
     }
 
-
-    $buttons.on("click", (e) => {
-        let color = $(e.target).css("background").split("rgba(0, 0, 0, 0)")[1];
-        document.cookie = `bg=${color}`;
-        console.log(color);
-        document.body.style.backgroundImage = color;
-    })
 
 
     $("#custom-bg").on("click", () => {
@@ -95,10 +89,16 @@ window.addEventListener("load", () => {
                     colors.push(prewBg[i]);
                 }
                 if (prewBg[i][0] >= 0 || prewBg[i][0] <= 9) {
-                    sizes.push(prewBg[i]);
+                    if(prewBg[i][1] !== '.'){
+                        sizes.push(prewBg[i]);
+                    }
                 }
 
             }
+
+            console.log(colors);
+            console.log(sizes);
+            console.log(prewBg);
 
 
             gp = new Grapick({

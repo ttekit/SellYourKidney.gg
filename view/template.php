@@ -44,9 +44,9 @@ $data['options']['lang'] ?>">
     <div id="preloader" class="visible"></div>
     <!-- header section starts -->
     <div class="gradient-choose-container ml-5" data-aos="flip-up">
-
-
     </div>
+    <button class="choose-gradient-button" id="custom-bg" data-aos="flip-left">
+    </button>
     <div>
 
     </div>
