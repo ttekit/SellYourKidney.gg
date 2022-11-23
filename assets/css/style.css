@@ -39,7 +39,6 @@ body {
 }
 
 #black-white{
-    background: rgb(131,58,180);
     background: linear-gradient(234deg, rgba(131,58,180,1) 0%, rgba(69,252,187,1) 100%);
 }
 #red-pink{

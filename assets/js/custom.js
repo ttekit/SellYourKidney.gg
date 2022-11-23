@@ -6,6 +6,7 @@ function loadData() {
     })
 }
 
+
 loadData()
     .then(() => {
         let preloaderEl = document.getElementById('preloader');
@@ -21,43 +22,58 @@ $(document).ready(function () {
 
 window.addEventListener("load", () => {
     let $buttons = $(".choose-gradient-button");
+    let colors = [
+        {
+            color: "",
+            code: "linear-gradient(203deg, rgb(0, 0, 0) 0%, rgb(245, 167, 255) 100%)"
+        },
+        {
+            color: "",
+            code: "linear-gradient(234deg, rgb(131, 58, 180) 0%, rgb(69, 252, 187) 100%)"
+        },
+        {
+            color: "",
+            code:"linear-gradient(203deg, rgb(255, 108, 108) 0%, rgb(245, 167, 255) 100%)"},
+        {
+            color: "",
+            code: "linear-gradient(203deg, rgb(255, 183, 243) 0%, rgb(103, 56, 63) 100%)"
+        },
+    ];
+
+    let allButtons = $("<div class='d-flex row'>");
+
+    for (let i = 0; i < colors.length; i++){
+        let button = $(`<button class="choose-gradient-button" id="${colors[i].color}" style="background: ${colors[i].code}" data-aos="flip-left"> </button>`)
+        button.on("click", ()=>{
+            console.log("test 1: " + colors[i].code);
+            document.cookie = `bg=${colors[i].code}`;
+        })
+        allButtons.append(button);
+    }
+    $(".gradient-choose-container").append(allButtons);
+
 
     const cookieValue = document.cookie
         .split('; ')
         .find((row) => row.startsWith('bg='))
         ?.split('=')[1];
     if (cookieValue !== undefined) {
-        console.log(cookieValue);
         document.body.style.background = cookieValue;
     }
 
 
     $buttons.on("click", (e) => {
-        // let idName = $(e.target).attr('id');
-        // $("body").attr("id", idName);
-        // document.cookie = `bg=${idName}`;
+        let color = $(e.target).css("background").split("rgba(0, 0, 0, 0)")[1];
+        document.cookie = `bg=${color}`;
+        console.log(color);
+        document.body.style.backgroundImage = color;
     })
 
 
     $("#custom-bg").on("click", () => {
         $("#gp").removeClass("d-none");
-        var upType, unAngle, gp;
-        var swType = document.getElementById('switch-type');
+        var gp;
         var swAngle = document.getElementById('switch-angle');
-        var copyToClipboard = function (str) {
-            var el = document.createElement('textarea');
-            el.value = str;
-            el.setAttribute('readonly', '');
-            el.style.position = 'absolute';
-            el.style.left = '-9999px';
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-        };
-        swType.addEventListener('change', function (e) {
-            gp && gp.setType(this.value || 'linear');
-        });
 
         swAngle.addEventListener('change', function (e) {
             gp && gp.setDirection(this.value || 'right');
@@ -74,11 +90,11 @@ window.addEventListener("load", () => {
             let colors = [];
             let sizes = [];
 
-            for (let i=0;i<prewBg.length;i++) {
+            for (let i = 0; i < prewBg.length; i++) {
                 if (prewBg[i][0] === "#") {
                     colors.push(prewBg[i]);
                 }
-                if (prewBg[i][0] >= 0 ||prewBg[i][0] <= 9) {
+                if (prewBg[i][0] >= 0 || prewBg[i][0] <= 9) {
                     sizes.push(prewBg[i]);
                 }
 
@@ -91,7 +107,7 @@ window.addEventListener("load", () => {
                 min: 1,
                 max: 99,
             });
-            for (let i = 0; i < colors.length; i++){
+            for (let i = 0; i < colors.length; i++) {
                 gp.addHandler(sizes[i].slice(0, -2), colors[i], 1);
             }
 
@@ -104,7 +120,7 @@ window.addEventListener("load", () => {
             gp.emit('change');
 
             $(".submit").on("click", () => {
-                document.cookie = "bg="+resultValue;
+                document.cookie = "bg=" + resultValue;
                 $("#gp").remove();
             })
             $(".cancel").on("click", () => {

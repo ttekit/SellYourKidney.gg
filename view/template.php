@@ -44,18 +44,6 @@ $data['options']['lang'] ?>">
     <div id="preloader" class="visible"></div>
     <!-- header section starts -->
     <div class="gradient-choose-container ml-5" data-aos="flip-up">
-        <div class="d-flex">
-            <button class="choose-gradient-button" id="black-pink" data-aos="flip-left">
-            </button>
-            <button class="choose-gradient-button" id="black-white" data-aos="flip-left">
-            </button>
-            <button class="choose-gradient-button" id="red-pink" data-aos="flip-left">
-            </button>
-            <button class="choose-gradient-button" id="pink-darkpink" data-aos="flip-left">
-            </button>
-            <button class="choose-gradient-button" id="custom-bg" data-aos="flip-left">
-            </button>
-        </div>
 
 
     </div>
