@@ -31,9 +31,6 @@ $data['options']['lang'] ?>">
                         <option value="left">Left</option>
                     </select>
                 </div>
-                <div class="copy-grid">
-                    <textarea class="txt-value" readonly></textarea>
-                </div>
                 <div class="buttons">
                     <button class="submit">submit</button>
                     <button class="cancel">cancel</button>

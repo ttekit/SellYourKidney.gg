@@ -45,7 +45,6 @@ window.addEventListener("load", () => {
     for (let i = 0; i < colors.length; i++){
         let button = $(`<button class="choose-gradient-button" id="${colors[i].color}" style="background: ${colors[i].code}" data-aos="flip-left"> </button>`)
         button.on("click", ()=>{
-            console.log("test 1: " + colors[i].code);
             document.cookie = `bg=${colors[i].code}`;
             document.body.style.background = colors[i].code;
         })
@@ -66,14 +65,14 @@ window.addEventListener("load", () => {
 
     $("#custom-bg").on("click", () => {
         $("#gp").removeClass("d-none");
-        var gp;
-        var swAngle = document.getElementById('switch-angle');
+        let gp;
+        let swAngle = document.getElementById('switch-angle');
 
         swAngle.addEventListener('change', function (e) {
             gp && gp.setDirection(this.value || 'right');
         });
 
-        var createGrapick = function () {
+        let createGrapick = function () {
             let resultValue = "";
             let prewBg = document.cookie
                 .split('; ')
@@ -96,11 +95,6 @@ window.addEventListener("load", () => {
 
             }
 
-            console.log(colors);
-            console.log(sizes);
-            console.log(prewBg);
-
-
             gp = new Grapick({
                 el: '#grapick',
                 direction: prewBg[1].slice(0, -1),
@@ -121,10 +115,10 @@ window.addEventListener("load", () => {
 
             $(".submit").on("click", () => {
                 document.cookie = "bg=" + resultValue;
-                $("#gp").remove();
+                $("#gp").addClass("d-none");
             })
             $(".cancel").on("click", () => {
-                $("#gp").remove();
+                $("#gp").addClass("d-none");
             })
         };
 

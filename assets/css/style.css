@@ -50,7 +50,7 @@ body {
 #pink-darkpink{
     background: linear-gradient(203deg, rgb(255, 183, 243) 0%, rgb(103, 56, 63) 100%);
 }
-.color-picker{
+    .color-picker{
     position: fixed;
     top: 50%;
     left: 50%;
@@ -1499,6 +1499,34 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     height: 48px;
     font-weight: 600;
     padding: 0 15px;
+}
+
+.submit{
+    width: 50%;
+    border: 0;
+    height: 25%;
+    background-color: #75f375;
+    border-radius: 5px 0 0 5px;
+}
+
+.submit:hover {
+    background-color: #0ffa0f;
+    color: #656565;
+}
+
+
+.cancel{
+    width: 49%;
+    border: 0;
+    height: 25%;
+    background-color: #f37575;
+    border-radius:  0 5px  5px 0;
+}
+
+
+.cancel:hover {
+    background-color: #9b0505;
+    color: #ffffff;
 }
 
 .media {
