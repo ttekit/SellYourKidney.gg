@@ -68,6 +68,35 @@ window.addEventListener("load", async function () {
         return $data;
     }
 
+    let getSubComments = function (parent_id, $block) {
+        $.ajax({
+            url: "/ajax/getSubComments",
+            method: "POST",
+            data: {
+                "parentId": parent_id
+            },
+            success: (data) => {
+                console.log(data);
+                if(data == "[]"){
+                    Swal.fire("It hasn't answers");
+                }
+                let comments = JSON.parse(data);
+                for (let i = 0; i < comments.length; i++) {
+                    $block.append(getOneChildBlock(comments[i]));
+                }
+            },
+            error: (msg) => {
+                alert(msg);
+            },
+            beforeSend: function () {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function () {
+                $('#preloader').fadeOut(500);
+            },
+        })
+    }
+
     let getOneCommentBlock = function (comment) {
         let $block = $(`<li class="media">
                                 <div class="comment-id">${comment.id}</div>
@@ -89,11 +118,13 @@ window.addEventListener("load", async function () {
                                 </div>
                  </li>`);
 
-
+        console.log("test4");
         $block.find(".comment-btn").on("click", function (e) {
-            $block.append();
+            console.log("test3");
             $(e.target).remove();
+            getSubComments(comment.id, $block)
         });
+
         $block.find(".comment-answer-btn").on("click", function (e) {
             $(e.target).addClass("hidden");
             $block.append(getAnswerFrom($block, comment));
@@ -120,13 +151,11 @@ window.addEventListener("load", async function () {
                                     </div>
                                 </div>
                  </li>`);
-
+        console.log("test2");
         $block.find(".comment-btn").on("click", function (e) {
-            let commentsData = getSubComments(data.id)
-            for (let i = 0; i < commentsData.length; i++) {
-                $block.append(getOneChildBlock(commentsData[i]));
-            }
+            console.log("test1");
             $(e.target).remove();
+            getSubComments(data.id, $block)
         });
         $block.find(".comment-answer-btn").on("click", function (e) {
             $(e.target).addClass("hidden");
@@ -135,7 +164,6 @@ window.addEventListener("load", async function () {
 
         return $block;
     }
-
 
     let postId = parseInt($("#post-id").text());
 
