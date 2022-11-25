@@ -17,7 +17,6 @@ window.addEventListener("load", function () {
                     break;
                 }
             }
-            console.log(globalData);
         })
         return $btn;
     }
@@ -31,7 +30,6 @@ window.addEventListener("load", function () {
         $btn.on("click", function (e) {
 
             for (let i = 0; i < globalData.tag.length; i++) {
-                console.log(globalData.tag[i]);
                 if (globalData.tag[i] === tagName) {
 
                     globalData.tag.splice(i);

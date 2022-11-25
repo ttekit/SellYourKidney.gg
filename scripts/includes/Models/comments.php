@@ -17,6 +17,11 @@ class comments extends \App\DBEngine
     public function getById($id){
        return parent::executeQuery("SELECT * FROM comments WHERE post_id = $id AND comment_id IS NULL");
     }
+
+    public function getAllById($id){
+        return parent::executeQuery("SELECT * FROM comments WHERE post_id = $id");
+    }
+
     public function makeNewComment($login, $email, $comment, $dateOfComment, $client_ip)
     {
         return $this->addRow([

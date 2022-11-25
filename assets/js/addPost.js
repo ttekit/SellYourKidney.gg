@@ -8,7 +8,6 @@ window.addEventListener("load", () => {
 
     function prepareUpload(event) {
         files = event.target.files;
-        console.log(files);
     }
 
 
@@ -63,7 +62,7 @@ window.addEventListener("load", () => {
                 contentType: false,
                 success: function (data) {
                     console.log(data);
-                    swal({
+                    Swal.fire({
                         title: "Are you sure?",
                         text: "Are you sure you want to share" + data,
                         icon: "success",
@@ -72,18 +71,18 @@ window.addEventListener("load", () => {
                     })
                         .then((willDelete) => {
                             if (willDelete) {
-                                swal("Poof! Your post is on checking!", {
+                                Swal.fire("Poof! Your post is on checking!", {
                                     icon: "success",
                                 }).then(() => {
                                     location.href = "/Blog/";
                                 });
                             } else {
-                                swal("Why are you so close?");
+                                Swal.fire("Why are you so close?");
                             }
                         });
                 },
                 error: function (err, errmsg) {
-                    swal({
+                    Swal.fire({
                         title: "Error",
                         text: "Try later pls: " + errmsg,
                         icon: "error"

@@ -22,7 +22,6 @@ window.addEventListener("load", function (){
                 "postId": $postId
             },
             success: (data) => {
-                console.log(data);
                 if(data=="POST_REMOVED"){
                     $container.parent("div").parent("div").remove();
                 }
@@ -45,10 +44,6 @@ window.addEventListener("load", function (){
             data: {
                 "postId": $postId,
                 "newStatus": newData
-            },
-            success: (data) => {
-                console.log(data);
-
             },
             beforeSend: function() {
                 $('#preloader').fadeIn(500);

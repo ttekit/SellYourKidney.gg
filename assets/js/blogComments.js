@@ -1,6 +1,6 @@
-window.addEventListener("load", function () {
+window.addEventListener("load", async function () {
     "use strict"
-    let postId = parseInt($("#post-id").text());
+
     let getAnswerFrom = function ($parent, oldData) {
         console.log(oldData.id);
         let $data;
@@ -82,15 +82,16 @@ window.addEventListener("load", function () {
                                     <button class="comment-answer-btn">answ</button>
                                 </div>
 
-                                    <div class="media-date">${comment.dateOfCreated}</div>
+                                    <div class="media-date">${comment.dateOfComment}</div>
                                     <div class="media-content">
                                         <p>${comment.comment}</p>
                                     </div>
                                 </div>
                  </li>`);
 
+
         $block.find(".comment-btn").on("click", function (e) {
-            getSubComments(comment.id, $block);
+            $block.append();
             $(e.target).remove();
         });
         $block.find(".comment-answer-btn").on("click", function (e) {
@@ -113,7 +114,7 @@ window.addEventListener("load", function () {
                                         <button class = "comment-btn">+</button>
                                         <button class="comment-answer-btn">answ</button>
                                     </div>
-                                    <div class="media-date">${data.dateOfCreated}</div>
+                                    <div class="media-date">${data.dateOfComment}</div>
                                     <div class="media-content">
                                         <p>${data.comment}</p>
                                     </div>
@@ -121,7 +122,10 @@ window.addEventListener("load", function () {
                  </li>`);
 
         $block.find(".comment-btn").on("click", function (e) {
-            getSubComments(data.id, $block);
+            let commentsData = getSubComments(data.id)
+            for (let i = 0; i < commentsData.length; i++) {
+                $block.append(getOneChildBlock(commentsData[i]));
+            }
             $(e.target).remove();
         });
         $block.find(".comment-answer-btn").on("click", function (e) {
@@ -132,24 +136,8 @@ window.addEventListener("load", function () {
         return $block;
     }
 
-    let getSubComments = function (parent_id, $block) {
-        $.ajax({
-            url: "/ajax/getSubComments",
-            method: "POST",
-            data: {
-                "parentId": parent_id
-            },
-            success: (data) => {
-                let comments = JSON.parse(data);
-                for (let i = 0; i < comments.length; i++) {
-                    $block.append(getOneChildBlock(comments[i]));
-                }
-            },
-            error: (msg) => {
-                alert(msg);
-            }
-        })
-    }
+
+    let postId = parseInt($("#post-id").text());
 
     if (!isNaN(postId)) {
         $.ajax({
@@ -170,7 +158,13 @@ window.addEventListener("load", function () {
             },
             error: (msg) => {
                 alert(msg);
-            }
+            },
+            beforeSend: function () {
+                    $('#preloader').fadeIn(500);
+            },
+            complete: function () {
+                $('#preloader').fadeOut(500);
+            },
         })
     }
 
@@ -199,13 +193,13 @@ window.addEventListener("load", function () {
                 switch (data) {
                     case "1 row affected": {
                         $(".comments-form").trigger("reset");
-                        swal("Comment is successfully send", {
+                        Swal.fire("Comment is successfully send", {
                             icon: "success",
                         })
                         break;
                     }
                     case "0 row affected": {
-                        swal("Some data in comment is unavailable, refill form", {
+                        Swal.fire("Some data in comment is unavailable, refill form", {
                             icon: "error",
                         })
                         break;
@@ -218,4 +212,5 @@ window.addEventListener("load", function () {
             }
         })
     })
+
 })

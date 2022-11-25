@@ -32,19 +32,20 @@ window.addEventListener("load", () => {
                 contentType: false,
                 success: function (data) {
                     console.log(data);
-                    swal("Poof! Added new project!", {
+                    Swal.fire("Poof! Added new project!", {
                         icon: "success",
                     }).then(() => {
                         location.href = "/Admin/";
                     });
                 },
                 error: function (err, errmsg) {
-                    swal({
+                    Swal.fire({
                         title: "Error",
                         text: "Try later pls: " + errmsg,
                         icon: "error"
                     })
-                }, beforeSend:
+                },
+                beforeSend:
                     function () {
                         $('#preloader').fadeIn(500);
                     },

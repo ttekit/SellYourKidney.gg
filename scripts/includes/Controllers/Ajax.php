@@ -32,6 +32,20 @@ class Ajax extends Controller
             echo "error?";
         }
     }
+    public function getCommentsAndSubComments()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["postId"])) {
+                $id = $_POST["postId"];
+                $commentsM = new comments();
+
+                echo json_encode($commentsM->getAllById($id), JSON_UNESCAPED_UNICODE);
+            }
+
+        } else {
+            echo "error?";
+        }
+    }
 
     public function getSubComments()
     {

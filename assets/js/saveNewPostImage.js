@@ -29,7 +29,7 @@ window.addEventListener("load", () => {
                 contentType: false,
                 success: function (data) {
                     console.log(data);
-                    swal({
+                    Swal.fire({
                         title: "Are you sure?",
                         text: "Are you sure you want to share" + data,
                         icon: "success",
@@ -38,18 +38,18 @@ window.addEventListener("load", () => {
                     })
                         .then((willDelete) => {
                             if (willDelete) {
-                                swal("Poof! Your post is on checking!", {
+                                Swal.fire("Poof! Your post is on checking!", {
                                     icon: "success",
                                 }).then(() => {
                                     location.href = "/Admin/products";
                                 });
                             } else {
-                                swal("Ok :( ");
+                                Swal.fire("Ok :( ");
                             }
                         });
                 },
                 error: function (err, errmsg) {
-                    swal({
+                    Swal.fire({
                         title: "Error",
                         text: "Pls try later",
                         icon: "error"
