@@ -21,5 +21,7 @@
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="/assets/css/grapick.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.css">
     <link rel="preload" href="/assets/js/blogComments.js" as="script" />
 </head>

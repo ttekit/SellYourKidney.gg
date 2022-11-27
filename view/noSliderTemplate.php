@@ -5,36 +5,39 @@
 <!-- popper js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <!-- bootstrap js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+
 
 <?php use Models\Navigate; ?>
-<html lang="<?= /** @var array $data */
+<html lang="<?= /** @var $data */
 $data['options']['lang']?>">
 
 <?php require_once(COMPONENTS_PATH."head.php") ?>
 
 <body>
 
-<!--    Preloader-->
-<div id="preloader" class="visible"></div>
 
-<div class="">
-    <div class="gradient-choose-container ml-5">
-        <div class="d-flex">
-            <button class="choose-gradient-button" id="black-pink">
-            </button>
-            <button class="choose-gradient-button" id="black-white">
-            </button>
-            <button class="choose-gradient-button" id="red-pink">
-            </button>
-            <button class="choose-gradient-button" id="pink-darkpink">
-            </button>
+
+<div id="gp" class="color-picker d-none">
+    <div class="container">
+        <div class="grapick-cont">
+            <div id="grapick"></div>
+            <div class="inputs">
+                <div id="slider"></div>
+            </div>
+            <div class="buttons">
+                <button class="submit">submit</button>
+                <button class="cancel">cancel</button>
+            </div>
         </div>
     </div>
-    <!-- header section strats -->
-    <?php require_once(COMPONENTS_PATH."header.php") ?>
 </div>
-
+<!--    Preloader-->
+<div id="preloader" class="visible"></div>
+<div class="gradient-choose-container ml-5" data-aos="flip-up">
+</div>
+<button class="choose-gradient-button" id="custom-bg" data-aos="flip-left">
+</button>
 
 <!-- end header section -->
 <main>
@@ -53,5 +56,7 @@ $data['options']['lang']?>">
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/nav-item-color.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="/assets/js/grapick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
 </body>
 </html>

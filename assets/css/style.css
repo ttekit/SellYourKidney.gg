@@ -1748,12 +1748,17 @@ form input[type="submit"]:focus {
     border: 0;
     margin: 2px;
     background-color: rgba(63, 63, 63, 0.2);
+    border-radius: 15px 0px 15px 0px;
+    min-width: 40px;
 }
+
 .comment-answer-btn{
     border: 0;
     margin: 2px;
     background-color: rgba(63, 63, 63, 0.2);
+    border-radius: 0px 15px 0px 15px;
 }
+
 .comments-form {
     padding: 2px;
 }
@@ -1761,4 +1766,7 @@ form input[type="submit"]:focus {
     position: absolute;
     top: 2%;
     right: 0;
+}
+#slider{
+    margin-left: 25px;
 }

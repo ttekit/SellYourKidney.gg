@@ -58,6 +58,7 @@ window.addEventListener("load", () => {
         .find((row) => row.startsWith('bg='))
         ?.split('=')[1];
     if (cookieValue !== undefined) {
+
         document.body.style.background = cookieValue;
     }
 
@@ -66,34 +67,52 @@ window.addEventListener("load", () => {
     $("#custom-bg").on("click", () => {
         $("#gp").removeClass("d-none");
         let gp;
-        let swAngle = document.getElementById('switch-angle');
 
-        swAngle.addEventListener('change', function (e) {
-            gp && gp.setDirection(this.value || 'right');
+        let prewBg = document.cookie
+            .split('; ')
+            .find((row) => row.startsWith('bg='))
+            ?.split('=')[1];
+        prewBg = prewBg.split(" ");
+
+        let colors = [];
+        let sizes = [];
+
+        for (let i = 0; i < prewBg.length; i++) {
+            if (prewBg[i][0] === "#") {
+                colors.push(prewBg[i]);
+            }
+            if (prewBg[i][0] >= 0 || prewBg[i][0] <= 9) {
+                if(prewBg[i][1] !== '.'){
+                    sizes.push(prewBg[i]);
+                }
+            }
+        }
+
+        let currentRoundSliderValue = "";
+        for (let i = 0; i < prewBg[0].length; i++){
+            if(prewBg[0][i] >= 0 || prewBg[0][i] <= 9){
+                currentRoundSliderValue += prewBg[0][i];
+            }
+        }
+
+        $("#slider").roundSlider({
+            radius: 85,
+            sliderType: "min-range",
+            min: 0,
+            max: 360,
+            value: currentRoundSliderValue,
+            drag: function (e){
+                e.value += "deg";
+                gp && gp.setDirection(e.value || '90deg');
+            }
         });
+        // swAngle.addEventListener('change', function (e) {
+        //     gp && gp.setDirection(this.value || 'right');
+
 
         let createGrapick = function () {
             let resultValue = "";
-            let prewBg = document.cookie
-                .split('; ')
-                .find((row) => row.startsWith('bg='))
-                ?.split('=')[1];
-            prewBg = prewBg.split(" ");
 
-            let colors = [];
-            let sizes = [];
-
-            for (let i = 0; i < prewBg.length; i++) {
-                if (prewBg[i][0] === "#") {
-                    colors.push(prewBg[i]);
-                }
-                if (prewBg[i][0] >= 0 || prewBg[i][0] <= 9) {
-                    if(prewBg[i][1] !== '.'){
-                        sizes.push(prewBg[i]);
-                    }
-                }
-
-            }
 
             gp = new Grapick({
                 el: '#grapick',

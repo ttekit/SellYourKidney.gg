@@ -6,6 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <!-- bootstrap js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.css"></script>
 
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -16,20 +17,12 @@ $data['options']['lang'] ?>">
 <body>
 
 <div class="">
-    <!--    Preloader-->
     <div id="gp" class="color-picker d-none">
         <div class="container">
             <div class="grapick-cont">
                 <div id="grapick"></div>
                 <div class="inputs">
-                    <select class="form-control" id="switch-angle">
-                        <option value="">- Select Direction -</option>
-                        <option value="top">Top</option>
-                        <option value="right">Right</option>
-                        <option value="center">Center</option>
-                        <option value="bottom">Bottom</option>
-                        <option value="left">Left</option>
-                    </select>
+                    <div id="slider"></div>
                 </div>
                 <div class="buttons">
                     <button class="submit">submit</button>
@@ -38,6 +31,7 @@ $data['options']['lang'] ?>">
             </div>
         </div>
     </div>
+    <!--    Preloader-->
     <div id="preloader" class="visible"></div>
     <!-- header section starts -->
     <div class="gradient-choose-container ml-5" data-aos="flip-up">
@@ -84,9 +78,11 @@ $data['options']['lang'] ?>">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script src="/assets/js/scrollRevAnimation.js"></script>
 
 <script src="/assets/js/grapick.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
 
 </body>
 </html>
