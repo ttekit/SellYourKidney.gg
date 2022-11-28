@@ -2,7 +2,6 @@ window.addEventListener("load", async function () {
     "use strict"
 
     let getAnswerFrom = function ($parent, oldData) {
-        console.log(oldData.id);
         let $data;
         $data = $(`<form action="saveComment" method="post" id="comment-form" class="form-horizontal form-wizzard">
                             <h3 class="h3">Answer a comment</h3>
@@ -118,9 +117,7 @@ window.addEventListener("load", async function () {
                                 </div>
                  </li>`);
 
-        console.log("test4");
         $block.find(".comment-btn").on("click", function (e) {
-            console.log("test3");
             $(e.target).remove();
             getSubComments(comment.id, $block)
         });
@@ -151,9 +148,8 @@ window.addEventListener("load", async function () {
                                     </div>
                                 </div>
                  </li>`);
-        console.log("test2");
+
         $block.find(".comment-btn").on("click", function (e) {
-            console.log("test1");
             $(e.target).remove();
             getSubComments(data.id, $block)
         });

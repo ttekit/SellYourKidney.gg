@@ -32,6 +32,7 @@ class userAcc extends \App\DBEngine
         }
         return null;
     }
+
     public function AddNewUser($data)
     {
         return parent::addRow($data);

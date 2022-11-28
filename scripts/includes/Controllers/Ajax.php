@@ -32,6 +32,7 @@ class Ajax extends Controller
             echo "error?";
         }
     }
+
     public function getCommentsAndSubComments()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -232,6 +233,16 @@ class Ajax extends Controller
                 $prodM = new \Models\userAcc();
                 $result = $prodM->removeUser($_POST["id"]);
                 echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            }
+        }
+    }
+
+    public function findUserByLogin(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["login"])) {
+                $prodM = new \Models\userAcc();
+                $result = $prodM->getByLogin($_POST["login"]);
+                echo json_encode($result);
             }
         }
     }

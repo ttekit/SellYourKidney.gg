@@ -30,6 +30,11 @@ $data['options']['lang']?>">
     <!-- responsive style -->
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
 
+
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+
+
 </head>
 
 <body id="page-top">
@@ -203,7 +208,7 @@ $data['options']['lang']?>">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
