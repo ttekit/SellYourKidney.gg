@@ -43,19 +43,36 @@ window.addEventListener("load", function () {
                 }
                 else{
                     let data = JSON.parse(res);
-                    console.log(data);
-
                     Swal.fire({
                         title: data.login,
                         html: `<p class="text-white">email: ${data.email}</p>
-                                <a class="text-gray-100 font-weight-bold"  href="/user/${data.id}">profile</a>
+                                <a class="text-gray-100 font-weight-bold"  href="/user/?id=${data.id}">profile</a>
                         `,
                         showDenyButton: true,
                         denyButtonText: `BAN`,
                     }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire('BAN!', '', 'success')
+                        if (result.isDenied) {
+                            $.ajax({
+                                url: "/ajax/banUser",
+                                method: "POST",
+                                data: {
+                                    "id": data.id
+                                },
+                                success: () => {
+                                    Swal.fire('BAN!', '', 'success').then(()=>{
+                                        location.reload();
+                                    })
+                                },
+                                error: (msg) => {
+                                    alert(msg);
+                                },
+                                beforeSend: function() {
+                                    $('#preloader').fadeIn(500);
+                                },
+                                complete: function() {
+                                    $('#preloader').fadeOut(500);
+                                },
+                            })
                         }
                     })
 

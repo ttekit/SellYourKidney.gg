@@ -17,12 +17,17 @@ class User extends Controller
     {
         $this->format_options();
         $this->returnNavigationPanel();
-        $this->format_userData();
-        if ($this->CheckOnLogin()) {
-            $this->UserCabinetView();
-        } else {
-            $this->LoginUserView();
+        if(isset($_GET["id"])){
+            $this->UserCabinetNotOwnerView($_GET["id"]);
         }
+        else{
+            if ($this->CheckOnLogin()) {
+                $this->UserCabinetView();
+            } else {
+                $this->LoginUserView();
+            }
+        }
+
 
     }
 
@@ -150,6 +155,15 @@ class User extends Controller
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
     }
 
+    public function UserCabinetNotOwnerView($id)
+    {
+        $this->format_options();
+        $this->returnNavigationPanel();
+        $this->format_userDataById($id);
+        $this->formatSocLinkDataById($id);
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserNotOwnerCabinet" . EXT, $this->data);
+    }
+
     public function LogOut()
     {
         $_SESSION = [];
@@ -249,12 +263,19 @@ class User extends Controller
         return false;
     }
 
+    private function format_userDataById($id)
+    {
+        $userDataBase = new userAcc();
+        $this->data["userData"] = $userDataBase->getById($id)[0];
+
+    }
+
     private function format_userData()
     {
-        if ($this->CheckOnLogin()) {
-            $userDataBase = new userAcc();
-            $this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]);
-        }
+            if ($this->CheckOnLogin()) {
+                $userDataBase = new userAcc();
+                $this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]);
+            }
     }
 
     private function formatSocLinkData()
@@ -262,6 +283,13 @@ class User extends Controller
 
         $socLinks = new \Models\userSocLincs();
         $socLinksArr = $socLinks->getSocLinksOfUser($_SESSION["reg"]["userId"]);
+        $this->data["reg"]["socLinks"] = $socLinksArr;
+    }
+
+    private function formatSocLinkDataById($id)
+    {
+        $socLinks = new \Models\userSocLincs();
+        $socLinksArr = $socLinks->getSocLinksOfUser($id);
         $this->data["reg"]["socLinks"] = $socLinksArr;
     }
 
