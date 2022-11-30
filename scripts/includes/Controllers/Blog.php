@@ -8,11 +8,11 @@ use Models\post;
 class Blog extends Controller
 {
     public function index(){
-        if(isset($_GET["pageCount"])){
-            $this->data["pagination"]["currentPage"] = $_GET["pageCount"];
+        if(isset($_GET["page"])){
+            $this->data["pagination"]["page"] = $_GET["page"];
         }
         else{
-            $this->data["pagination"]["currentPage"] = 0;
+            $this->data["pagination"]["page"] = 0;
         }
 
         if(isset($_GET["count"])){

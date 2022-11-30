@@ -35,14 +35,17 @@ class Pagination
             }
             $href = $tmpHref;
         }
+        if(str_contains($href, "?")){
+            $href = explode("?", $href)[0];
+        }
         echo "<div class='blog-page-count-container'>";
 
         echo "<button class = 'swipe-page-button'><a href = '/blog?page=0'><<</a></button>";
         echo "<button onclick = 'goPrew()' class = 'prew swipe-page-button'>←</button>";
-        for ($i = $data["currentPage"] - 2; $i < $countPosts / (int)$data["postsCount"] && $i < $data["currentPage"] + (int)$data["postsCount"]; $i++) {
+        for ($i = $data["page"] - 2; $i < $countPosts / (int)$data["postsCount"] && $i < $data["page"] + (int)$data["postsCount"]; $i++) {
             if ($i >= 0) {
                 echo "<button class = 'swipe-page-button'>";
-                echo "<a href = '" . $href . "&page=" . ($i) . "'>" . ($i + 1) . "</a>";
+                echo "<a href = '" . $href . "?page=" . ($i) . "'>" . ($i + 1) . "</a>";
                 echo "</button>";
             }
         }
@@ -76,12 +79,14 @@ class Pagination
     let goPrew = function () {
         let pageCount = window.location.href.split("page=");
         console.log(pageCount);
+
         if (pageCount[1] > 0) {
             window.location.href = "http://bootstrapshop.gg/blog?page=" + (pageCount[1] - 1);
         }
     }
     let goNext = function (leng) {
         let pageCount = window.location.href.split("page=");
+        console.log(pageCount);
         if(pageCount[1] === undefined){
             pageCount[1] = 1;
         }

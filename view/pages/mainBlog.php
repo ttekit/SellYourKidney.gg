@@ -53,15 +53,15 @@
         <div class="blog-context row">
             <?php
             $postContent = $data["blog"]["posts"];
-            if (isset($data["pagination"]["currentPage"])) {
-                $starterPosition = $data["pagination"]["currentPage"];
+            if (isset($data["pagination"]["page"])) {
+                $starterPosition = $data["pagination"]["page"];
             } else {
                 $starterPosition = 0;
             }
             $tmp = [];
             foreach ($postContent as $key => $value) {
                 if (isset($data["blog"]["filter"])) {
-                    if ($value->tagName == $data["blog"]["filter"]) {
+                    if ($value["tagName"] == $data["blog"]["filter"]) {
                         array_push($tmp, $value);
                     }
                 } else {
