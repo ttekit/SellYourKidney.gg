@@ -29,7 +29,7 @@ class Pagination
             $tmpHref = "";
             $href = explode("&", $href);
             for ($i = 0; $i < count($href); $i++) {
-                if (!str_contains($href[$i], "pageCount=")) {
+                if (!str_contains($href[$i], "page=")) {
                     $tmpHref .= $href[$i];
                 }
             }
@@ -37,17 +37,17 @@ class Pagination
         }
         echo "<div class='blog-page-count-container'>";
 
-        echo "<button class = 'swipe-page-button'><a href = '/blog?pageCount=0'><<</a></button>";
+        echo "<button class = 'swipe-page-button'><a href = '/blog?page=0'><<</a></button>";
         echo "<button onclick = 'goPrew()' class = 'prew swipe-page-button'>←</button>";
         for ($i = $data["currentPage"] - 2; $i < $countPosts / (int)$data["postsCount"] && $i < $data["currentPage"] + (int)$data["postsCount"]; $i++) {
             if ($i >= 0) {
                 echo "<button class = 'swipe-page-button'>";
-                echo "<a href = '" . $href . "&pageCount=" . ($i) . "'>" . ($i + 1) . "</a>";
+                echo "<a href = '" . $href . "&page=" . ($i) . "'>" . ($i + 1) . "</a>";
                 echo "</button>";
             }
         }
         echo "<button onclick = 'goNext($countPosts)' class = 'next swipe-page-button'>→</button>";
-        echo "<button class = 'swipe-page-button'><a href = '/blog?pageCount=" . (round($countPosts / (int)$data["postsCount"] - 1)) . "'>>></a></button>";
+        echo "<a href = '/blog?page=" . (round($countPosts / (int)$data["postsCount"] - 1)) . "'><button class = 'swipe-page-button'>>></button></a>";
         echo "</div>";
 
     }
@@ -74,19 +74,19 @@ class Pagination
 ?>
 <script>
     let goPrew = function () {
-        let pageCount = window.location.href.split("?pageCount=");
+        let pageCount = window.location.href.split("page=");
         console.log(pageCount);
         if (pageCount[1] > 0) {
-            window.location.href = "http://bootstrapshop.gg/blog?pageCount=" + (pageCount[1] - 1);
+            window.location.href = "http://bootstrapshop.gg/blog?page=" + (pageCount[1] - 1);
         }
     }
     let goNext = function (leng) {
-        let pageCount = window.location.href.split("?pageCount=");
-        if(pageCount === undefined){
-            pageCount = 1;
+        let pageCount = window.location.href.split("page=");
+        if(pageCount[1] === undefined){
+            pageCount[1] = 1;
         }
         if (pageCount[1] < leng) {
-            window.location.href = "http://bootstrapshop.gg/blog?pageCount=" + (parseInt(pageCount[1]) + 1);
+            window.location.href = "http://bootstrapshop.gg/blog?page=" + (parseInt(pageCount[1]) + 1);
         }
     }
 </script>

@@ -1405,7 +1405,7 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     background-color: #ffffff;
     margin-top: 10px;
     margin-left: 10px;
-    height: 500px;
+    min-height: 500px;
     border-radius: 4px;
 }
 
