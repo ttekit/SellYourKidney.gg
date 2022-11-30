@@ -45,7 +45,7 @@ window.addEventListener("load", () => {
     for (let i = 0; i < colors.length; i++){
         let button = $(`<button class="choose-gradient-button" id="${colors[i].color}" style="background: ${colors[i].code}" data-aos="flip-left"> </button>`)
         button.on("click", ()=>{
-            document.cookie = `bg=${colors[i].code}`;
+            localStorage.setItem('bg', colors[i].code);
             document.body.style.background = colors[i].code;
         })
         allButtons.append(button);
@@ -53,10 +53,12 @@ window.addEventListener("load", () => {
     $(".gradient-choose-container").append(allButtons);
 
 
-    const cookieValue = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('bg='))
-        ?.split('=')[1];
+    // const cookieValue = document.cookie
+    //     .split('; ')
+    //     .find((row) => row.startsWith('bg='))
+    //     ?.split('=')[1];
+    const cookieValue = localStorage.getItem('bg');
+
     if (cookieValue !== undefined) {
 
         document.body.style.background = cookieValue;
@@ -68,10 +70,7 @@ window.addEventListener("load", () => {
         $("#gp").removeClass("d-none");
         let gp;
 
-        let prewBg = document.cookie
-            .split('; ')
-            .find((row) => row.startsWith('bg='))
-            ?.split('=')[1];
+        let prewBg =localStorage.getItem("bg");
         prewBg = prewBg.split(" ");
 
         let colors = [];
@@ -133,7 +132,7 @@ window.addEventListener("load", () => {
             gp.emit('change');
 
             $(".submit").on("click", () => {
-                document.cookie = "bg=" + resultValue;
+                localStorage.setItem("bg", resultValue);
                 $("#gp").addClass("d-none");
             })
             $(".cancel").on("click", () => {
