@@ -246,4 +246,14 @@ class Ajax extends Controller
             }
         }
     }
+
+
+    public function searchProduct(){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            if(isset($_POST["value"])){
+                $prodM = new \Models\products();
+                echo json_encode($prodM->getByPartlyName($_POST["value"]));
+            }
+        }
+    }
 }

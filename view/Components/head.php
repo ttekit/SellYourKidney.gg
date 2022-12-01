@@ -24,4 +24,5 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.css">
     <link rel="preload" href="/assets/js/blogComments.js" as="script" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>

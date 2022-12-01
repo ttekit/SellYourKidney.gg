@@ -1770,3 +1770,13 @@ form input[type="submit"]:focus {
 #slider{
     margin-left: 25px;
 }
+.search-help-field{
+    background-color: white;
+    border-radius: 4px;
+}
+.search-elem{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin: 2px;
+}

@@ -7,6 +7,13 @@
             <h2>
                 Our <span>products</span>
             </h2>
+            <div class="search">
+                <input class="search-input" placeholder="Input product name">
+                <button class="search-button">Search</button>
+                <div class="search-help-field">
+
+                </div>
+            </div>
         </div>
         <div class="row">
             <?php
@@ -52,5 +59,6 @@
     </div>
 </section>
 <script src="../../assets/js/cartScript.js"></script>
+<script src="../../assets/js/productSearch.js"></script>
 <script src="../../assets/js/addToCartAnimation.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=Ad0ypubZ_l3K1qOGKieJ-H3Ia1oBMGYOl8cL57rrkl3xLa0Nzo-OtKpZquP2SNMiFOwj6Vol0ZIlJJuW&components=buttons"></script>

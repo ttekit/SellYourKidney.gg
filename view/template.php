@@ -6,9 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <!-- bootstrap js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.css"></script>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <html lang="<?= /** @var $data */
 $data['options']['lang'] ?>">
@@ -82,6 +80,7 @@ $data['options']['lang'] ?>">
 <script src="/assets/js/scrollRevAnimation.js"></script>
 
 <script src="/assets/js/grapick.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
 
 </body>
