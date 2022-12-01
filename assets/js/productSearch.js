@@ -1,29 +1,46 @@
-window.addEventListener("load", function (){
+window.addEventListener("load", function () {
     let input = $(".search-input");
     let cont = $(".search-help-field");
-    $(".search-button").on("click", (e)=>{
+    $(".search-button").on("click", (e) => {
         console.log(input.val());
     })
-    input.on('input', (e)=>{
-        console.log("CHANGE");
+
+    input.keyup($.debounce(500, () => {
         $.ajax({
             url: "/ajax/searchProduct",
             method: "post",
             data: {
-                "value": $(e.target).val()
+                "value": input.val()
             },
-            success: (data)=>{
+            success: (data) => {
                 data = JSON.parse(data);
                 cont.empty();
-                for(let i = 0; i < data.length; i++){
-                    cont.append(`<a href="/products/product?device=${data[i].id}" class="search-elem">
-                                    ${data[i].name}
-                    </a>`);
+                for (let i = 0; i < data.length; i++) {
+                    if(i <= 5){
+                        cont.append(getContainerElem(data[i]));
+                    }
                 }
             },
-            error: (err)=>{
+            error: (err) => {
                 alert(err)
+            },
+            beforeSend: () => {
+                input.addClass("loading");
+            },
+            complete: () => {
+                input.removeClass("loading")
             }
         })
-    })
+    }));
+
+
+    function getContainerElem(data) {
+        return `
+                <div class="search-elem-container">
+                                    <img src="${data.img_src}" alt="${data.img_alt}" width="50px">  
+                                    <a href="/products/product?device=${data.id}" class="search-elem">
+                                                    ${data.name}
+                                    </a>
+                </div>`
+    }
 })

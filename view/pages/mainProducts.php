@@ -9,9 +9,7 @@
             </h2>
             <div class="search">
                 <input class="search-input" placeholder="Input product name">
-                <button class="search-button">Search</button>
                 <div class="search-help-field">
-
                 </div>
             </div>
         </div>

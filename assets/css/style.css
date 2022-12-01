@@ -1771,12 +1771,28 @@ form input[type="submit"]:focus {
     margin-left: 25px;
 }
 .search-help-field{
-    background-color: white;
+
     border-radius: 4px;
 }
 .search-elem{
     display: flex;
     flex-direction: column;
     color: black;
-    margin: 2px;
+    margin: 6px;
+}
+.search-input{
+    border: 0;
+    min-width: 275px;
+}
+.search-elem-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+.search{
+    width: 100%;
+}
+.loading{
+    background-color: rgba(52, 52, 52, 0.2);
 }
