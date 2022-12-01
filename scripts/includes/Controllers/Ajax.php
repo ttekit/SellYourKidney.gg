@@ -252,10 +252,7 @@ class Ajax extends Controller
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(isset($_POST["value"])){
                 $prodM = new \Models\products();
-                $result = $prodM->getByPartlyName($_POST["value"]);
-                if(count($result) > 5){
-                    $result = array_slice($result, 0, 5, true);
-                }
+                $result = $prodM->getByPartlyName($_POST["value"], 6);
                 echo json_encode($result);
             }
         }

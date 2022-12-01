@@ -12,7 +12,7 @@ class Main extends Controller
 
     private function format_products(){
         $pm = new \Models\products();
-        $this->data["products"] = $pm->execQuery("SELECT * FROM products ORDER BY price DESC LIMIT 6 OFFSET 0");
+        $this->data["products"] = $pm->execQuery("SELECT * FROM products ORDER BY price DESC LIMIT 8 OFFSET 0");
         unset($pm);
     }
 }

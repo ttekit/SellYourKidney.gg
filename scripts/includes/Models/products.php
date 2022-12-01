@@ -52,8 +52,8 @@ class products extends \App\DBEngine
         return $this->removeRow($id);
     }
 
-    public function getByPartlyName($name){
-        return $this->executeQuery("SELECT * FROM products WHERE name LIKE '%".$name."%'");
+    public function getByPartlyName($name, $limit){
+        return $this->executeQuery("SELECT * FROM products WHERE name LIKE '%".$name."%' LIMIT ".$limit);
 
     }
 }
