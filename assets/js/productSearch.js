@@ -33,6 +33,12 @@ window.addEventListener("load", function () {
         })
     }));
 
+    input.on("focus", ()=>{
+        cont.fadeIn(500);
+    });
+    input.on("blur", ()=>{
+        cont.fadeOut(500);
+    });
 
     function getContainerElem(data) {
         return `

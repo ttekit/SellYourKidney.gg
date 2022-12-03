@@ -112,7 +112,6 @@ window.addEventListener("load", () => {
         let createGrapick = function () {
             let resultValue = "";
 
-            console.log(prewBg[0].slice(0, -1));
             gp = new Grapick({
                 el: '#grapick',
                 direction: currentRoundSliderValue,
