@@ -236,15 +236,15 @@ class User extends Controller
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
-
-                    $blogCatsM = new blogcategories();
-                    $catsM = new categories();
                     $thisPost = $blogM->getOneRow([
                         "title" => $_POST["title"],
                         "slogan" => $_POST["slogan"],
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
 
+
+                    $blogCatsM = new blogcategories();
+                    $catsM = new categories();
                     $cat = $catsM->getCategoryByCategoryName($_POST["category"]);
                     $blogCatsM->AddElem($thisPost["id"], $cat["id"]);
 
@@ -252,11 +252,9 @@ class User extends Controller
                     $blogTagsM = new posttages();
                     $tagsArr = json_decode($_POST["tags"]);
                     foreach ($tagsArr as $key => $value) {
-                        varDump($tagsM->getId(["tag" => $value]));
                         $blogTagsM->AddElem($thisPost["id"], $tagsM->getId(["tag" => $value]));;
                     }
 
-                    $blogCatsM->AddElem($thisPost["id"], $cat["id"]);
 
                 }
             }
@@ -264,6 +262,16 @@ class User extends Controller
             $this->format_options();
             $this->returnNavigationPanel();
             View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+        }
+    }
+
+    public function updateOnePost(){
+        if(isset($_GET["id"])){
+            if($this->CheckOnLogin()){
+                $this->format_options();
+                $this->format_postData($_GET["id"]);
+                View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainPostEdit" . EXT, $this->data);
+            }
         }
     }
 
@@ -307,10 +315,15 @@ class User extends Controller
         $this->data["reg"]["socLinks"] = $socLinksArr;
     }
 
+    private function format_postData($id){
+        $blogM = new post();
+        $this->data["postData"] = $blogM->getPostById($id);
+    }
+
     private function getAllUserPosts()
     {
         if(isset($this->data["userData"])){
-            $blogM = new post();
+           $blogM = new post();
            $this->data["posts"] = $blogM->getPostByAuthorId($this->data["userData"]["id"]);
         }
     }

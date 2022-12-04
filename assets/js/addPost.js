@@ -22,10 +22,11 @@ window.addEventListener("load", () => {
                 categories = $button.text();
                 $button.addClass("pressed");
             }
-            console.log(categories);
         }
     });
+
     $(".addNewTagBtn").on("click", (e) => {
+
         let $button = $(e.target);
         if ($button.hasClass("pressed")) {
             tags.splice(tags.indexOf($button.text()), 1);
@@ -52,7 +53,7 @@ window.addEventListener("load", () => {
             formData.append('content', $("[name='content']").val());
             formData.append('category', categories);
             formData.append('tags', JSON.stringify(tags));
-
+            console.log(JSON.stringify(tags));
             $.ajax({
                 url: '/user/addNewPost',
                 type: 'POST',
@@ -76,8 +77,6 @@ window.addEventListener("load", () => {
                                 }).then(() => {
                                     location.href = "/Blog/";
                                 });
-                            } else {
-                                Swal.fire("Why are you so close?");
                             }
                         });
                 },

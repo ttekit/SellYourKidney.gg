@@ -10,12 +10,11 @@
 
 <?php use Models\Navigate; ?>
 <html lang="<?= /** @var $data */
-$data['options']['lang']?>">
+$data['options']['lang'] ?>">
 
-<?php require_once(COMPONENTS_PATH."head.php") ?>
+<?php require_once(COMPONENTS_PATH . "head.php") ?>
 
 <body>
-
 
 
 <div id="gp" class="color-picker d-none">
@@ -45,7 +44,7 @@ $data['options']['lang']?>">
     require_once $contentView; ?>
 </main>
 <!-- footer start -->
-<?php require_once(COMPONENTS_PATH."footer.php") ?>
+<?php require_once(COMPONENTS_PATH . "footer.php") ?>
 <!-- footer end -->
 <div class="cpy_">
     <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
@@ -58,5 +57,9 @@ $data['options']['lang']?>">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/assets/js/grapick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
 </body>
 </html>
