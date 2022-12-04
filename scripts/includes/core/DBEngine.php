@@ -124,7 +124,6 @@ namespace App {
                 }
                 $query = mb_substr($query, 0, mb_strlen($query) - 2);
                 $query .= ");";
-                echo ($query);
                 $sth = $this->_dbh->prepare($query);
                 $sth->execute();
                 return null;

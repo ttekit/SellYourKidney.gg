@@ -17,15 +17,10 @@ class User extends Controller
     {
         $this->format_options();
         $this->returnNavigationPanel();
-        if(isset($_GET["id"])){
+        if (isset($_GET["id"])) {
             $this->UserCabinetNotOwnerView($_GET["id"]);
-        }
-        else{
-            if ($this->CheckOnLogin()) {
-                $this->UserCabinetView();
-            } else {
-                $this->LoginUserView();
-            }
+        } else {
+            $this->UserCabinetView();
         }
 
 
@@ -108,20 +103,29 @@ class User extends Controller
     public function LoginUserView()
     {
         if (!$this->CheckOnLogin()) {
-            $this->format_options();
-            $this->returnNavigationPanel();
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
+            Header("Location: /user/login");
         } else {
             $this->UserCabinetView();
+        }
+    }
+
+    public function UpdatePosts()
+    {
+        if (!$this->CheckOnLogin()) {
+            Header("Location: /user/login");
+        } else {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            $this->format_userData();
+            $this->getAllUserPosts();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "updateUserPosts" . EXT, $this->data);
         }
     }
 
     public function Edit()
     {
         if (!$this->CheckOnLogin()) {
-            $this->format_options();
-            $this->returnNavigationPanel();
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
+            Header("Location: /user/login");
         } else {
             $this->EditCabinetView();
         }
@@ -129,11 +133,17 @@ class User extends Controller
 
     private function EditCabinetView()
     {
-        $this->format_options();
-        $this->returnNavigationPanel();
-        $this->format_userData();
-        $this->formatSocLinkData();
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
+        if (!$this->CheckOnLoginCheckOnLogin()) {
+            Header("Location: /user/login");
+        } else {
+
+            $this->format_options();
+            $this->returnNavigationPanel();
+            $this->format_userData();
+            $this->formatSocLinkData();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
+
+        }
     }
 
     public function saveEditChanges()
@@ -148,11 +158,16 @@ class User extends Controller
 
     public function UserCabinetView()
     {
-        $this->format_options();
-        $this->returnNavigationPanel();
-        $this->format_userData();
-        $this->formatSocLinkData();
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
+        if (!$this->CheckOnLogin()) {
+            Header("Location: /user/login");
+        } else {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            $this->format_userData();
+            $this->formatSocLinkData();
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
+
+        }
     }
 
     public function UserCabinetNotOwnerView($id)
@@ -198,7 +213,7 @@ class User extends Controller
         if ($this->CheckOnLogin()) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["category"])) {
-                    if(isset($_FILES['logo'])){
+                    if (isset($_FILES['logo'])) {
                         $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
                         $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
                         if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
@@ -206,8 +221,7 @@ class User extends Controller
 
                         }
                         $imgPath = "/images/products/" . $_FILES['logo']['name'];
-                    }
-                    else{
+                    } else {
                         $imgPath = "/images/products/template.png";
                     }
                     $blogM = new \Models\post();
@@ -237,9 +251,9 @@ class User extends Controller
                     $tagsM = new tags();
                     $blogTagsM = new posttages();
                     $tagsArr = json_decode($_POST["tags"]);
-                    foreach ($tagsArr as $key=>$value){
-                        varDump($tagsM->getId(["tag"=>$value]));
-                        $blogTagsM->AddElem($thisPost["id"], $tagsM->getId(["tag"=>$value]));;
+                    foreach ($tagsArr as $key => $value) {
+                        varDump($tagsM->getId(["tag" => $value]));
+                        $blogTagsM->AddElem($thisPost["id"], $tagsM->getId(["tag" => $value]));;
                     }
 
                     $blogCatsM->AddElem($thisPost["id"], $cat["id"]);
@@ -272,10 +286,10 @@ class User extends Controller
 
     private function format_userData()
     {
-            if ($this->CheckOnLogin()) {
-                $userDataBase = new userAcc();
-                $this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]);
-            }
+        if ($this->CheckOnLogin()) {
+            $userDataBase = new userAcc();
+            $this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]);
+        }
     }
 
     private function formatSocLinkData()
@@ -291,6 +305,14 @@ class User extends Controller
         $socLinks = new \Models\userSocLincs();
         $socLinksArr = $socLinks->getSocLinksOfUser($id);
         $this->data["reg"]["socLinks"] = $socLinksArr;
+    }
+
+    private function getAllUserPosts()
+    {
+        if(isset($this->data["userData"])){
+            $blogM = new post();
+           $this->data["posts"] = $blogM->getPostByAuthorId($this->data["userData"]["id"]);
+        }
     }
 
     private function AddPostView()

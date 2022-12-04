@@ -43,6 +43,7 @@
                         </ul>
                     </div>
                  <a class="w-100 btn btn-secondary " href="/user/writePost">Write post</a>
+                 <a class="w-100 btn btn-primary mt-1" href="/user/updatePosts">Update posts</a>
                 </div>
 
             </div>

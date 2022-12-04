@@ -1803,3 +1803,7 @@ form input[type="submit"]:focus {
 .loading{
     background-color: rgba(52, 52, 52, 0.2);
 }
+.imgContainer{
+    height: 200px;
+    width: 200px;
+}

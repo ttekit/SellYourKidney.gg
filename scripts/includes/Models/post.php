@@ -56,6 +56,20 @@ WHERE id = " . $id
         return $this->getOneRow(["id" => $id]);
     }
 
+    public function getPostByAuthorId($id){
+        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.dateOfPublication, blogposts.imgSrc, blogposts.altSrc, blogposts.content, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
+	LEFT JOIN categories ON blogcategories.category_id = categories.id
+	LEFT JOIN blogposts ON blogcategories.post_id = blogposts.id
+	WHERE blogposts.author =" . $id . ") AS tags,
+	(SELECT GROUP_CONCAT(DISTINCT tags.tag SEPARATOR ', ') AS tags FROM posttags
+	LEFT JOIN tags ON posttags.tag_id = tags.id
+	LEFT JOIN blogposts ON blogposts.id = posttags.post_id
+	WHERE blogposts.slug = " . $id . ") AS categories
+ FROM blogposts
+WHERE author = " . $id
+        );
+    }
+
     public function UpdateImagePathOfProdById($id, $path)
     {
         return parent::updateRow($id, [

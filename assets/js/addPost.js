@@ -1,10 +1,10 @@
 window.addEventListener("load", () => {
 
     let files;
+    let fileInput = $('input[type=file]');
     let categories = "";
     let tags = [];
-
-    $('input[type=file]').on('change', prepareUpload);
+    fileInput.on('change', prepareUpload);
 
     function prepareUpload(event) {
         files = event.target.files;

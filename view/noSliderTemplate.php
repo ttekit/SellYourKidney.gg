@@ -55,7 +55,7 @@ $data['options']['lang']?>">
 <script src="/assets/js/custom.js"></script>
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/nav-item-color.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/assets/js/grapick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
 </body>
