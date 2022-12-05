@@ -27,6 +27,20 @@ class tags extends \App\DBEngine
         return null;
     }
 
+    public function updatePostTag($id, $tagId){
+        return $this->executeQuery("UPDATE posttags
+                                    SET posttags.tag_id = $id
+                                    WHERE blogcategories.post_id = $tagId");
+    }
+
+    public function getTagIdByTag($tag)
+    {
+        $result = $this->getId(["tag" => $tag]);
+        if (isset($result)) {
+            return $result;
+        }
+        return null;
+    }
 
     public function AddTag($tag)
     {

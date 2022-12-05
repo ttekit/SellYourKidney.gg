@@ -162,6 +162,34 @@ class Ajax extends Controller
         }
     }
 
+
+    public function updatePost()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            varDump($_POST["id"]);
+            if (isset($_POST["name"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["tags"])&& isset($_POST["categories"]) ) {
+                $postM = new post();
+                echo $postM->updateRow($_POST["id"], [
+                    "name"=>$_POST["name"],
+                    "slogan"=>$_POST["slogan"],
+                    "content"=>$_POST["content"]
+                ]);
+
+                $categoriesM = new categories();
+                $catId = $categoriesM->getCategoryByCategoryName($_POST["categories"])["id"];
+                echo  $categoriesM->updatePostcategory($_POST["id"], $catId);
+
+                $tagM = new tags();
+                $tagsArr = json_decode($_POST["tags"]);
+                foreach ($tagsArr as $key=>$tag){
+                   $id = $tagM->getTagIdByTag($tag);
+                    echo $tagM->updatePostTag($_POST["id"], $id);
+                }
+
+            }
+        }
+    }
+
     public function addNewSocLinkData()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

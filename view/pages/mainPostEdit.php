@@ -4,8 +4,8 @@
 
 <div class="content-wrapper adminBlogCont">
     <!-- Main content -->
-    <form method="post" action="./updatePost" enctype="multipart/form-data">
-        <input name="id" id="id" class="d-none" value="<?= $data["postId"] ?>"/>
+    <form class="send-data-form" enctype="multipart/form-data">
+        <input name="id" id="id" class="d-none" value="<?= $data["postData"]["id"] ?>"/>
         <section class="content col-12">
             <div class="row">
                 <div class="col-md-12 file-input">
@@ -66,7 +66,8 @@
                                             <?php
                                         } else {
                                             ?>
-                                            <a type="button" class="addNewCategoryBtn pressed"><?= $value["category"] ?></a>
+                                            <a type="button"
+                                               class="addNewCategoryBtn pressed"><?= $value["category"] ?></a>
                                             <?
                                         }
                                     }
@@ -78,12 +79,25 @@
                                 <div class="tags">
                                     <?php
                                     $tagM = new \Models\tags();
-                                    $allCats = $tagM->getManyRows();
-
-                                    foreach ($allCats as $key => $value) {
-                                        ?>
-                                        <a type="button" class="addNewTagBtn"><?= $value["tag"] ?></a>
-                                        <?php
+                                    $allTags = $tagM->getManyRows();
+                                    $activeTags = $tagM->getByPostId($data["postData"]["id"]);
+                                    $flag = false;
+                                    foreach ($allTags as $key => $value) {
+                                        $flag = true;
+                                        foreach ($activeTags as $secKey => $usedValue) {
+                                            if ($value["tag"] == $usedValue["tag"]) {
+                                                ?>
+                                                <a type="button"
+                                                   class="addNewTagBtn pressed"><?= $value["tag"] ?></a>
+                                                <?php
+                                                $flag = false;
+                                            }
+                                        }
+                                        if ($flag == true) {
+                                            ?>
+                                            <a type="button" class="addNewTagBtn"><?= $value["tag"] ?></a>
+                                            <?php
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -121,7 +135,7 @@
             <div class="row">
                 <div class="col-12">
                     <a href="#" class="btn btn-secondary">Cancel</a>
-                    <input type="submit" value="Save Changes" class="btn btn-success float-right">
+                    <input type="submit" value="Save Changes" id="submit" class="btn btn-success float-right">
                 </div>
             </div>
         </section>
@@ -129,7 +143,6 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/saveNewPostImage.js"></script>
 <script src="/assets/js/tagsCategoriesWork.js"></script>
 <script>
     $(document).ready(function () {

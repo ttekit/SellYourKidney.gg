@@ -18,6 +18,13 @@ class categories extends \App\DBEngine
         }
         return null;
     }
+
+    public function updatePostcategory($id, $catId){
+        return  $this->executeQuery("UPDATE blogcategories
+                                   SET blogcategories.category_id = $catId
+                                   WHERE blogcategories.post_id = $id");
+    }
+
     public function getCategoryByPostId($id)
     {
         $result = $this->executeQuery("SELECT categories.category FROM blogcategories  
