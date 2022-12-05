@@ -6,7 +6,7 @@ const ADPASS = "admin";
 const ADMAIL = "admin@mailh.com";
 
 const ICON = "/assets/img/logo.ico";
-const TITLE = "Shop";
+const TITLE = "Sell your kidney";
 
 const DB_HOST = 'localhost';
 const DB_USER = 'root';

@@ -12,9 +12,9 @@ class Contact extends Controller
         $this->data["error"] = null;
         $this->data["success"] = null;
         $this->data["message"] = null;
-
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->data["title"] = "Contact us";
         View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainContact" . EXT, $this->data);
     }
 

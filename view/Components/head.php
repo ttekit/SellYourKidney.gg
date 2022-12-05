@@ -9,7 +9,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <link rel="shortcut icon" href="/images/favicon.png" type="">
-    <title>Main | IDKSHOP</title>
+    <title><?= $data["title"]?> | <?= TITLE ?></title>
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>

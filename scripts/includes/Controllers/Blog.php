@@ -26,6 +26,7 @@ class Blog extends Controller
         }
 
         $this->data["href"] = $_SERVER["REQUEST_URI"];
+        $this->data["title"] = "Blog";
         $this->format_options();
         $this->returnNavigationPanel();
         $this->format_posts();
@@ -44,6 +45,7 @@ class Blog extends Controller
                     $this->data["pageData"] = $onePost;
                     $this->format_options();
                     $this->returnNavigationPanel();
+                    $this->data["title"] = "Posts";
                     View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "postBlog" . EXT, $this->data);
                 }
             }

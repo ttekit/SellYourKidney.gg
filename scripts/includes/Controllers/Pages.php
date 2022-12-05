@@ -12,11 +12,13 @@ class Pages extends Controller
     public function about(){
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->data["title"] = "about us";
         View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainAbout".EXT, $this->data);
     }
     public function testimonial(){
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->data["title"] = "testimonial";
         View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainTestimonial".EXT, $this->data);
     }
 

@@ -33,11 +33,13 @@ $data['options']['lang'] ?>">
 </div>
 <!--    Preloader-->
 <div id="preloader" class="visible"></div>
+
 <div class="gradient-choose-container ml-5" data-aos="flip-up">
 </div>
 <button class="choose-gradient-button" id="custom-bg" data-aos="flip-left">
 </button>
-
+<?php require_once(COMPONENTS_PATH."header.php") ?>
+<?php require_once(COMPONENTS_PATH . "navbar.php") ?>
 <!-- end header section -->
 <main>
     <?php /** @var $contentView */
