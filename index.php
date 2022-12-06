@@ -2,8 +2,6 @@
     namespace App;
     session_start();
     namespace Models;
-
-    use App\Controller;
     use App\Kernel;
 
 require_once "config.php";

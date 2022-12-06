@@ -7,5 +7,8 @@
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="popper.js" level="application" />
+    <orderEntry type="library" name="roundSlider" level="application" />
+    <orderEntry type="library" name="jquery.ba-throttle-debounce" level="application" />
+    <orderEntry type="library" name="aos" level="application" />
   </component>
 </module>

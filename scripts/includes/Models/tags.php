@@ -29,8 +29,12 @@ class tags extends \App\DBEngine
 
     public function updatePostTag($id, $tagId){
         return $this->executeQuery("UPDATE posttags
-                                    SET posttags.tag_id = $id
-                                    WHERE blogcategories.post_id = $tagId");
+                                    SET posttags.tag_id = $tagId
+                                    WHERE posttags.post_id = $id");
+    }
+
+    public function removeAllTagsOfPostById($id){
+            return $this->executeQuery("DELETE FROM posttags WHERE post_id='$id';");
     }
 
     public function getTagIdByTag($tag)

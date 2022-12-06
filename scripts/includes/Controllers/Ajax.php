@@ -175,15 +175,19 @@ class Ajax extends Controller
                     "content"=>$_POST["content"]
                 ]);
 
+
+
                 $categoriesM = new categories();
                 $catId = $categoriesM->getCategoryByCategoryName($_POST["categories"])["id"];
                 echo  $categoriesM->updatePostcategory($_POST["id"], $catId);
 
                 $tagM = new tags();
+                $postTagM = new posttages();
                 $tagsArr = json_decode($_POST["tags"]);
+                $tagM->removeAllTagsOfPostById($_POST["id"]);
                 foreach ($tagsArr as $key=>$tag){
                    $id = $tagM->getTagIdByTag($tag);
-                    echo $tagM->updatePostTag($_POST["id"], $id);
+                   echo $postTagM->AddElem($_POST["id"], $id)[0];
                 }
 
             }
