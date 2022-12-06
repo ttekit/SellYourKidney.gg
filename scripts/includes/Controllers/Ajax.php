@@ -166,16 +166,27 @@ class Ajax extends Controller
     public function updatePost()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            varDump($_POST["id"]);
             if (isset($_POST["name"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["tags"])&& isset($_POST["categories"]) ) {
+
+                $imgPath = "/images/products/template.png";
+                if (isset($_FILES['logo'])) {
+                    $_FILES['logo']['name'] = $_POST["id"];
+                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+                        echo "BAG";
+                    }
+                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                }
+
                 $postM = new post();
-                echo $postM->updateRow($_POST["id"], [
-                    "name"=>$_POST["name"],
+                echo($postM->updateRow($_POST["id"], [
+                    "title"=>$_POST["name"],
                     "slogan"=>$_POST["slogan"],
-                    "content"=>$_POST["content"]
-                ]);
-
-
+                    "content"=>$_POST["content"],
+                    "imgSrc" => $imgPath,
+                    "altSrc" => "/"
+                ]));
 
                 $categoriesM = new categories();
                 $catId = $categoriesM->getCategoryByCategoryName($_POST["categories"])["id"];
@@ -189,7 +200,6 @@ class Ajax extends Controller
                    $id = $tagM->getTagIdByTag($tag);
                    echo $postTagM->AddElem($_POST["id"], $id)[0];
                 }
-
             }
         }
     }
