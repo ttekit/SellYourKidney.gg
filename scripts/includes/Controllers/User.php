@@ -242,7 +242,7 @@ class User extends Controller
 
                     if (isset($_FILES['logo'])) {
                         $_FILES['logo']['name'] = $thisPost["id"];
-                        $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                        $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "blog" . DIRECTORY_SEPARATOR;
                         $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
                         if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                             echo "BAG";

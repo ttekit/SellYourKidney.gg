@@ -41,6 +41,8 @@ class Router
                 }
             }
         }
+        unset($route);
+        unset($routes);
         $this->controller->call($this->actionName);
     }
 }

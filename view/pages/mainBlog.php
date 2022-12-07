@@ -70,6 +70,7 @@
             }
             $postContent = $tmp;
             unset($tmp);
+
             for ($i = $starterPosition * 3; $i < (int)$data["pagination"]["postsCount"] + $starterPosition * 3; $i++) {
                 if (isset($postContent[$i])) {
                     \App\Pagination::printElem($postContent[$i]);

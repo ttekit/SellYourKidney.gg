@@ -8,12 +8,13 @@ use Models\post;
 class Blog extends Controller
 {
     public function index(){
-        if(isset($_GET["page"]) && is_int($_GET["page"])){
+        if(isset($_GET["page"]) && $_GET["page"] != "blog"){
                $this->data["pagination"]["page"] = $_GET["page"];
         }
         else{
             $this->data["pagination"]["page"] = 0;
         }
+
 
         if(isset($_GET["count"])){
             $this->data["pagination"]["postsCount"] = $_GET["count"];
