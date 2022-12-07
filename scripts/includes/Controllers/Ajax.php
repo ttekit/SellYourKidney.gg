@@ -54,7 +54,6 @@ class Ajax extends Controller
             if (isset($_POST["parentId"])) {
                 $parentId = $_POST["parentId"];
                 $commentsM = new comments();
-
                 echo json_encode($commentsM->getSubCommentsBParentId($parentId), JSON_UNESCAPED_UNICODE);
             }
 
@@ -86,8 +85,21 @@ class Ajax extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["name"]) && isset($_POST["content"]) && isset($_POST["price"])) {
+                $prodM = new \Models\products();
+                $prodM->addRow([
+                    "name" => $_POST["name"],
+                    "price" => $_POST["price"],
+                    "img_alt" => "/",
+                    "content" => $_POST["content"]
+                ]);
+                $prodData = $prodM->getOneRow([
+                    "name" => $_POST["name"],
+                    "price" => $_POST["price"],
+                    "content" => $_POST["content"]
+                ]);
                 $imgPath = "/images/products/template.png";
                 if (isset($_FILES['logo'])) {
+                    $_FILES["logo"]["name"] = $prodData["id"];
                     $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
                     $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
@@ -95,13 +107,8 @@ class Ajax extends Controller
                     }
                     $imgPath = "/images/products/" . $_FILES['logo']['name'];
                 }
-                $blogM = new \Models\products();
-                $blogM->addRow([
-                    "name" => $_POST["name"],
-                    "price" => $_POST["price"],
-                    "img_src" => $imgPath,
-                    "img_alt" => "/",
-                    "content" => $_POST["content"]
+                $prodM->updateRow($prodData["id"], [
+                    "img_src"=>$imgPath
                 ]);
 
             }
@@ -113,9 +120,9 @@ class Ajax extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["name"]) && isset($_POST["content"]) && isset($_POST["price"]) && isset($_POST["id"])) {
                 $imgPath = "/images/products/template.png";
-                varDump($_FILES);
 
                 if (isset($_FILES['logo'])) {
+                    $_FILES["logo"]["name"] = $_POST["id"];
                     $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
                     $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
@@ -166,7 +173,7 @@ class Ajax extends Controller
     public function updatePost()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["name"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["tags"])&& isset($_POST["categories"]) ) {
+            if (isset($_POST["name"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["tags"]) && isset($_POST["categories"])) {
 
                 $imgPath = "/images/products/template.png";
                 if (isset($_FILES['logo'])) {
@@ -181,24 +188,24 @@ class Ajax extends Controller
 
                 $postM = new post();
                 echo($postM->updateRow($_POST["id"], [
-                    "title"=>$_POST["name"],
-                    "slogan"=>$_POST["slogan"],
-                    "content"=>$_POST["content"],
+                    "title" => $_POST["name"],
+                    "slogan" => $_POST["slogan"],
+                    "content" => $_POST["content"],
                     "imgSrc" => $imgPath,
                     "altSrc" => "/"
                 ]));
 
                 $categoriesM = new categories();
                 $catId = $categoriesM->getCategoryByCategoryName($_POST["categories"])["id"];
-                echo  $categoriesM->updatePostcategory($_POST["id"], $catId);
+                echo $categoriesM->updatePostcategory($_POST["id"], $catId);
 
                 $tagM = new tags();
                 $postTagM = new posttages();
                 $tagsArr = json_decode($_POST["tags"]);
                 $tagM->removeAllTagsOfPostById($_POST["id"]);
-                foreach ($tagsArr as $key=>$tag){
-                   $id = $tagM->getTagIdByTag($tag);
-                   echo $postTagM->AddElem($_POST["id"], $id)[0];
+                foreach ($tagsArr as $key => $tag) {
+                    $id = $tagM->getTagIdByTag($tag);
+                    echo $postTagM->AddElem($_POST["id"], $id)[0];
                 }
             }
         }
@@ -279,7 +286,8 @@ class Ajax extends Controller
         }
     }
 
-    public function findUserByLogin(){
+    public function findUserByLogin()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["login"])) {
                 $prodM = new \Models\userAcc();
@@ -290,9 +298,10 @@ class Ajax extends Controller
     }
 
 
-    public function searchProduct(){
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
-            if(isset($_POST["value"])){
+    public function searchProduct()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["value"])) {
                 $prodM = new \Models\products();
                 $result = $prodM->getByPartlyName($_POST["value"], 6);
                 echo json_encode($result);
