@@ -223,17 +223,6 @@ class User extends Controller
         if ($this->CheckOnLogin()) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["category"])) {
-                    if (isset($_FILES['logo'])) {
-                        $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
-                        $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
-                        if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
-                            echo "BAG";
-
-                        }
-                        $imgPath = "/images/products/" . $_FILES['logo']['name'];
-                    } else {
-                        $imgPath = "/images/products/template.png";
-                    }
                     $blogM = new \Models\post();
                     $dateTime = new DateTime();
                     $blogM->addRow([
@@ -241,7 +230,6 @@ class User extends Controller
                         "slogan" => $_POST["slogan"],
                         "content" => $_POST["content"],
                         "dateOfPublication" => $dateTime->format('Y\-m\-d\ h:i:s'),
-                        "imgSrc" => $imgPath,
                         "altSrc" => "",
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]
@@ -252,6 +240,21 @@ class User extends Controller
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
 
+                    if (isset($_FILES['logo'])) {
+                        $_FILES['logo']['name'] = $thisPost["id"];
+                        $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                        $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                        if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+                            echo "BAG";
+                        }
+                        $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                    } else {
+                        $imgPath = "/images/products/template.png";
+                    }
+
+                    $blogM->updateRow($thisPost["id"],[
+                        "imgSrc" => $imgPath
+                    ]);
 
                     $blogCatsM = new blogcategories();
                     $catsM = new categories();
