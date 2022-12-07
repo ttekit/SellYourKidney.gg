@@ -40,7 +40,6 @@ class User extends Controller
                         $this->data["error"]["user"] = "Incorrect data";
                         $this->LoginUserView();
                     } else {
-                        $this->data["success"] = "Thank you very much! Your message is very important to us!";
                         $_SESSION["reg"]["login"] = $login;
                         $_SESSION["reg"]["userId"] = $userAcc["id"];
                         $_SESSION["reg"]["user_Ip"] = $_SERVER["REMOTE_ADDR"];
@@ -102,10 +101,14 @@ class User extends Controller
 
     public function LoginUserView()
     {
-        if (!$this->CheckOnLogin()) {
-            Header("Location: /user/login");
-        } else {
+        if ($this->CheckOnLogin()) {
             $this->UserCabinetView();
+        } else {
+            $this->format_options();
+            $this->returnNavigationPanel();
+            $this->data["title"] = "Login";
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
+
         }
     }
 
@@ -162,7 +165,7 @@ class User extends Controller
     public function UserCabinetView()
     {
         if (!$this->CheckOnLogin()) {
-            Header("Location: /user/login");
+           $this->LoginUserView();
         } else {
             $this->format_options();
             $this->returnNavigationPanel();
