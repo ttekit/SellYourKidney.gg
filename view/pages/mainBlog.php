@@ -35,9 +35,9 @@
     <h1>Pagination</h1>
     <div class="blog-pagination-filter">
         <button class="dropdown-item blog-pagination-button">3</button>
-        <button class="dropdown-item" href="/blog/?count=5/">5</button>
-        <button class="dropdown-item" href="/blog/?count=10">10</button>
-        <button class="dropdown-item" href="/blog/?count=15">15</button>
+        <button class="dropdown-item blog-pagination-button" href="/blog/?count=5/">5</button>
+        <button class="dropdown-item blog-pagination-button" href="/blog/?count=10">10</button>
+        <button class="dropdown-item blog-pagination-button" href="/blog/?count=15">15</button>
     </div>
 </div>
 <div class="blog">
@@ -45,6 +45,13 @@
         <div class="blog-context row blog-container">
 
         </div>
+        <div class="page-choose-container">
+            <button class="go-first-page swipe-page-button"><<</button>
+            <button class="go-prew-page swipe-page-button"><</button>
+            <div class="numeric-buttons-container">
+            </div>
+            <button class="go-next-page swipe-page-button">></button>
+            <button class="go-last-page swipe-page-button">>></button>
     </div>
 </div>
 

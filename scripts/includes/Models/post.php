@@ -78,6 +78,10 @@ WHERE id = " . $id
     {
         return $this->getOneRow(["id" => $id]);
     }
+    public function getAllPostsCount()
+    {
+        return $this->executeQuery("SELECT COUNT(*) FROM blogposts");
+    }
 
     public function getPostByAuthorId($id){
         return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.dateOfPublication, blogposts.imgSrc, blogposts.altSrc, blogposts.content, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories

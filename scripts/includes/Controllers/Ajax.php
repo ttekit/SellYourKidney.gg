@@ -192,6 +192,13 @@ class Ajax extends Controller
             }
         }
     }
+    public function getPostsCount()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $postM = new post();
+                echo $postM->getAllPostsCount()["0"]["COUNT(*)"];
+        }
+    }
 
     public function updatePost()
     {

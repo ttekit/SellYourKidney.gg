@@ -16,8 +16,7 @@ require_once "view/View.php";
     }
 
     try {
-        Kernel::init("");
-
+        Kernel::init();
     }catch (Exception $e){
 
     }

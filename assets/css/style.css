@@ -1807,3 +1807,9 @@ form input[type="submit"]:focus {
     height: 200px;
     width: 200px;
 }
+.page-choose-container{
+    display: flex;
+    align-self: center;
+    align-items: center;
+    text-align: center;
+}
