@@ -59,9 +59,8 @@ $data['options']['lang'] ?>">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/assets/js/grapick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

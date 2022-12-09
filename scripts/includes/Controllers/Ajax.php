@@ -81,6 +81,7 @@ class Ajax extends Controller
         }
     }
 
+
     public function addNewProd()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -144,6 +145,29 @@ class Ajax extends Controller
         }
     }
 
+    public function deleteOneProduct()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["prodId"])) {
+                $prodM = new \Models\products();
+                $result = $prodM->deleteProduct($_POST["prodId"]);
+                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            }
+        }
+    }
+
+    public function searchProduct()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["value"])) {
+                $prodM = new \Models\products();
+                $result = $prodM->getByPartlyName($_POST["value"], 6);
+                echo json_encode($result);
+            }
+        }
+    }
+
+
     public function deleteOnePost()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -168,7 +192,6 @@ class Ajax extends Controller
             }
         }
     }
-
 
     public function updatePost()
     {
@@ -211,6 +234,22 @@ class Ajax extends Controller
         }
     }
 
+    public function getLimitCountOfPosts()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            if (isset($_GET["postsCount"]) && isset($_GET["startPos"])) {
+                $blogM = new post();
+                $res = $blogM->getManyRows([], "ASC", "id", $_GET["startPos"], $_GET["postsCount"]);
+                echo json_encode($res, JSON_UNESCAPED_UNICODE);
+            }
+
+        } else {
+            echo "error?";
+        }
+    }
+
+
+
     public function addNewSocLinkData()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -239,6 +278,7 @@ class Ajax extends Controller
         }
     }
 
+
     public function getCategory()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -250,6 +290,16 @@ class Ajax extends Controller
             }
         }
     }
+
+    public function getAllCategories()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $categories = new categories();
+                $result = $categories->getManyRows();
+                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        }
+    }
+
 
     public function getTags()
     {
@@ -264,16 +314,15 @@ class Ajax extends Controller
         }
     }
 
-    public function deleteOneProduct()
+    public function getAllTags()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["prodId"])) {
-                $prodM = new \Models\products();
-                $result = $prodM->deleteProduct($_POST["prodId"]);
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $tagsM = new tags();
+                $result = $tagsM->getManyRows();
                 echo json_encode($result, JSON_UNESCAPED_UNICODE);
-            }
         }
     }
+
 
     public function banUser()
     {
@@ -298,14 +347,5 @@ class Ajax extends Controller
     }
 
 
-    public function searchProduct()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["value"])) {
-                $prodM = new \Models\products();
-                $result = $prodM->getByPartlyName($_POST["value"], 6);
-                echo json_encode($result);
-            }
-        }
-    }
+
 }

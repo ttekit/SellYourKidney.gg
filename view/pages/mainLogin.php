@@ -57,10 +57,12 @@
                                     Up</a>
                             </p>
                         </div>
-
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script src="/assets/js/googlelogin.js"></script>;
