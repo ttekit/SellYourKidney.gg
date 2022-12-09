@@ -22,6 +22,30 @@ class post extends \App\DBEngine
 WHERE id = " . $id
         )[0];
     }
+    public function getPost($offset, $limit, $category, $tag)
+    {
+        $query = "SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.dateOfPublication, 
+                    blogposts.imgSrc, blogposts.altSrc, blogposts.content, blogposts.state, blogposts.author, 
+                    categories.category, tags.tag
+                    FROM blogposts 
+                    LEFT JOIN blogcategories
+                    ON blogposts.id = blogcategories.post_id
+                    LEFT JOIN categories
+                    ON categories.id = blogcategories.category_id
+                    LEFT JOIN posttags
+                    ON posttags.post_id = blogposts.id
+                    LEFT JOIN tags
+                    ON tags.id = posttags.tag_id
+                    WHERE blogposts.state = 'published'";
+        if($category != ""){
+            $query .= "AND categories.category = '".$category."'";
+        }
+        if($tag != ""){
+            $query .= "AND tags.tag = '".$tag."'";
+        }
+        $query .= "LIMIT ".$limit." OFFSET ". $offset;
+        return $this->executeQuery($query);
+    }
 
     public function getAllPosts()
     {
@@ -48,7 +72,6 @@ WHERE id = " . $id
         $this->executeQuery("DELETE FROM comments WHERE post_id=" . $id . ";");
         $this->removeRow($id);
         return true;
-
     }
 
     public function getById($id)

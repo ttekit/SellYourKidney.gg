@@ -15,18 +15,24 @@ window.addEventListener("load", function () {
         $.ajax({
             url: "/ajax/getAllTags",
             method: "get",
+            async: true,
             success: (data) => {
                 data = JSON.parse(data);
+
                 for (let i = 0; i < data.length; i++) {
-                    tagContainer.append(`
-                <div>
+                    let $button = $(`<div>
                     <a>
                         <button class="filterBtn">
                             <h6>${data[i].tag}</h6>
                         </button>
                     </a>
-                </div>
-            `);
+                </div>`);
+                    $button.find(".filterBtn").on("click", function (e){
+                        currentTag = e.target.innerHTML;
+                        refreshPostContainer();
+                    })
+
+                    tagContainer.append($button);
                 }
             }
         })
@@ -36,18 +42,22 @@ window.addEventListener("load", function () {
         $.ajax({
             url: "/ajax/getAllCategories",
             method: "get",
+            async: true,
             success: (data) => {
                 data = JSON.parse(data);
                 for (let i = 0; i < data.length; i++) {
-                    catsContainer.append(`
-                <div>
+                    let $button = $(`<div>
                     <a>
                         <button class="filterBtn">
                             <h6>${data[i].category}</h6>
                         </button>
                     </a>
-                </div>
-            `);
+                </div>`)
+                    $button.find(".filterBtn").on("click", function (e){
+                        currentCategory = e.target.innerHTML;
+                        refreshPostContainer();
+                    })
+                    catsContainer.append($button);
                 }
             }
         })
@@ -57,13 +67,16 @@ window.addEventListener("load", function () {
         $.ajax({
             url: "/ajax/getLimitCountOfPosts",
             method: "get",
+            async: true,
             data: {
                 "postsCount": postsCount,
-                "startPos": (currentPage - 1) * postsCount
+                "startPos": (currentPage - 1) * postsCount,
+                "category": currentCategory,
+                "tag": currentTag,
             },
             success: (data) => {
                 data = JSON.parse(data);
-                console.log(data);
+
                 for (let i = 0; i < data.length; i++) {
                     let value = data[i];
                     postContainer.append(    `<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6>${value.dateOfPublication}</h6>
@@ -82,6 +95,11 @@ window.addEventListener("load", function () {
                 }
             }
         })
+    }
+
+    let refreshPostContainer = () => {
+        postContainer.empty();
+        appendPosts();
     }
 
     appendTags();

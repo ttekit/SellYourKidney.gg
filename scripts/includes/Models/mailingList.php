@@ -1,9 +1,8 @@
 <?php
 
 
-require '../core/PHPMailer/src/Exception.php';
-require '../core/PHPMailer/src/PHPMailer.php';
-require '../core/PHPMailer/src/SMTP.php';
+
+
 
 namespace Models;
 
