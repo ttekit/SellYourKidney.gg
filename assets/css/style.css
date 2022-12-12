@@ -1813,3 +1813,7 @@ form input[type="submit"]:focus {
     align-items: center;
     text-align: center;
 }
+
+.author-text{
+    color: black;
+}

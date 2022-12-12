@@ -11,9 +11,9 @@
                         $data["pageData"]["title"] ?></h1>
                     <!-- Post meta content-->
                     <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["dateOfPublication"] ?> by
-                        <div class="row text-center">
-                            <img class="img-fluid rounded-circle" width="50px" src="<?= $data["blog"]["author"]["avatar"]?>" alt="No Avatar"/>
-                          <a href="/user/?id=1"><?=$data["blog"]["author"]["FullName"]?></a>
+                        <div class="row text-center" style="height: 50px;">
+                                <img class="img-fluid rounded-circle" width="50px" height="50px" src="<?= $data["blog"]["author"]["avatar"]?>" alt="No Avatar"/>
+                          <a class="author-text" href="/user/?id=1"><?=$data["blog"]["author"]["FullName"]?></a>
                         </div>
 
                     </div>
@@ -34,17 +34,17 @@
             <section class="mb-5">
                 <div class="card bg-light">
                     <div class="comments-form">
-                        <form action="/ajax/saveComment" method="post" id="comment-form" class="form-horizontal form-wizzard">
+                        <form action="/ajax/saveComment" method="post" id="comment-form" class="form-horizontal form-wizzard comments-form">
                             <h3 class="h3">Leave a comment</h3>
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" type="text" class="form-control" placeholder="Enter your name ..."/>
+                                        <input name="login" type="text" class="form-control" id="main-login-input" placeholder="Enter your name ..." value="<?= $data["userData"]["FullName"]?>" disabled/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="email" type="email" class="form-control" placeholder="Enter your email ..."/>
+                                        <input name="email" type="email" class="form-control" id="main-email-input" placeholder="Enter your email ..."  value="<?= $data["userData"]["email"]?>" disabled/>
                                     </div>
                                 </div>
                             </div>

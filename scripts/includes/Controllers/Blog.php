@@ -4,6 +4,7 @@ namespace App;
 
 use Models\comments;
 use Models\post;
+use Models\userAcc;
 
 class Blog extends Controller
 {
@@ -46,6 +47,7 @@ class Blog extends Controller
                     $this->format_options();
                     $this->returnNavigationPanel();
                     $this->format_author($onePost["author"]);
+                    $this->format_userdata();
                     $this->data["title"] = "Posts";
                     View::render(VIEWS_PATH . "template" . EXT, BLOG_PAGES_PATH . "postBlog" . EXT, $this->data);
                 }
@@ -70,4 +72,13 @@ class Blog extends Controller
         $this->data["posts"]["categories"] = $filters->getAllNotEmptyCategories();
         unset($filters);
     }
+    private function format_userData()
+    {
+        if ($this->CheckOnLogin()) {
+            $userDataBase = new userAcc();
+            $this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]);
+            unset($userDataBase);
+        }
+    }
+
 }

@@ -278,15 +278,6 @@ class User extends Controller
         }
     }
 
-    private function CheckOnLogin()
-    {
-        if (isset($_SESSION["reg"])) {
-            if ($_SESSION["reg"]["role"] == "user") {
-                return true;
-            }
-        }
-        return false;
-    }
 
 
     private function format_userDataById($id)

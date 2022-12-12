@@ -1,6 +1,23 @@
 window.addEventListener("load", async function () {
     "use strict"
 
+    let userData = [];
+
+    $.ajax({
+        url: "/ajax/getUserData",
+        method: "GET",
+        success: (data) => {
+            userData = JSON.parse(data);
+        },
+        beforeSend: function () {
+            $('#preloader').fadeIn(500);
+        },
+        complete: function () {
+            $('#preloader').fadeOut(500);
+        },
+    })
+
+
     let getAnswerFrom = function ($parent, oldData) {
         let $data;
         $data = $(`<form action="saveComment" method="post" id="comment-form" class="form-horizontal form-wizzard">
@@ -8,12 +25,12 @@ window.addEventListener("load", async function () {
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" class="form-control" placeholder="Enter your name ..."/>
+                                        <input name="login" class="form-control" placeholder="Enter your name ..." value="${userData.FullName}" disabled/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="email" type="email" class="form-control" placeholder="Enter your email ..."/>
+                                        <input name="email" type="email" class="form-control" placeholder="Enter your email ..." value="${userData.email}" disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +93,7 @@ window.addEventListener("load", async function () {
             },
             success: (data) => {
                 console.log(data);
-                if(data == "[]"){
+                if (data == "[]") {
                     Swal.fire("It hasn't answers");
                 }
                 let comments = JSON.parse(data);
@@ -105,6 +122,7 @@ window.addEventListener("load", async function () {
                                 </div>
                                 <div class="media-body">
                                 <div class = "comment-header">
+                                    <img class="img-fluid rounded-circle" style="height: 50px; width: 50px" src="${userData.avatar}"/>
                                     <h4 class="media-heading">${comment.login}</h4>
                                     <button class = "comment-btn">+</button>
                                     <button class="comment-answer-btn">answ</button>
@@ -164,6 +182,7 @@ window.addEventListener("load", async function () {
     let postId = parseInt($("#post-id").text());
 
     if (!isNaN(postId)) {
+        let $commContainer = $('.card-body');
         $.ajax({
             url: "/ajax/getComments",
             method: "POST",
@@ -173,7 +192,6 @@ window.addEventListener("load", async function () {
             success: (data) => {
                 let comments = JSON.parse(data);
                 if (comments.length > 0) {
-                    let $commContainer = $('.card-body');
                     comments.forEach((item) => {
                         $commContainer.append(getOneCommentBlock(item))
                     })
@@ -184,10 +202,10 @@ window.addEventListener("load", async function () {
                 alert(msg);
             },
             beforeSend: function () {
-                    $('#preloader').fadeIn(500);
+                $commContainer.addClass("d-none");
             },
             complete: function () {
-                $('#preloader').fadeOut(500);
+                $commContainer.removeClass("d-none");
             },
         })
     }
@@ -208,33 +226,43 @@ window.addEventListener("load", async function () {
             messageId: null
         };
 
-        $.ajax({
-            url: "/ajax/saveComment",
-            method: "POST",
-            data: userMessage,
-            success: (data) => {
-                console.log(data);
-                switch (data) {
-                    case "1 row affected": {
-                        $(".comments-form").trigger("reset");
-                        Swal.fire("Comment is successfully send", {
-                            icon: "success",
-                        })
-                        break;
+        if (userMessage.message.length > 10 && userMessage.message.length < 150) {
+            $.ajax({
+                url: "/ajax/saveComment",
+                method: "POST",
+                data: userMessage,
+                success: (data) => {
+                    console.log(data);
+                    switch (data) {
+                        case "1 row affected": {
+                            $(".comments-form").trigger("reset");
+                            Swal.fire({
+                                title: "Comment is successfully send",
+                                icon: "success",
+                            })
+                            break;
+                        }
+                        case "0 row affected": {
+                            Swal.fire({
+                                title: "Some data in comment is unavailable, refill form",
+                                icon: "error",
+                            })
+                            break;
+                        }
                     }
-                    case "0 row affected": {
-                        Swal.fire("Some data in comment is unavailable, refill form", {
-                            icon: "error",
-                        })
-                        break;
-                    }
-                }
 
-            },
-            error: (msg) => {
-                alert(msg);
-            }
-        })
+                },
+                error: (msg) => {
+                    alert(msg);
+                }
+            })
+        } else {
+            Swal.fire({
+                title: "Comment must to be from 10 to 150 symbols",
+                icon: "error"
+            })
+        }
+
     })
 
 })

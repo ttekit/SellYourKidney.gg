@@ -68,4 +68,16 @@ abstract class Controller
             varDump($this->data["cart"]);
         }
     }
+
+    protected function CheckOnLogin()
+    {
+        if (isset($_SESSION["reg"])) {
+            if ($_SESSION["reg"]["role"] == "user") {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }

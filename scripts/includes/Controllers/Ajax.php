@@ -376,5 +376,11 @@ class Ajax extends Controller
     }
 
 
+    public function getUserData(){
+        if ($this->CheckOnLogin()) {
+            $userDataBase = new userAcc();
+          echo json_encode($this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]));
+        }
+    }
 
 }
