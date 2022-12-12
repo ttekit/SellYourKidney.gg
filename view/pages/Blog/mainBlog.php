@@ -13,6 +13,18 @@
                                 </div>
 
                                 <div class="tag-sort-content">
+                                    <?php foreach ($data["posts"]["tags"] as $key=>$val){
+                                        ?>
+                                        <div>
+                                            <a>
+                                                <button class="filterBtn">
+                                                    <h6><?=$val["tag"]?></h6>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <?
+                                    } ?>
+
                                 </div>
 
                             </div>
@@ -21,6 +33,17 @@
                                     CATEGORIES
                                 </div>
                                 <div class="categories-sort-content">
+                                <?php foreach ($data["posts"]["categories"] as $key=>$val){
+                                    ?>
+                                    <div>
+                                        <a>
+                                            <button class="filterBtn">
+                                                <h6><?=$val["category"]?></h6>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <?
+                                } ?>
                                 </div>
                             </div>
                         </div>

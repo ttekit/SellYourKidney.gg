@@ -53,7 +53,7 @@ window.addEventListener("load", () => {
             formData.append('content', $("[name='content']").val());
             formData.append('category', categories);
             formData.append('tags', JSON.stringify(tags));
-            console.log(JSON.stringify(tags));
+
             $.ajax({
                 url: '/user/addNewPost',
                 type: 'POST',

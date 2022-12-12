@@ -1,8 +1,13 @@
 window.addEventListener("load", function () {
 
+
+    let fileInput = $('input[type=file]');
+    let files = fileInput.val();
     let $addNewSocButtom = $(".add-new-soc-button");
     let $container = $(".soc-media-group");
     let $deleteSocLinkButton = $(".delete-soc-link-button");
+
+    fileInput.on('change', prepareUpload);
 
     $addNewSocButtom.on("click", () => {
         $container.append(`
@@ -65,4 +70,41 @@ window.addEventListener("load", function () {
             },
         });
     });
+
+    $(".main-form").submit((e)=>{
+        let cont = $(e.target);
+        let formData = new FormData();
+        let inputs = cont.find("input");
+        formData.set("avatar", files[0])
+        for (let i = 1; i < inputs.length; i++){
+            if(inputs[i].name != ""){
+                formData.set(inputs[i].name, inputs[i].value)
+            }
+        }
+
+        $.ajax({
+            url: "/ajax/updateUserData",
+            method: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: formData,
+            beforeSend: function () {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function () {
+                $('#preloader').fadeOut(500);
+            },
+            success: function (data){
+                console.log(data);
+            }
+        })
+
+        return false;
+    })
+
+
+    function prepareUpload(event) {
+        files = event.target.files;
+    }
 })

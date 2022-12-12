@@ -30,7 +30,6 @@ class Blog extends Controller
         $this->data["title"] = "Blog";
         $this->format_options();
         $this->returnNavigationPanel();
-        $this->format_posts();
         $this->format_tags();
         $this->format_categories();
         View::render(VIEWS_PATH."template".EXT, BLOG_PAGES_PATH."mainBlog".EXT, $this->data);
@@ -46,6 +45,7 @@ class Blog extends Controller
                     $this->data["pageData"] = $onePost;
                     $this->format_options();
                     $this->returnNavigationPanel();
+                    $this->format_author($onePost["author"]);
                     $this->data["title"] = "Posts";
                     View::render(VIEWS_PATH . "template" . EXT, BLOG_PAGES_PATH . "postBlog" . EXT, $this->data);
                 }
@@ -53,11 +53,13 @@ class Blog extends Controller
     }
 
 
-    private function format_posts(){
-        $posts = new \Models\post();
-        $this->data["blog"]["posts"] = $posts->getAllPosts();
-        unset($posts);
+
+    private function format_author($id){
+        $userM = new \Models\userAcc();
+        $this->data["blog"]["author"] = $userM->getById($id)[0];
+        unset($userM);
     }
+
     private function format_tags(){
         $filters = new \Models\tags();
         $this->data["posts"]["tags"] = $filters->getAllNotEmptyTegs(0);

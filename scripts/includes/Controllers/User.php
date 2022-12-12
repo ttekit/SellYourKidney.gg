@@ -151,17 +151,6 @@ class User extends Controller
         }
     }
 
-    public function saveEditChanges()
-    {
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $userDB = new UserAcc();
-            $userDB->updateUserData($_SESSION["reg"]["userId"], $_POST);
-            unset($userDB);
-        }
-        header('Location: /user');
-    }
-
     public function UserCabinetView()
     {
         if (!$this->CheckOnLogin()) {
@@ -183,7 +172,7 @@ class User extends Controller
         $this->returnNavigationPanel();
         $this->format_userDataById($id);
         $this->formatSocLinkDataById($id);
-        $this->data["title"] = $this->data["userData"]["name"];
+        $this->data["title"] = $this->data["userData"]["FullName"];
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainUserNotOwnerCabinet" . EXT, $this->data);
     }
 
@@ -298,6 +287,7 @@ class User extends Controller
         }
         return false;
     }
+
 
     private function format_userDataById($id)
     {

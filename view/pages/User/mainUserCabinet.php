@@ -15,10 +15,10 @@
             <div class="col-lg-4 ">
                 <div class="card mb-4 user-main-info">
                     <div class="card-body text-center user-main-info">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                        <img src="<?= /** @var $data */ $data["userData"]["avatar"] ?>"
                              alt="avatar"
-                             class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3"><?= /** @var $data */
+                             class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+                        <h5 class="my-3"><?=
                             $data["userData"]["login"] ?></h5>
                         <p class="text-muted mb-1"><?= $data["userData"]["Job"] ?></p>
                         <p class="text-muted mb-4"><?= $data["userData"]["Address"] ?></p>

@@ -4,7 +4,6 @@
         <div class="col-lg-8">
             <!-- Post content-->
             <article>
-
                 <!-- Post header-->
                 <header class="post_header mb-4">
                     <!-- Post title-->
@@ -12,7 +11,11 @@
                         $data["pageData"]["title"] ?></h1>
                     <!-- Post meta content-->
                     <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["dateOfPublication"] ?> by
-                        Start Bootstrap
+                        <div class="row text-center">
+                            <img class="img-fluid rounded-circle" width="50px" src="<?= $data["blog"]["author"]["avatar"]?>" alt="No Avatar"/>
+                          <a href="/user/?id=1"><?=$data["blog"]["author"]["FullName"]?></a>
+                        </div>
+
                     </div>
                     <!-- Post categories-->
                     <div class="hidden" id="post-id"><?= $data["pageData"]["id"] ?></div>

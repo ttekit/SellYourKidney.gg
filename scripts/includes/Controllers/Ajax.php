@@ -18,6 +18,7 @@ class Ajax extends Controller
         return null;
     }
 
+
     public function getComments()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -98,7 +99,6 @@ class Ajax extends Controller
                     "price" => $_POST["price"],
                     "content" => $_POST["content"]
                 ]);
-                $imgPath = "/images/products/template.png";
                 if (isset($_FILES['logo'])) {
                     $_FILES["logo"]["name"] = $prodData["id"];
                     $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
@@ -107,10 +107,11 @@ class Ajax extends Controller
                         echo "BAG";
                     }
                     $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                    $prodM->updateRow($prodData["id"], [
+                        "img_src"=>$imgPath
+                    ]);
                 }
-                $prodM->updateRow($prodData["id"], [
-                    "img_src"=>$imgPath
-                ]);
+
 
             }
         }
@@ -192,6 +193,7 @@ class Ajax extends Controller
             }
         }
     }
+
     public function getPostsCount()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -256,7 +258,6 @@ class Ajax extends Controller
     }
 
 
-
     public function addNewSocLinkData()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -285,6 +286,27 @@ class Ajax extends Controller
         }
     }
 
+    public function updateUserData(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $userDB = new UserAcc();
+            $userDB->updateUserData($_SESSION["reg"]["userId"], $_POST);
+            if(isset($_FILES["avatar"])){
+                if($_FILES["avatar"] != "undefined"){
+                    $_FILES["avatar"]["name"] = $_SESSION["reg"]["userId"];
+                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "avatars" . DIRECTORY_SEPARATOR;
+                    $uploadfile = $uploaddir . basename($_FILES['avatar']['name']);
+                    if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadfile)) {
+                        echo "BAG";
+                    }
+                    $imgPath = "/images/avatars/" . $_FILES['avatar']['name'];
+                    $userDB->updateRow($_SESSION["reg"]["userId"], [
+                        "avatar"=>$imgPath
+                    ]);
+                }
+            }
+            unset($userDB);
+        }
+    }
 
     public function getCategory()
     {

@@ -10,18 +10,19 @@
                 </nav>
             </div>
         </div>
-        <form action="/user/saveEditChanges" method="post">
+        <form class="main-form">
             <div class="row">
                 <div class="col-lg-4 ">
                     <div class="card mb-4 user-main-info">
                         <div class="card-body text-center user-main-info">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                 alt="avatar"
-                                 class="rounded-circle img-fluid" style="width: 150px;">
+                            <img src="<?= $data["userData"]["avatar"]?>"
+                                 alt="avatar" id="avatar"
+                                 class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+                            <input type="file" name="avatar"/>
                             <h5 class="my-3"><label class="w-100">
                                     <input class="user-edit-input" name="login"
                                            value="<?= /** @var $data */
-                                           $data["userData"]["login"] ?>"/>
+                                           $data["userData"]["login"]?> " disabled/>
                                 </label></h5>
                             <p class="text-muted mb-1"><label class="w-100">
                                     <input class="user-edit-input" name="Job" value="<?= $data["userData"]["Job"] ?>"/>
@@ -31,7 +32,7 @@
                                            value="<?= $data["userData"]["Address"] ?>"/>
                                 </label></p>
                             <div class="d-flex justify-content-center mb-1">
-                                <input type="submit" class="btn btn-primary"/>
+                                <input type="submit" class="btn btn-primary" id="submit"/>
                             </div>
                         </div>
                     </div>
@@ -131,4 +132,4 @@
     </div>
 </section>
 
-<script src="../../assets/js/userProfileEdit.js"></script>
+<script src="/assets/js/userProfileEdit.js"></script>

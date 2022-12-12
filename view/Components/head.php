@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="/assets/css/grapick.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.css">
-    <link rel="preload" href="/assets/js/blogComments.js" as="script" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <meta name="google-signin-client_id" content="242823560021-scft604qs7am9e33d9he4k50kbsakna8.apps.googleusercontent.com">
