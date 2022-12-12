@@ -15,7 +15,7 @@ class Contact extends Controller
         $this->format_options();
         $this->returnNavigationPanel();
         $this->data["title"] = "Contact us";
-        View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainContact" . EXT, $this->data);
+        View::render(VIEWS_PATH . "template" . EXT, CONTACT_PAGES_PATH . "mainContact" . EXT, $this->data);
     }
 
     public function getClientMessage()

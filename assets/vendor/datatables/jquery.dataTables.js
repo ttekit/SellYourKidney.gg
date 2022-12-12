@@ -2369,7 +2369,7 @@
 				{
 					if ( typeof aTargets[j] === 'number' && aTargets[j] >= 0 )
 					{
-						/* Add columns that we don't yet know about */
+						/* Add columns that we don't yet know About */
 						while( columns.length <= aTargets[j] )
 						{
 							_fnAddColumn( oSettings );
@@ -2424,7 +2424,7 @@
 	 */
 	function _fnAddData ( oSettings, aDataIn, nTr, anTds )
 	{
-		/* Create the object for storing information about this new row */
+		/* Create the object for storing information About this new row */
 		var iRow = oSettings.aoData.length;
 		var oData = $.extend( true, {}, DataTable.models.oRow, {
 			src: nTr ? 'dom' : 'data',
@@ -3580,7 +3580,7 @@
 			settings._iDisplayStart = 0;
 		}
 	
-		// Let any modules know about the draw hold position state (used by
+		// Let any modules know About the draw hold position state (used by
 		// scrolling internally)
 		settings._drawHold = holdPosition;
 	
@@ -4669,7 +4669,7 @@
 	 */
 	function _fnUpdateInfo ( settings )
 	{
-		/* Show information about the table */
+		/* Show information About the table */
 		var nodes = settings.aanFeatures.i;
 		if ( nodes.length === 0 ) {
 			return;
@@ -6494,7 +6494,7 @@
 	 *  @param {object} settings dataTables settings object
 	 *  @param {int} level log error messages, or display them to the user
 	 *  @param {string} msg error message
-	 *  @param {int} tn Technical note id to get more information about the error.
+	 *  @param {int} tn Technical note id to get more information About the error.
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnLog( settings, level, msg, tn )
@@ -6503,7 +6503,7 @@
 			(settings ? 'table id='+settings.sTableId+' - ' : '')+msg;
 	
 		if ( tn ) {
-			msg += '. For more information about this error, please see '+
+			msg += '. For more information About this error, please see '+
 			'http://datatables.net/tn/'+tn;
 		}
 	
@@ -9562,7 +9562,7 @@
 	
 	
 	/**
-	 * Template object for the way in which DataTables holds information about
+	 * Template object for the way in which DataTables holds information About
 	 * search information for the global filter and individual column filters.
 	 *  @namespace
 	 */
@@ -9602,7 +9602,7 @@
 	
 	
 	/**
-	 * Template object for the way in which DataTables holds information about
+	 * Template object for the way in which DataTables holds information About
 	 * each individual row. This is the object format used for the settings
 	 * aoData array.
 	 *  @namespace
@@ -9703,7 +9703,7 @@
 	/**
 	 * Template object for the column information object in DataTables. This object
 	 * is held in the settings aoColumns array and contains all the information that
-	 * DataTables needs about each individual column.
+	 * DataTables needs About each individual column.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults.column}
 	 * but this one is the internal data store for DataTables's cache of columns.
@@ -9954,7 +9954,7 @@
 	 * - hence the @name tags in each doc comment. This allows a Javascript function
 	 * to create a map from Hungarian notation to camel case (going the other direction
 	 * would require each property to be listed, which would add around 3K to the size
-	 * of DataTables, while this method is about a 0.5K hit).
+	 * of DataTables, while this method is About a 0.5K hit).
 	 *
 	 * Ultimately this does pave the way for Hungarian notation to be dropped
 	 * completely, but that is a massive amount of work and will break current
@@ -10267,7 +10267,7 @@
 	
 		/**
 		 * The `columns` option in the initialisation parameter allows you to define
-		 * details about the way individual columns behave. For a full list of
+		 * details About the way individual columns behave. For a full list of
 		 * column options that can be set, please see
 		 * {@link DataTable.defaults.column}. Note that if you use `columns` to
 		 * define your columns, you must have an entry in the array for every single
@@ -10446,8 +10446,8 @@
 	
 		/**
 		 * Enable or disable the table information display. This shows information
-		 * about the data that is currently visible on the page, including information
-		 * about filtered data if that action is being performed.
+		 * About the data that is currently visible on the page, including information
+		 * About filtered data if that action is being performed.
 		 *  @type boolean
 		 *  @default true
 		 *
@@ -10742,7 +10742,7 @@
 	
 		/**
 		 * This function is called on every 'draw' event, and allows you to
-		 * dynamically modify any aspect you want about the created DOM.
+		 * dynamically modify any aspect you want About the created DOM.
 		 *  @type function
 		 *  @param {object} settings DataTables settings object
 		 *
@@ -10827,7 +10827,7 @@
 		/**
 		 * This function is called on every 'draw' event, and allows you to
 		 * dynamically modify the header row. This can be used to calculate and
-		 * display useful information about the table.
+		 * display useful information About the table.
 		 *  @type function
 		 *  @param {node} head "TR" element for the header
 		 *  @param {array} data Full table data (as derived from the original HTML)
@@ -10854,7 +10854,7 @@
 	
 	
 		/**
-		 * The information element can be used to convey information about the current
+		 * The information element can be used to convey information About the current
 		 * state of the table. Although the internationalisation options presented by
 		 * DataTables are quite capable of dealing with most customisations, there may
 		 * be times where you wish to customise the string further. This callback
@@ -11512,7 +11512,7 @@
 	
 	
 			/**
-			 * This string gives information to the end user about the information
+			 * This string gives information to the end user About the information
 			 * that is current on display on the page. The following tokens can be
 			 * used in the string and will be dynamically replaced as the table
 			 * display updates. This tokens can be placed anywhere in the string, or
@@ -12107,7 +12107,7 @@
 		 * integration plug-in for DataTables uses a paging button renderer to
 		 * display pagination buttons in the mark-up required by Bootstrap.
 		 *
-		 * For further information about the renderers available see
+		 * For further information About the renderers available see
 		 * DataTable.ext.renderer
 		 *  @type string|object
 		 *  @default null
@@ -12134,7 +12134,7 @@
 	
 	
 	/*
-	 * Developer note - See note in model.defaults.js about the use of Hungarian
+	 * Developer note - See note in model.defaults.js About the use of Hungarian
 	 * notation and camel case.
 	 */
 	
@@ -13292,21 +13292,21 @@
 		"aIds": {},
 	
 		/**
-		 * Store information about each column that is in use
+		 * Store information About each column that is in use
 		 *  @type array
 		 *  @default []
 		 */
 		"aoColumns": [],
 	
 		/**
-		 * Store information about the table's header
+		 * Store information About the table's header
 		 *  @type array
 		 *  @default []
 		 */
 		"aoHeader": [],
 	
 		/**
-		 * Store information about the table's footer
+		 * Store information About the table's footer
 		 *  @type array
 		 *  @default []
 		 */
@@ -13513,7 +13513,7 @@
 		"bInitialised": false,
 	
 		/**
-		 * Information about open rows. Each object in the array has the parameters
+		 * Information About open rows. Each object in the array has the parameters
 		 * 'nTr' and 'nParent'
 		 *  @type array
 		 *  @default []
@@ -14716,7 +14716,7 @@
 	
 	
 	
-	// Built in type detection. See model.ext.aTypes for information about
+	// Built in type detection. See model.ext.aTypes for information About
 	// what is required from this methods.
 	$.extend( DataTable.ext.type.detect, [
 		// Plain numbers - first since V8 detects some plain numbers as dates
@@ -14771,7 +14771,7 @@
 	
 	
 	
-	// Filter formatting functions. See model.ext.ofnSearch for information about
+	// Filter formatting functions. See model.ext.ofnSearch for information About
 	// what is required from these methods.
 	// 
 	// Note that additional search methods are added for the html numbers and
@@ -15221,7 +15221,7 @@
 	} );
 
 
-	// Information about events fired by DataTables - for documentation.
+	// Information About events fired by DataTables - for documentation.
 	/**
 	 * Draw event, fired whenever the table is redrawn on the page, at the same
 	 * point as fnDrawCallback. This may be useful for binding events or

@@ -8,7 +8,7 @@ class Main extends Controller
         $this->returnNavigationPanel();
         $this->format_products();
         $this->data["title"] = "Main";
-        View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainIndex".EXT, $this->data);
+        View::render(VIEWS_PATH."template".EXT, INDEX_PAGES_PATH."mainIndex".EXT, $this->data);
     }
 
     private function format_products(){

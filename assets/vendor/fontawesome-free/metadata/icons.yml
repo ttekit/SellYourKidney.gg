@@ -94,7 +94,7 @@ address-card:
   label: Address Card
   search:
     terms:
-      - about
+      - About
       - contact
       - id
       - identification

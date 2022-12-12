@@ -27,6 +27,15 @@ const PAGES_PATH = VIEWS_PATH. "pages" . SEP;
 const COMPONENTS_PATH = VIEWS_PATH. "Components" . SEP;
 const ADM_PAGES_PATH = VIEWS_PATH."adminPages".SEP;
 const ADM_ALL_PAGES_PATH = ADM_PAGES_PATH."pages".SEP;
+
+const INDEX_PAGES_PATH = PAGES_PATH."Index".SEP;
+const BLOG_PAGES_PATH = PAGES_PATH."Blog".SEP;
+const CONTACT_PAGES_PATH = PAGES_PATH."Contact".SEP;
+const PRODUCTS_PAGES_PATH = PAGES_PATH."Products".SEP;
+const USER_PAGES_PATH = PAGES_PATH."User".SEP;
+const TESTIMONIAL_PAGES_PATH = PAGES_PATH."Testimonial".SEP;
+const ABOUT_PAGES_PATH = PAGES_PATH."About".SEP;
+
 function autoLoadCoreClass($name)
 {
     $directories = [

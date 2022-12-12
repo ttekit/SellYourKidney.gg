@@ -33,7 +33,7 @@ class Blog extends Controller
         $this->format_posts();
         $this->format_tags();
         $this->format_categories();
-        View::render(VIEWS_PATH."template".EXT, PAGES_PATH."mainBlog".EXT, $this->data);
+        View::render(VIEWS_PATH."template".EXT, BLOG_PAGES_PATH."mainBlog".EXT, $this->data);
     }
 
     public function post(){
@@ -47,7 +47,7 @@ class Blog extends Controller
                     $this->format_options();
                     $this->returnNavigationPanel();
                     $this->data["title"] = "Posts";
-                    View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "postBlog" . EXT, $this->data);
+                    View::render(VIEWS_PATH . "template" . EXT, BLOG_PAGES_PATH . "postBlog" . EXT, $this->data);
                 }
             }
     }

@@ -107,7 +107,7 @@ class User extends Controller
             $this->format_options();
             $this->returnNavigationPanel();
             $this->data["title"] = "Login";
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainLogin" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainLogin" . EXT, $this->data);
 
         }
     }
@@ -122,7 +122,7 @@ class User extends Controller
             $this->format_userData();
             $this->format_userPosts();
             $this->data["title"] = "Update posts";
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "updateUserPosts" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "updateUserPosts" . EXT, $this->data);
         }
     }
 
@@ -146,7 +146,7 @@ class User extends Controller
             $this->format_userData();
             $this->formatSocLinkData();
             $this->data["title"] = "Edit cabinet";
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "editUserCabinet" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "editUserCabinet" . EXT, $this->data);
 
         }
     }
@@ -172,7 +172,7 @@ class User extends Controller
             $this->format_userData();
             $this->formatSocLinkData();
             $this->data["title"] = "User Cabinet";
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainUserCabinet" . EXT, $this->data);
 
         }
     }
@@ -183,8 +183,8 @@ class User extends Controller
         $this->returnNavigationPanel();
         $this->format_userDataById($id);
         $this->formatSocLinkDataById($id);
-        $this->data["title"] = $this->data["userData"]["name"]; // todo: check
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainUserNotOwnerCabinet" . EXT, $this->data);
+        $this->data["title"] = $this->data["userData"]["name"];
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainUserNotOwnerCabinet" . EXT, $this->data);
     }
 
     public function LogOut()
@@ -199,7 +199,7 @@ class User extends Controller
             $this->format_options();
             $this->returnNavigationPanel();
             $this->data["title"] = "Register";
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainRegister" . EXT, $this->data);
         } else {
             $this->UserCabinetView();
         }
@@ -212,7 +212,7 @@ class User extends Controller
             $this->format_options();
             $this->returnNavigationPanel();
             $this->data["title"] = "Write post";
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainRegister" . EXT, $this->data);
         } else {
             $this->AddPostView();
         }
@@ -274,7 +274,7 @@ class User extends Controller
         } else {
             $this->format_options();
             $this->returnNavigationPanel();
-            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainRegister" . EXT, $this->data);
+            View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainRegister" . EXT, $this->data);
         }
     }
 
@@ -284,7 +284,7 @@ class User extends Controller
                 $this->format_options();
                 $this->format_postData($_GET["id"]);
                 $this->data["title"] = "Update post";
-                View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "mainPostEdit" . EXT, $this->data);
+                View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainPostEdit" . EXT, $this->data);
             }
         }
     }
@@ -344,6 +344,6 @@ class User extends Controller
 
     private function AddPostView()
     {
-        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, PAGES_PATH . "addUserPost" . EXT, $this->data);
+        View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "addUserPost" . EXT, $this->data);
     }
 }
