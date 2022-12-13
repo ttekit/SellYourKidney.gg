@@ -59,6 +59,7 @@ $data['options']['lang'] ?>">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/assets/js/grapick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
+<script src="/assets/vendor/cropperjs-main/dist/cropper.js"></script>
 
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>

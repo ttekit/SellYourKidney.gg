@@ -1,5 +1,43 @@
 window.addEventListener("load", function () {
 
+    let image = document.getElementById('image');
+    let cropBoxData;
+    let canvasData;
+    let cropper;
+    var originalImageURL = image.src;
+    var uploadedImageType = 'image/jpeg';
+    var uploadedImageName = 'cropped.jpg';
+    var uploadedImageURL;
+
+    var options = {
+        aspectRatio: 1,
+        viewMode: 1,
+        ready: function () {
+            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+        }
+    }
+
+    function prepareUpload(event) {
+        files = event.target.files;
+        file = files[0];
+
+        uploadedImageType = file.type;
+        uploadedImageName = file.name;
+
+        if (uploadedImageURL) {
+            URL.revokeObjectURL(uploadedImageURL);
+        }
+
+        image.src = uploadedImageURL = URL.createObjectURL(file);
+
+        if (cropper) {
+            cropper.destroy();
+        }
+
+        cropper = new Cropper(image, options);
+        event.target.value = null;
+
+    }
 
     let fileInput = $('input[type=file]');
     let files = fileInput.val();
@@ -75,36 +113,45 @@ window.addEventListener("load", function () {
         let cont = $(e.target);
         let formData = new FormData();
         let inputs = cont.find("input");
-        formData.set("avatar", files[0])
-        for (let i = 1; i < inputs.length; i++){
-            if(inputs[i].name != ""){
-                formData.set(inputs[i].name, inputs[i].value)
-            }
+        if(cropper){
+            cropper.getCroppedCanvas({
+                width: 150,
+                height: 150,
+            }).toBlob((blob)=>{
+                formData.set("avatar", blob);
+
+                for (let i = 1; i < inputs.length; i++){
+                    if(inputs[i].name != ""){
+                        formData.set(inputs[i].name, inputs[i].value)
+                    }
+                }
+
+                $.ajax({
+                    url: "/ajax/updateUserData",
+                    method: "POST",
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    beforeSend: function () {
+                        $('#preloader').fadeIn(500);
+                    },
+                    complete: function () {
+                        $('#preloader').fadeOut(500);
+                    },
+                    success: function (data){
+                        console.log(data);
+                    }
+                })
+
+
+
+            })
         }
 
-        $.ajax({
-            url: "/ajax/updateUserData",
-            method: "POST",
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: formData,
-            beforeSend: function () {
-                $('#preloader').fadeIn(500);
-            },
-            complete: function () {
-                $('#preloader').fadeOut(500);
-            },
-            success: function (data){
-                console.log(data);
-            }
-        })
 
         return false;
     })
 
 
-    function prepareUpload(event) {
-        files = event.target.files;
-    }
 })

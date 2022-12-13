@@ -1817,3 +1817,16 @@ form input[type="submit"]:focus {
 .author-text{
     color: black;
 }
+
+.cropper-view-box,
+.cropper-face {
+    border-radius: 50%;
+}
+.container {
+    margin: 20px auto;
+    max-width: 640px;
+}
+
+img {
+    max-width: 100%;
+}
