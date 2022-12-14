@@ -13,12 +13,12 @@
                                 </div>
 
                                 <div class="tag-sort-content">
-                                    <?php foreach ($data["posts"]["tags"] as $key=>$val){
+                                    <?php foreach ($data["posts"]["tags"] as $key => $val) {
                                         ?>
                                         <div>
                                             <a>
                                                 <button class="filterBtn">
-                                                    <h6><?=$val["tag"]?></h6>
+                                                    <h6><?= $val["tag"] ?></h6>
                                                 </button>
                                             </a>
                                         </div>
@@ -33,17 +33,17 @@
                                     CATEGORIES
                                 </div>
                                 <div class="categories-sort-content">
-                                <?php foreach ($data["posts"]["categories"] as $key=>$val){
-                                    ?>
-                                    <div>
-                                        <a>
-                                            <button class="filterBtn">
-                                                <h6><?=$val["category"]?></h6>
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <?
-                                } ?>
+                                    <?php foreach ($data["posts"]["categories"] as $key => $val) {
+                                        ?>
+                                        <div>
+                                            <a>
+                                                <button class="filterBtn">
+                                                    <h6><?= $val["category"] ?></h6>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <?
+                                    } ?>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,8 @@
             </div>
             <button class="go-next-page swipe-page-button">></button>
             <button class="go-last-page swipe-page-button">>></button>
+        </div>
     </div>
 </div>
 
-<script src="/assets/js/blogWork.js"></script>
+    <script src="/assets/js/blogWork.js"></script>

@@ -60,6 +60,17 @@ function varDump($obj){
     var_dump($obj);
     echo '</pre>';
 }
+
 function str_contains($haystack, $needle) {
     return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+}
+function roundToBigger($num) {
+    $tmp = round($num);
+echo $tmp;
+    if($num > $tmp){
+        return $tmp+1;
+    }
+    else{
+        return $tmp;
+    }
 }

@@ -8,8 +8,24 @@ class Products extends Controller
     {
         $this->format_options();
         $this->returnNavigationPanel();
-        $this->format_products();
+
         $this->data["title"] = "Products";
+
+        if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
+            $this->data["page"] = $_GET["page"];
+        } else {
+            $this->data["page"] = 1;
+        }
+
+        if (isset($_GET["count"]) && is_numeric($_GET["count"])) {
+            $this->data["count"] = $_GET["count"];
+        } else {
+            $this->data["count"] = 12;
+        }
+
+        $this->format_products();
+        $num = $this->data["productsCount"] / $this->data["count"];
+        $this->data["pageCount"] = roundToBigger($num);
         View::render(VIEWS_PATH . "template" . EXT, PRODUCTS_PAGES_PATH . "mainProducts" . EXT, $this->data);
     }
 
@@ -30,9 +46,12 @@ class Products extends Controller
         }
     }
 
-    private function format_products(){
+    private function format_products()
+    {
         $pm = new \Models\products();
-        $this->data["products"] = $pm->execQuery("SELECT * FROM products");
+
+        $this->data["products"] = $pm->execQuery("SELECT * FROM products LIMIT " . $this->data["count"] . " OFFSET " . (($this->data["page"] - 1) * $this->data["count"]));
+        $this->data["productsCount"] = $pm->executeQuery("SELECT COUNT(*) FROM products")[0]["COUNT(*)"];
         unset($pm);
     }
 

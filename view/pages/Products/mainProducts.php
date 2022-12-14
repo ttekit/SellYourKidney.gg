@@ -53,6 +53,34 @@
                     </div>
                 </div>
             <?php } ?>
+            <div class="page-choose-container">
+                <a href="/products/?count=<?= $data["count"] ?>&page=1" class="go-first-page swipe-page-button"><<</a>
+                <?php if ($data["page"] - 1 > 0) {
+                    ?>
+                    <a href="/products/?count=<?= $data["count"] ?>&page=<?= $data["page"] - 1 ?>"
+                       class="go-prew-page swipe-page-button"><</a>
+                    <?
+                } ?>
+                <div class="numeric-buttons-container">
+                    <?php
+                    for ($i = 0; $i < $data["pageCount"]; $i++) {
+                        ?>
+                        <button class="go-first-page swipe-page-button">
+                            <a href="/products/?count=<?= $data["count"] ?>&page=<?= $i+1 ?>" ><?=$i+1?>
+                            </a>
+                        </button>
+                        <?
+                    }
+                    ?>
+                </div>
+                <?php if ($data["page"] + 1 <= $data["pageCount"]) {
+                    ?>
+                    <a href="/products/?count=<?= $data["count"] ?>&page=<?= $data["page"] + 1 ?>"
+                       class="go-next-page swipe-page-button">></a>
+                    <?
+                } ?>
+                <a href="/products/?count=<?= $data["count"] ?>&page=<?=$data["pageCount"]?>>" class="go-last-page swipe-page-button">>></a>
+            </div>
         </div>
     </div>
 </section>
