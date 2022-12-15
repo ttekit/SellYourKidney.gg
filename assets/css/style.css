@@ -1830,3 +1830,30 @@ form input[type="submit"]:focus {
 img {
     max-width: 100%;
 }
+
+.pagination-count-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2px;
+    flex-direction: column;
+}
+
+.pagination-buttons-count-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-count-button{
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    color: black;
+    transition-duration: 0.5s;
+}
+
+.pagination-count-button:hover{
+    margin-left: 15px;
+    margin-right: 15px;
+}
