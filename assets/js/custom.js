@@ -1,27 +1,9 @@
-function loadData() {
-    return new Promise((resolve, reject) => {
-        // setTimeout не является частью решения
-        // Код ниже должен быть заменен на логику подходящую для решения вашей задачи
-        setTimeout(resolve, 2000);
-    })
-}
-
-
-loadData()
-    .then(() => {
-        let preloaderEl = document.getElementById('preloader');
-        preloaderEl.classList.add('hidden');
-        preloaderEl.classList.remove('visible');
-    });
-
-
 $(document).ready(function () {
     $('#preloader').fadeOut(400);
 });
 
 
 window.addEventListener("load", () => {
-    let $buttons = $(".choose-gradient-button");
     let colors = [
         {
             color: "",
@@ -53,10 +35,6 @@ window.addEventListener("load", () => {
     $(".gradient-choose-container").append(allButtons);
 
 
-    // const cookieValue = document.cookie
-    //     .split('; ')
-    //     .find((row) => row.startsWith('bg='))
-    //     ?.split('=')[1];
     const cookieValue = localStorage.getItem('bg');
 
     if (cookieValue !== undefined) {

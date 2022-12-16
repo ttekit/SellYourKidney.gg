@@ -33,7 +33,7 @@
                     <div class="product-box box">
                         <div class="option_container">
                             <div class="options">
-                                <div class="d-none product-id" data-aos="fade-zoom-in">
+                                <div class="d-none product-id">
                                     <?php echo $value["id"] ?>
                                 </div>
                                 <h5 class="name">
@@ -42,6 +42,9 @@
                                 <h6 class="price">
                                     <?php echo $value["price"] ?>$
                                 </h6>
+                                <a type="button" class="addToFavorites bubbly-button">
+                                    Add to favorites
+                                </a>
                                 <a type="button" class="option1 addToCartBtn bubbly-button">
                                     Add to cart
                                 </a>
@@ -63,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+
             <?php }
             if(isset($data["page"])){
                 ?>
@@ -102,6 +106,7 @@
         </div>
     </div>
 </section>
+<script src="../../../assets/js/productsFavorites.js"></script>
 <script src="../../../assets/js/cartScript.js"></script>
 <script src="../../../assets/js/productSearch.js"></script>
 <script src="../../../assets/js/addToCartAnimation.js"></script>
