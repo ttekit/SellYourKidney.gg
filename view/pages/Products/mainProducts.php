@@ -15,10 +15,10 @@
                 <div class="pagination-count-container">
                     <p>Product on page count</p>
                     <div class="pagination-buttons-count-container">
-                        <a class="pagination-count-button" href="/products/count=4">4</a>
-                        <a class="pagination-count-button" href="/products/count=8">8</a>
-                        <a class="pagination-count-button" href="/products/count=12">12</a>
-                        <a class="pagination-count-button" href="/products/count=16">16</a>
+                        <a class="pagination-count-button" href="/products/?count=4">4</a>
+                        <a class="pagination-count-button" href="/products/?count=8">8</a>
+                        <a class="pagination-count-button" href="/products/?count=12">12</a>
+                        <a class="pagination-count-button" href="/products/?count=16">16</a>
                     </div>
                 </div>
                 <?}?>
