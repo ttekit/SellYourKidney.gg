@@ -269,8 +269,12 @@ class admin extends Controller
                     "name" => $_POST['name'],
                     "price" => $_POST['price'],
                     "content" => $_POST['content'],
-                    "img_src" => $_POST["file"]
                 ]);
+                if($_POST["file"] != ""){
+                    $postM->updateRow($_POST["id"], [
+                        "img_src" => $_POST["file"]
+                    ]);
+                }
             }
         }
         header("Location: /admin/productManage");

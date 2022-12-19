@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Models\blogcategories;
 use Models\categories;
 use Models\comments;
 use Models\post;
@@ -122,8 +121,8 @@ class Ajax extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["name"]) && isset($_POST["content"]) && isset($_POST["price"]) && isset($_POST["id"])) {
                 $imgPath = "/images/products/template.png";
-
-                if (isset($_FILES['logo'])) {
+                $prodM = new \Models\products();
+                if (isset($_FILES['logo']) && $_FILES["logo"] != "") {
                     $_FILES["logo"]["name"] = $_POST["id"];
                     $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
                     $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
@@ -131,14 +130,17 @@ class Ajax extends Controller
                         echo "BAG";
                     }
                     $imgPath = "/images/products/" . $_FILES['logo']['name'];
+
+                    $prodM->updateRow($_POST["id"], [
+                        "img_src" => $imgPath,
+                        "img_alt" => "/"
+                    ]);
                 }
 
-                $blogM = new \Models\products();
-                $blogM->updateRow($_POST["id"], [
+
+                $prodM->updateRow($_POST["id"], [
                     "name" => $_POST["name"],
                     "price" => $_POST["price"],
-                    "img_src" => $imgPath,
-                    "img_alt" => "/",
                     "content" => $_POST["content"]
                 ]);
 
