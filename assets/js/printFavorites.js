@@ -1,7 +1,6 @@
 window.addEventListener("load", ()=>{
 
     let cont = $(".favorites-container");
-    console.log(localStorage.getItem("favorites"));
     $.ajax({
         url: "/ajax/getFavorites",
         method: "post",
@@ -9,7 +8,6 @@ window.addEventListener("load", ()=>{
             fav: localStorage.getItem("favorites")
         },
         success: (data)=>{
-            console.log(data);
             data = JSON.parse(data);
             for(let i = 0; i < data.length; i++){
                 let elem = $(`<div class="favorites-main-container w-100">
@@ -28,9 +26,9 @@ window.addEventListener("load", ()=>{
                     </div>`)
                 elem.find(".product-remove-button").on("click", (e)=>{
                     let locData = localStorage.getItem("favorites");
-                    let fav = JSON.parse(locData).splice(i, 1);
-                    console.log(fav);
-                    localStorage.setItem("favorites", fav);
+                    locData = JSON.parse(locData);
+                    locData.splice(i, 1);
+                    localStorage.setItem("favorites", JSON.stringify(locData));
                     elem.remove();
                 })
                 cont.append(elem);
