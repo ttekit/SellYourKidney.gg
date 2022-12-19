@@ -79,4 +79,4 @@
     </div>
 </div>
 
-    <script src="/assets/js/blogWork.js"></script>
+    <script src="/assets/js/Blog/blogWork.js"></script>

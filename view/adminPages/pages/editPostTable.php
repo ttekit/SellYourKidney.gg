@@ -132,4 +132,4 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/saveNewPostImage.js"></script>
+<script src="/assets/js/Admin/Products/saveNewPostImage.js"></script>

@@ -193,7 +193,7 @@ $data['options']['lang']?>">
 </div>
 
 
-<script src="/assets/js/tableEdit.js"></script>
+<script src="/assets/js/Admin/tableEdit.js"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>

@@ -62,4 +62,4 @@
 </div>
 <!-- /.container-fluid -->
 <!-- /.content -->
-<script src="/assets/js/userAccWork.js"></script>
+<script src="/assets/js/User/userAccWork.js"></script>

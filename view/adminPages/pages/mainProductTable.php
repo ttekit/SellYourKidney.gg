@@ -56,4 +56,4 @@
         <!-- /.row -->
 </div><!-- /.container-fluid -->
 
-<script src="/assets/js/productwork.js"></script>
+<script src="/assets/js/Shop/productwork.js"></script>

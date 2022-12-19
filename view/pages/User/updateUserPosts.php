@@ -77,4 +77,4 @@
     </section>
     <!-- /.content -->
 </div>
-<script src="/assets/js/updateUserPosts.js"></script>
+<script src="/assets/js/User/updateUserPosts.js"></script>

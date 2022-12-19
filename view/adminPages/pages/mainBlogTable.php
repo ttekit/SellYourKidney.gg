@@ -65,4 +65,4 @@
 </section>
 <!-- /.content -->
 </div>
-<script src="/assets/js/postwork.js"></script>
+<script src="/assets/js/Blog/postwork.js"></script>

@@ -106,8 +106,8 @@
         </div>
     </div>
 </section>
-<script src="../../../assets/js/productsFavorites.js"></script>
-<script src="../../../assets/js/cartScript.js"></script>
-<script src="../../../assets/js/productSearch.js"></script>
-<script src="../../../assets/js/addToCartAnimation.js"></script>
+<script src="../../../assets/js/Shop/productsFavorites.js"></script>
+<script src="../../../assets/js/Shop/cartScript.js"></script>
+<script src="../../../assets/js/Shop/productSearch.js"></script>
+<script src="../../../assets/js/Shop/addToCartAnimation.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=Ad0ypubZ_l3K1qOGKieJ-H3Ia1oBMGYOl8cL57rrkl3xLa0Nzo-OtKpZquP2SNMiFOwj6Vol0ZIlJJuW&components=buttons"></script>

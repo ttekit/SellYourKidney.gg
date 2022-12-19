@@ -41,7 +41,7 @@ window.addEventListener("load", () => {
                                 Swal.fire("Poof! Your post is on checking!", {
                                     icon: "success",
                                 }).then(() => {
-                                    location.href = "/Admin/products";
+                                    location.href = "";
                                 });
                             } else {
                                 Swal.fire("Ok :( ");

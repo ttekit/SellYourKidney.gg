@@ -134,4 +134,4 @@
 </div>
 </section>
 
-<script src="/assets/js/userProfileEdit.js"></script>
+<script src="/assets/js/User/userProfileEdit.js"></script>

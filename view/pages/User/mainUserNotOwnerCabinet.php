@@ -163,4 +163,4 @@
         </div>
     </div>
 </section>
-<script src="/assets/js/addPost.js"></script>
+<script src="/assets/js/User/addPost.js"></script>

@@ -143,7 +143,7 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/tagsCategoriesWork.js"></script>
+<script src="/assets/js/Blog/tagsCategoriesWork.js"></script>
 <script>
     $(document).ready(function () {
         $('#summernote').summernote();
