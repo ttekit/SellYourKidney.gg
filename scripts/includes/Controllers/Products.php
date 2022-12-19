@@ -46,6 +46,14 @@ class Products extends Controller
         }
     }
 
+    public function favorites()
+    {
+                $this->format_options();
+                $this->returnNavigationPanel();
+                $this->data["title"] = "Favorites";
+                View::render(VIEWS_PATH . "template" . EXT, PRODUCTS_PAGES_PATH . "pageFavorites" . EXT, $this->data);
+    }
+
     private function format_products()
     {
         $pm = new \Models\products();

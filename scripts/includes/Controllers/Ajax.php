@@ -352,7 +352,6 @@ class Ajax extends Controller
         }
     }
 
-
     public function banUser()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -375,11 +374,27 @@ class Ajax extends Controller
         }
     }
 
-
     public function getUserData(){
         if ($this->CheckOnLogin()) {
             $userDataBase = new userAcc();
           echo json_encode($this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]));
+        }
+    }
+
+    public function getFavorites(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["fav"])) {
+                $dataArr = json_decode($_POST["fav"]);
+
+                $result = [];
+                $productM = new \Models\products();
+
+                foreach ($dataArr as $key=>$val){
+                    array_push($result, $productM->getByIdWithoutContent($val));
+                }
+
+                echo json_encode($result);
+            }
         }
     }
 

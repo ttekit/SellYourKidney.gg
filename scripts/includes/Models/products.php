@@ -18,6 +18,11 @@ class products extends \App\DBEngine
         }
         return null;
     }
+    public function getByIdWithoutContent($id)
+    {
+        $result = $this->executeQuery("SELECT products.id, products.name, products.img_src, products.price FROM products WHERE products.id = ".$id);
+            return $result[0];
+    }
     public function getAllProducts()
     {
         $result = $this->getManyRows();

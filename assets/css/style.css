@@ -1861,3 +1861,42 @@ img {
 .removeFromFavorites{
     background-color: #b72525 !important;
 }
+
+.favorites-main-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+.favorites-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-goto-button{
+    background-color: #4eff4e;
+    border: 0;
+    border-radius: 2px;
+    transition-duration: 0.2s;
+    padding: 5px;
+    color: black;
+}
+.product-goto-button:hover{
+    background-color: #3ea83e;
+}
+
+
+.product-remove-button{
+    background-color: #ff4e4e;
+    border: 0;
+    color: white;
+    border-radius: 2px;
+    transition-duration: 0.2s;
+}
+
+.product-remove-button:hover{
+    background-color: #c43e3e;
+}
