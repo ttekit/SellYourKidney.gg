@@ -1,5 +1,9 @@
 <!-- end inner page section -->
 <!-- product section -->
+<div class="max-price d-none"><?= /** @var $data */
+    $data["maxPrice"]?></div>
+<div class="min-price d-none"><?=
+    $data["minPrice"]?></div>
 
 <section class="product_section layout_padding">
     <div class="container">
@@ -24,12 +28,14 @@
                 <?}?>
             </div>
         </div>
+        <input type="text" id="priceInput" name="price" value=""/>
+
         <div class="row">
             <?php
             /** @var $data */
             foreach ($data["products"] as $key => $value) {
                 ?>
-                <div class=" col-sm-6 col-md-4 col-lg-3">
+                <div class="product-container col-sm-6 col-md-4 col-lg-3">
                     <div class="product-box box">
                         <div class="option_container">
                             <div class="options">
@@ -108,6 +114,7 @@
 </section>
 <script src="../../../assets/js/Shop/productsFavorites.js"></script>
 <script src="../../../assets/js/Shop/cartScript.js"></script>
+<script src="../../../assets/js/Shop/priceWork.js"></script>
 <script src="../../../assets/js/Shop/productSearch.js"></script>
 <script src="../../../assets/js/Shop/addToCartAnimation.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=Ad0ypubZ_l3K1qOGKieJ-H3Ia1oBMGYOl8cL57rrkl3xLa0Nzo-OtKpZquP2SNMiFOwj6Vol0ZIlJJuW&components=buttons"></script>

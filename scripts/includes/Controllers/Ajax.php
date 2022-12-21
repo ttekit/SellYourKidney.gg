@@ -170,6 +170,18 @@ class Ajax extends Controller
         }
     }
 
+    public function GetByPrice(){
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            if (isset($_GET["min"]) && isset($_GET["max"])) {
+                echo $_GET["min"];
+                echo $_GET["max"];
+                $prodM = new \Models\products();
+                $result = $prodM->getByPriceLimits($_GET["min"], $_GET["max"]);
+                echo json_encode($result);
+            }
+        }
+    }
+
 
     public function deleteOnePost()
     {

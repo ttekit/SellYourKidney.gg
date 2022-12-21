@@ -2,10 +2,11 @@
   "use strict"; // Start of use strict
 
   // Toggle the side navigation
+  let $sideBar = $(".sidebar");
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");
-    if ($(".sidebar").hasClass("toggled")) {
+    $sideBar.toggleClass("toggled");
+    if ($sideBar.hasClass("toggled")) {
       $('.sidebar .collapse').collapse('hide');
     };
   });
@@ -17,7 +18,7 @@
     };
     
     // Toggle the side navigation when window is resized below 480px
-    if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
+    if ($(window).width() < 480 && !$sideBar.hasClass("toggled")) {
       $("body").addClass("sidebar-toggled");
       $(".sidebar").addClass("toggled");
       $('.sidebar .collapse').collapse('hide');

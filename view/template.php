@@ -10,7 +10,7 @@
 
 <html lang="<?= /** @var $data */
 $data['options']['lang'] ?>">
-<?php require_once(COMPONENTS_PATH."head.php") ?>
+<?php require_once(COMPONENTS_PATH . "head.php") ?>
 
 <body>
 
@@ -39,7 +39,7 @@ $data['options']['lang'] ?>">
     <div>
 
     </div>
-    <?php require_once(COMPONENTS_PATH."header.php") ?>
+    <?php require_once(COMPONENTS_PATH . "header.php") ?>
 </div>
 
 
@@ -53,15 +53,15 @@ $data['options']['lang'] ?>">
 
 <main>
     <div data-aos="flip-up">
-    <?php /** @var $contentView */
-    require_once $contentView; ?>
+        <?php /** @var $contentView */
+        require_once $contentView; ?>
     </div>
 </main>
 
 
 <!-- footer start -->
 <div data-aos="flip-right">
-<?php require_once(COMPONENTS_PATH . "footer.php") ?>'
+    <?php require_once(COMPONENTS_PATH . "footer.php") ?>'
 </div>
 <!-- footer end -->
 <div class="cpy_">
@@ -86,6 +86,8 @@ $data['options']['lang'] ?>">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
 
 <script src="https://benalman.com/code/projects/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
 
 </body>
 </html>

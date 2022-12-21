@@ -24,6 +24,7 @@ class Products extends Controller
         }
 
         $this->format_products();
+
         $num = $this->data["productsCount"] / $this->data["count"];
         $this->data["pageCount"] = roundToBigger($num);
         View::render(VIEWS_PATH . "template" . EXT, PRODUCTS_PAGES_PATH . "mainProducts" . EXT, $this->data);
@@ -48,10 +49,10 @@ class Products extends Controller
 
     public function favorites()
     {
-                $this->format_options();
-                $this->returnNavigationPanel();
-                $this->data["title"] = "Favorites";
-                View::render(VIEWS_PATH . "template" . EXT, PRODUCTS_PAGES_PATH . "pageFavorites" . EXT, $this->data);
+        $this->format_options();
+        $this->returnNavigationPanel();
+        $this->data["title"] = "Favorites";
+        View::render(VIEWS_PATH . "template" . EXT, PRODUCTS_PAGES_PATH . "pageFavorites" . EXT, $this->data);
     }
 
     private function format_products()
@@ -60,6 +61,9 @@ class Products extends Controller
 
         $this->data["products"] = $pm->execQuery("SELECT * FROM products LIMIT " . $this->data["count"] . " OFFSET " . (($this->data["page"] - 1) * $this->data["count"]));
         $this->data["productsCount"] = $pm->executeQuery("SELECT COUNT(*) FROM products")[0]["COUNT(*)"];
+        $this->data["maxPrice"] = $pm->executeQuery("SELECT MAX(products.price) FROM products")[0]["MAX(products.price)"];
+        $this->data["minPrice"] = $pm->executeQuery("SELECT MIN(products.price) FROM products")[0]["MIN(products.price)"];
+        echo $this->data["maxPrice"];
         unset($pm);
     }
 

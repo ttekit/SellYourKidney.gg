@@ -38,10 +38,10 @@ window.addEventListener("load", () => {
             $button.addClass("pressed");
         }
     });
+    let fileInput = $("input[type=file]");
+    let files = fileInput.val();
 
-    let files = $("input[type=file]").val();
-
-    $("input[type=file]").on('change', prepareUpload);
+    fileInput.on('change', prepareUpload);
 
     function prepareUpload(event) {
         files = event.target.files;

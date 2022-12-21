@@ -18,11 +18,13 @@ class products extends \App\DBEngine
         }
         return null;
     }
+
     public function getByIdWithoutContent($id)
     {
         $result = $this->executeQuery("SELECT products.id, products.name, products.img_src, products.price FROM products WHERE products.id = ".$id);
             return $result[0];
     }
+
     public function getAllProducts()
     {
         $result = $this->getManyRows();
@@ -30,6 +32,13 @@ class products extends \App\DBEngine
             return $result;
         }
         return null;
+    }
+
+    public function getByPriceLimits($min, $max){
+        $result = $this->executeQuery(
+            "SELECT products.id, products.name, products.img_src,products.img_alt, products.price ".
+                  "FROM products WHERE products.price > ". $min."AND products.price < ". $max);
+        return $result;
     }
 
     public function execQuery($query)
@@ -47,12 +56,14 @@ class products extends \App\DBEngine
             'price' => $price
         ]);
     }
+
     public function UpdateImagePathOfPostById($id, $path)
     {
         return parent::updateRow($id, [
             "img_src" => $path
         ]);
     }
+
     public function deleteProduct($id){
         return $this->removeRow($id);
     }
