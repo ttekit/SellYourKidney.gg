@@ -10,7 +10,7 @@ class post extends \App\DBEngine
 
     public function getPostById($id)
     {
-        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.dateOfPublication, blogposts.imgSrc, blogposts.altSrc, blogposts.content,blogposts.author, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
+        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication-date`, blogposts.img_src, blogposts.img_alt, blogposts.content,blogposts.author, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
 	LEFT JOIN categories ON blogcategories.category_id = categories.id
 	LEFT JOIN blogposts ON blogcategories.post_id = blogposts.id
 	WHERE blogposts.slug =" . $id . ") AS tags,

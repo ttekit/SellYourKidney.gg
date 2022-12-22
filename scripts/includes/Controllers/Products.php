@@ -63,7 +63,7 @@ class Products extends Controller
         $this->data["productsCount"] = $pm->executeQuery("SELECT COUNT(*) FROM products")[0]["COUNT(*)"];
         $this->data["maxPrice"] = $pm->executeQuery("SELECT MAX(products.price) FROM products")[0]["MAX(products.price)"];
         $this->data["minPrice"] = $pm->executeQuery("SELECT MIN(products.price) FROM products")[0]["MIN(products.price)"];
-        echo $this->data["maxPrice"];
+
         unset($pm);
     }
 

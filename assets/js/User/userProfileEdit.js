@@ -111,47 +111,50 @@ window.addEventListener("load", function () {
 
     $(".main-form").submit((e)=>{
         let cont = $(e.target);
-        let formData = new FormData();
         let inputs = cont.find("input");
+        let formData = new FormData();
         if(cropper){
             cropper.getCroppedCanvas({
                 width: 150,
                 height: 150,
             }).toBlob((blob)=>{
                 formData.set("avatar", blob);
-
-                for (let i = 1; i < inputs.length; i++){
-                    if(inputs[i].name != ""){
-                        formData.set(inputs[i].name, inputs[i].value)
-                    }
-                }
-
-                $.ajax({
-                    url: "/ajax/updateUserData",
-                    method: "POST",
-                    cache: false,
-                    processData: false,
-                    contentType: false,
-                    data: formData,
-                    beforeSend: function () {
-                        $('#preloader').fadeIn(500);
-                    },
-                    complete: function () {
-                        $('#preloader').fadeOut(500);
-                    },
-                    success: function (data){
-                        console.log(data);
-                    }
-                })
-
-
-
+                    updateUserData(formData, inputs);
             })
+        }else{
+            updateUserData(formData, inputs);
         }
 
 
         return false;
     })
+
+    function updateUserData (formData, inputs) {
+
+        for (let i = 1; i < inputs.length; i++){
+            if(inputs[i].name != ""){
+                formData.set(inputs[i].name, inputs[i].value)
+            }
+        }
+
+        $.ajax({
+            url: "/ajax/updateUserData",
+            method: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: formData,
+            beforeSend: function () {
+                $('#preloader').fadeIn(500);
+            },
+            complete: function () {
+                $('#preloader').fadeOut(500);
+            },
+            success: function (data){
+                console.log(data);
+            }
+        })
+    }
 
 
 })

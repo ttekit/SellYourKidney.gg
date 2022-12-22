@@ -27,11 +27,11 @@
                                        $data["userData"]["login"] ?> " disabled/>
                             </label></h5>
                         <p class="text-muted mb-1"><label class="w-100">
-                                <input class="user-edit-input" name="Job" value="<?= $data["userData"]["Job"] ?>"/>
+                                <input class="user-edit-input" name="Job" value="<?= $data["userData"]["job"] ?>"/>
                             </label></p>
                         <p class="text-muted mb-4"><label class="w-100">
                                 <input disabled class="user-edit-input" name="Address"
-                                       value="<?= $data["userData"]["Address"] ?>"/>
+                                       value="<?= $data["userData"]["address"] ?>"/>
                             </label></p>
                         <div class="d-flex justify-content-center mb-1">
                             <input type="submit" class="btn btn-primary" id="submit"/>
@@ -51,8 +51,8 @@
                             foreach ($data["reg"]["socLinks"] as $key => $value) {
                                 ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <input class="soc-link-id-container d-none" value="<?= $value["Id"] ?>"/>
-                                    <a href="<?= $value["SocLink"] ?>"><p class="mb-0"><?= $value["SocName"] ?></p>
+                                    <input class="soc-link-id-container d-none" value="<?= $value["id"] ?>"/>
+                                    <a href="<?= $value["socLink"] ?>"><p class="mb-0"><?= $value["socName"] ?></p>
                                     </a>
                                     <a type="button" class="delete-soc-link-button"><p class="mb-0">Delete</p>
                                     </a>
@@ -73,7 +73,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="FullName"
-                                               value="<?= $data["userData"]["FullName"] ?>"/>
+                                               value="<?= $data["userData"]["fullName"] ?>"/>
                                     </label></p>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="Phone"
-                                               value="<?= $data["userData"]["Phone"] ?>"/>
+                                               value="<?= $data["userData"]["phone"] ?>"/>
                                     </label></p>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="Mobile"
-                                               value="<?= $data["userData"]["Mobile"] ?>"/>
+                                               value="<?= $data["userData"]["mobile"] ?>"/>
                                     </label></p>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="Address"
-                                               value="<?= $data["userData"]["Address"] ?>"/>
+                                               value="<?= $data["userData"]["address"] ?>"/>
                                     </label></p>
                             </div>
                         </div>

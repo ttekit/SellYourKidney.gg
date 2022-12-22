@@ -303,7 +303,13 @@ class Ajax extends Controller
     public function updateUserData(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userDB = new UserAcc();
-            $userDB->updateUserData($_SESSION["reg"]["userId"], $_POST);
+            $userDB->updateUserData($_SESSION["reg"]["userId"], [
+                "fullName"=>$_POST["FullName"],
+                "phone"=>$_POST["Phone"],
+                "mobile"=>$_POST["Mobile"],
+                "address"=>$_POST["Address"],
+                "job"=>$_POST["Job"],
+            ]);
             if(isset($_FILES["avatar"])){
                 if($_FILES["avatar"] != "undefined"){
                     $_FILES["avatar"]["name"] = $_SESSION["reg"]["userId"];
@@ -391,7 +397,7 @@ class Ajax extends Controller
     public function getUserData(){
         if ($this->CheckOnLogin()) {
             $userDataBase = new userAcc();
-          echo json_encode($this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]));
+            echo json_encode($this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]));
         }
     }
 

@@ -10,10 +10,10 @@
                     <h1 class="fw-bolder mb-1"><?= /** @var $data */
                         $data["pageData"]["title"] ?></h1>
                     <!-- Post meta content-->
-                    <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["dateOfPublication"] ?> by
+                    <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["publication-date"] ?> by
                         <div class="row text-center" style="height: 50px;">
                                 <img class="img-fluid rounded-circle" width="50px" height="50px" src="<?= $data["blog"]["author"]["avatar"]?>" alt="No Avatar"/>
-                          <a class="author-text" href="/user/?id=1"><?=$data["blog"]["author"]["FullName"]?></a>
+                          <a class="author-text" href="/user/?id=1"><?=$data["blog"]["author"]["fullName"]?></a>
                         </div>
 
                     </div>
@@ -29,6 +29,9 @@
 
                     <p class="post_text fs-5 mb-4"><?= $data["pageData"]["content"] ?></p>
                 </section>
+
+                <?php varDump($data["blog"]["author"]) ?>
+
             </article>
             <!-- Comments section-->
             <section class="mb-5">
@@ -39,12 +42,12 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" type="text" class="form-control" id="main-login-input" placeholder="Enter your name ..." value="<?= $data["userData"]["FullName"]?>" disabled/>
+                                        <input name="login" type="text" class="form-control" id="main-login-input" placeholder="Enter your name ..." value="<?= $data["blog"]["author"]["fullName"]?>" disabled/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="email" type="email" class="form-control" id="main-email-input" placeholder="Enter your email ..."  value="<?= $data["userData"]["email"]?>" disabled/>
+                                        <input name="email" type="email" class="form-control" id="main-email-input" placeholder="Enter your email ..."  value="<?= $data["blog"]["author"]["email"]?>" disabled/>
                                     </div>
                                 </div>
                             </div>
@@ -77,5 +80,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/Blog/blogComments.js"></script>
-    <script src="/assets/js/blogPost.js"></script>
+
 

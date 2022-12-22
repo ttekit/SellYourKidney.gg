@@ -218,8 +218,8 @@ class User extends Controller
                         "title" => $_POST["title"],
                         "slogan" => $_POST["slogan"],
                         "content" => $_POST["content"],
-                        "dateOfPublication" => $dateTime->format('Y\-m\-d\ h:i:s'),
-                        "altSrc" => "",
+                        "publication_date" => $dateTime->format('Y\-m\-d\ h:i:s'),
+                        "img_alt" => "",
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
@@ -242,7 +242,7 @@ class User extends Controller
                     }
 
                     $blogM->updateRow($thisPost["id"],[
-                        "imgSrc" => $imgPath
+                        "img_src" => $imgPath
                     ]);
 
                     $blogCatsM = new blogcategories();

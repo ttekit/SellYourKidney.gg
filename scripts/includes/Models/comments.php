@@ -28,7 +28,7 @@ class comments extends \App\DBEngine
             "login"=>$login,
             "email"=>$email,
             "comment"=>$comment,
-            "dateOfComment"=>$dateOfComment,
+            "comment_date"=>$dateOfComment,
             "verified"=>false,
             "client_ip"=>$client_ip
         ]);

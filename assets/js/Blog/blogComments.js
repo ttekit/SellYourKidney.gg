@@ -122,13 +122,13 @@ window.addEventListener("load", async function () {
                                 </div>
                                 <div class="media-body">
                                 <div class = "comment-header">
-                                    <img class="img-fluid rounded-circle" style="height: 50px; width: 50px" src="${userData.avatar}"/>
+                                    <img class="img-fluid rounded-circle" style="height: 50px; width: 50px" src="${comment.avatar}"/>
                                     <h4 class="media-heading">${comment.login}</h4>
                                     <button class = "comment-btn">+</button>
                                     <button class="comment-answer-btn">answ</button>
                                 </div>
 
-                                    <div class="media-date">${comment.dateOfComment}</div>
+                                    <div class="media-date">${comment.comment_date}</div>
                                     <div class="media-content">
                                         <p>${comment.comment}</p>
                                     </div>

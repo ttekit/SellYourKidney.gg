@@ -20,8 +20,8 @@
                              class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
                         <h5 class="my-3"><?=
                             $data["userData"]["login"] ?></h5>
-                        <p class="text-muted mb-1"><?= $data["userData"]["Job"] ?></p>
-                        <p class="text-muted mb-4"><?= $data["userData"]["Address"] ?></p>
+                        <p class="text-muted mb-1"><?= $data["userData"]["job"] ?></p>
+                        <p class="text-muted mb-4"><?= $data["userData"]["address"] ?></p>
                         <div class="d-flex justify-content-center mb-1">
                             <a href="/user/Edit">
                                 <button type="button" class="btn btn-primary">Edit</button>
@@ -36,7 +36,7 @@
                             foreach ($data["reg"]["socLinks"] as $key => $value) {
                                 ?>
                                 <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                    <a href="<?= $value["SocLink"] ?>"><p class="mb-0"><?= $value["SocName"] ?></p>
+                                    <a href="<?= $value["socLink"] ?>"><p class="mb-0"><?= $value["socName"] ?></p>
                                     </a>
                                 </li>
                             <?php } ?>
@@ -55,7 +55,7 @@
                                 <p class="mb-0">Full Name</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?= $data["userData"]["FullName"] ?></p>
+                                <p class="text-muted mb-0"><?= $data["userData"]["fullName"] ?></p>
                             </div>
                         </div>
                         <hr>
@@ -73,7 +73,7 @@
                                 <p class="mb-0">Phone</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?= $data["userData"]["Phone"] ?></p>
+                                <p class="text-muted mb-0"><?= $data["userData"]["phone"] ?></p>
                             </div>
                         </div>
                         <hr>
@@ -82,7 +82,7 @@
                                 <p class="mb-0">Mobile</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?= $data["userData"]["Mobile"] ?></p>
+                                <p class="text-muted mb-0"><?= $data["userData"]["mobile"] ?></p>
                             </div>
                         </div>
                         <hr>
@@ -91,7 +91,7 @@
                                 <p class="mb-0">Address</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0"><?= $data["userData"]["Address"] ?></p>
+                                <p class="text-muted mb-0"><?= $data["userData"]["address"] ?></p>
                             </div>
                         </div>
                     </div>

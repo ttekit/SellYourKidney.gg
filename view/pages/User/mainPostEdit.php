@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                             Отправить этот файл: <input name="userfile" type="file"
-                                                        value="<?= $data["postData"]["imgSrc"] ?>"/>
+                                                        value="<?= $data["postData"]["img_src"] ?>"/>
                         </div>
                         <!-- /.card-body -->
                     </div>
