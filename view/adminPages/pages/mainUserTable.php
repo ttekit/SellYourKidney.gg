@@ -17,8 +17,8 @@
                             <div class="input-group">
                                 <input type="text" class="form-control bg-light border-0 small" placeholder="Искать по Email"
                                        aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append" id="submit">
-                                    <button class="btn btn-primary" type="button">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="submit">
                                         <i class="fas fa-search fa-sm"></i>
                                     </button>
                                 </div>
@@ -36,7 +36,7 @@
                                     <div class="row col-2">
                                         <div>
                                             <?= $post["email"] ?>
-                                            <?= $post["FullName"] ?>
+                                            <?= $post["fullName"] ?>
                                         </div>
                                         <div>
                                             <input class="d-none" id="id" value="<?= $post["id"] ?>"/>
@@ -62,4 +62,4 @@
 </div>
 <!-- /.container-fluid -->
 <!-- /.content -->
-<script src="/assets/js/User/userAccWork.js"></script>
+<script src="/assets/js/Admin/User/userAccWork.js"></script>

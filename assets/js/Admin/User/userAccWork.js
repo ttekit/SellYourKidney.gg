@@ -28,8 +28,9 @@ window.addEventListener("load", function () {
     })
 
     $("#submit").on("click", (e)=>{
-        let $container = $(e.target).parent().parent().find("input");
-        let login = $container.val();
+        let $container = $(e.target).closest(".input-group");
+        let $input = $(e.target).parent().parent().find("input");
+        let login = $input.val();
 
         $.ajax({
             url: "/ajax/findUserByLogin",
@@ -38,11 +39,15 @@ window.addEventListener("load", function () {
                 "login": login
             },
             success: (res) => {
+                $container.fadeIn(500);
+
                 if(res === "false"){
                     Swal.fire("Incorrect login")
                 }
                 else{
+                    console.log(res);
                     let data = JSON.parse(res);
+
                     Swal.fire({
                         title: data.login,
                         html: `<p class="text-white">email: ${data.email}</p>
@@ -75,9 +80,6 @@ window.addEventListener("load", function () {
                             })
                         }
                     })
-
-
-
                 }
 
             },
@@ -86,9 +88,6 @@ window.addEventListener("load", function () {
             },
             beforeSend: function() {
                 $container.fadeOut(500);
-            },
-            complete: function() {
-                $container.fadeIn(500);
             },
         })
     })

@@ -1,20 +1,22 @@
-window.addEventListener("load", function (){
+window.addEventListener("load", function () {
     let $btnsContainer = $(".post-manage");
+
     let $btnsUpdate = $btnsContainer.find(".blog-update-button");
     let $btnsEdit = $btnsContainer.find(".blog-edit-button");
     let $btnsDelete = $btnsContainer.find(".blog-delete-button");
+
     let $status = $btnsContainer.find(".form-control");
 
-    $btnsEdit.on("click", function (e){
-        $postId = $(e.target).closest("div").find(".id").text();
-        window.location = "/admin/OnePostEdit?postId="+$postId;
+    $btnsEdit.on("click", function (e) {
+        let postId = $(e.target).closest("div").find(".id").text();
+        window.location = "/admin/OnePostEdit?postId=" + postId;
     })
 
-    $btnsDelete.on("click", function (e){
+    $btnsDelete.on("click", function (e) {
 
         let $container = $(e.target).closest("div");
         let $postId = $container.find(".id").text();
-
+        $container.parent("div").parent("div").addClass("d-none");
         $.ajax({
             url: "/ajax/deleteOnePost",
             method: "POST",
@@ -22,7 +24,7 @@ window.addEventListener("load", function (){
                 "postId": $postId
             },
             success: (data) => {
-                if(data=="POST_REMOVED"){
+                if (data == "POST_REMOVED") {
                     $container.parent("div").parent("div").remove();
                 }
             },
@@ -32,7 +34,7 @@ window.addEventListener("load", function (){
         })
     })
 
-    $btnsUpdate.on("click", function (e){
+    $btnsUpdate.on("click", function (e) {
 
         let $container = $(e.target).closest("div");
         let $postId = $container.find(".id").text();
@@ -45,10 +47,10 @@ window.addEventListener("load", function (){
                 "postId": $postId,
                 "newStatus": newData
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#preloader').fadeIn(500);
             },
-            complete: function() {
+            complete: function () {
                 $('#preloader').fadeOut(500);
             },
             error: (msg) => {
@@ -60,8 +62,8 @@ window.addEventListener("load", function (){
         updateButton.attr("disabled", true);
     });
 
-    $status.change(function (e){
-        let updateButton =  $(e.target).closest("div").find(".blog-update-button");
+    $status.change(function (e) {
+        let updateButton = $(e.target).closest("div").find(".blog-update-button");
         updateButton.attr("disabled", false)
     })
 });

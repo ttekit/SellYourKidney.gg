@@ -22,21 +22,17 @@ class Contact extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["message"])) {
-                $name = htmlspecialchars(trim($_POST["name"]));
-                $email = htmlspecialchars(trim($_POST["email"]));
-                $subject = htmlspecialchars(trim($_POST["subject"]));
-                $message = htmlspecialchars(trim($_POST["message"]));
-                if (!Validator::length($name, 2, 50)) {
+                if (!Validator::length($_POST["name"], 2, 50)) {
                     $this->data["error"]["name"] = "Name must to be from 2 to 50 symbols";
                 }
-                if (!Validator::email($email)) {
+                if (!Validator::email($_POST["email"])) {
                     $this->data["error"]["email"] = "email is incorrect";
                 }
-                if (!Validator::length($subject, 5, 50)) {
+                if (!Validator::length($_POST["subject"], 5, 50)) {
                     $this->data["error"]["subject"] = "Subject must to be from 5 to 50 symbols";
                 }
-                if (strlen($message) <= 8) {
-                    $this->data["error"]["message"] = "Message must to be more then 25 symbols";
+                if (strlen($_POST["message"]) <= 8) {
+                    $this->data["error"]["message"] = "Message must to be more then 8 symbols";
                 }
 
             }
@@ -45,11 +41,12 @@ class Contact extends Controller
         }
         if (!isset($this->data["error"])) {
             $cim = new contactInfo();
-            $cim->SaveMessage($name, $email, $subject . " : " . $message);
+            $cim->SaveMessage($_POST["name"], $_POST["name"], $_POST["subject"] . " : " . $_POST["message"]);
             $this->data["success"] = "Thank you very much! Your message is very important to us!";
         }
         $this->format_options();
         $this->returnNavigationPanel();
+        $this->data["title"] = "Contact answ";
         View::render(VIEWS_PATH . "template" . EXT, PAGES_PATH . "mainError" . EXT, $this->data);
 
     }

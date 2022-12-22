@@ -19,8 +19,8 @@
                                 <div class="post">
                                     <h2><?= $post["title"] ?></h2>
                                     <div class="row">
-                                        <img class='blog-img-box-manage' src="<?= $post["imgSrc"] ?>" width="450px"
-                                             alt="<?= $post["altSrc"] ?>">
+                                        <img class='blog-img-box-manage' src="<?= $post["img_src"] ?>" width="450px"
+                                             alt="<?= $post["img_alt"] ?>">
                                         <div class="post-manage flex-column">
                                             <div class="hidden id"><?= $post["id"] ?></div>
                                             <button href="#" class="btn btn-info btn-lg blog-edit-button blog-btn">
@@ -65,4 +65,4 @@
 </section>
 <!-- /.content -->
 </div>
-<script src="/assets/js/Blog/postwork.js"></script>
+<script src="/assets/js/Admin/Blog/postWork.js"></script>

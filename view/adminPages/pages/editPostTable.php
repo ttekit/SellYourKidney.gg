@@ -52,43 +52,54 @@
                             <div class="form-group">
                                 <label for="inputClientCompany">Categories</label>
                                 <div class="categories">
-                                    <div class="postId hidden"><?= $data["postData"]["id"] ?></div>
                                     <div class="categories-active-categories">
-                                        <?php
-                                        $catM = new \Models\categories();
-                                        $catsData = $catM->getCategoryByPostId($data["postData"]["id"]);
-                                        foreach ($catsData as $key => $value) {
+                                    </div>
+                                    <?php
+                                    $catM = new \Models\categories();
+                                    $allCats = $catM->getAllCategories();
+                                    $activeCategory = $catM->getCategoryByPostId($data["postData"]["id"]);
+                                    $activeCategory = $activeCategory[0];
+                                    foreach ($allCats as $key => $value) {
+                                        if ($value["category"] != $activeCategory["category"]) {
                                             ?>
-                                            <button class="category-elem"><?= $value["category"] ?></button>
+                                            <a type="button" class="addNewCategoryBtn"><?= $value["category"] ?></a>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <a type="button"
+                                               class="addNewCategoryBtn pressed"><?= $value["category"] ?></a>
                                             <?
                                         }
-                                        ?>
-                                    </div>
-                                    <button class="addNewCategoryBtn"> +</button>
-                                    <select class="categories-select hidden">
-
-                                    </select>
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputProjectLeader">Tags</label>
                                 <div class="tags">
-                                    <div class="tags-active-tags">
-<!--                                        FIX                                                                      -->
-                                        <?php
-                                        $tagM = new \Models\tags();
-                                        $tagsData = $tagM->getByPostId($data["postData"]["id"]);
-                                        foreach ($tagsData as $key => $value) {
-                                            ?>
-                                            <button class="tag-elem"><?= $value["tag"] ?></button>
-                                            <?
+                                    <?php
+                                    $tagM = new \Models\tags();
+                                    $allTags = $tagM->getManyRows();
+                                    $activeTags = $tagM->getByPostId($data["postData"]["id"]);
+                                    $flag = false;
+                                    foreach ($allTags as $key => $value) {
+                                        $flag = true;
+                                        foreach ($activeTags as $secKey => $usedValue) {
+                                            if ($value["tag"] == $usedValue["tag"]) {
+                                                ?>
+                                                <a type="button"
+                                                   class="addNewTagBtn pressed"><?= $value["tag"] ?></a>
+                                                <?php
+                                                $flag = false;
+                                            }
                                         }
-                                        ?>
-                                    </div>
-                                    <button class="addNewTagBtn">+</button>
-                                    <select class="tags-select hidden">
-
-                                    </select>
+                                        if ($flag == true) {
+                                            ?>
+                                            <a type="button" class="addNewTagBtn"><?= $value["tag"] ?></a>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +135,7 @@
             <div class="row">
                 <div class="col-12">
                     <a href="#" class="btn btn-secondary">Cancel</a>
-                    <input type="submit" value="Save Changes" class="btn btn-success float-right">
+                    <input type="submit" id="#submit" value="Save Changes" class="btn btn-success float-right">
                 </div>
             </div>
         </section>
@@ -132,4 +143,4 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/Admin/Products/saveNewPostImage.js"></script>
+<script src="/assets/js/Blog/tagsCategoriesWork.js"></script>

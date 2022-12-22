@@ -29,7 +29,7 @@ class admin extends Controller
     {
         if (UserAuthorisation::isUserAuthorized()) {
             $postM = new \Models\post();
-            $this->data["posts"] = $postM->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.state, blogposts.imgSrc, blogposts.altSrc FROM blogposts");
+            $this->data["posts"] = $postM->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.state, blogposts.img_src, blogposts.img_alt FROM blogposts");
             $this->data["status"] = ["created", "published", "archived"];
 
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainBlogTable" . EXT, $this->data);
@@ -50,7 +50,7 @@ class admin extends Controller
                 $this->data["postId"] = $_GET["postId"];
                 $postM = new \Models\post();
                 $this->data["postData"] = $postM->getById($_GET["postId"]);
-                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "editPostTable" . EXT, $this->data);
+                View::render(VIEWS_PATH . "admtemplate" . EXT, USER_PAGES_PATH . "mainPostEdit" . EXT, $this->data);
             }
         }
     }
@@ -66,7 +66,6 @@ class admin extends Controller
         }
     }
 
-
     public function OneProductEdit()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -79,8 +78,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function buttons()
+    public function buttons()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainButtons" . EXT, $this->data);
@@ -89,8 +87,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function cards()
+    public function cards()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainCards" . EXT, $this->data);
@@ -99,8 +96,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function colors()
+    public function colors()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainColors" . EXT, $this->data);
@@ -109,8 +105,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function borders()
+    public function borders()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainBorders" . EXT, $this->data);
@@ -119,8 +114,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function animations()
+    public function animations()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainAnimations" . EXT, $this->data);
@@ -129,8 +123,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function other()
+    public function other()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainOther" . EXT, $this->data);
@@ -139,8 +132,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function charts()
+    public function charts()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainCharts" . EXT, $this->data);
@@ -149,8 +141,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function tables()
+    public function tables()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainPropertyTable" . EXT, $this->data);
@@ -159,9 +150,7 @@ class admin extends Controller
         }
     }
 
-
-    public
-    function userManage()
+    public function userManage()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             $userM = new \Models\userAcc();
@@ -172,8 +161,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function mail()
+    public function mail()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainMail" . EXT, $this->data);
@@ -182,8 +170,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function newMail()
+    public function newMail()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if (isset($_POST["content"]) && isset($_POST["subject"])) {
@@ -198,8 +185,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function updatePost()
+    public function updatePost()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -216,8 +202,7 @@ class admin extends Controller
         header("Location: /admin/blogManage");
     }
 
-    public
-    function addNewOption()
+    public function addNewOption()
     {
         if (UserAuthorisation::isUserAuthorized()) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -231,9 +216,7 @@ class admin extends Controller
         }
     }
 
-
-    public
-    function updateRow()
+    public function updateRow()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['name']) && isset($_POST['value']) && isset($_POST['group']) && isset($_POST['id'])) {
@@ -258,9 +241,7 @@ class admin extends Controller
         header("Location: /admin/tables");
     }
 
-
-    public
-    function updateProd()
+    public function updateProd()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST["id"]) && isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['file'])) {
@@ -280,8 +261,7 @@ class admin extends Controller
         header("Location: /admin/productManage");
     }
 
-    public
-    function addNewProd()
+    public function addNewProd()
     {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
@@ -298,8 +278,7 @@ class admin extends Controller
         header("Location: /admin/productManage");
     }
 
-    public
-    function check()
+    public function check()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["email"]) && isset($_POST["password"])) {
@@ -316,8 +295,7 @@ class admin extends Controller
         }
     }
 
-    public
-    function logOut()
+    public function logOut()
     {
         session_destroy();
         header:
