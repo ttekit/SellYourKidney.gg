@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Models\contactInfo;
 use Models\mailingList;
 use Models\options;
 use Models\post;
@@ -170,6 +171,16 @@ class admin extends Controller
         }
     }
 
+    public function Contact()
+    {
+        if (UserAuthorisation::isUserAuthorized()) {
+            $this->format_contact_us_data();
+            View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_ALL_PAGES_PATH . "mainContact" . EXT, $this->data);
+        } else {
+            $this->Login();
+        }
+    }
+
     public function newMail()
     {
         if (UserAuthorisation::isUserAuthorized()) {
@@ -300,5 +311,10 @@ class admin extends Controller
         session_destroy();
         header:
         "Location: /main";
+    }
+    public function format_contact_us_data(){
+        $contactUsM = new contactInfo();
+
+        $this->data["contactUs"] = $contactUsM->getManyRows();
     }
 }

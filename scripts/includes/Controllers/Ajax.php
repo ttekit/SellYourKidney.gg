@@ -4,6 +4,7 @@ namespace App;
 
 use Models\categories;
 use Models\comments;
+use Models\contactInfo;
 use Models\post;
 use Models\posttages;
 use Models\tags;
@@ -424,6 +425,22 @@ class Ajax extends Controller
                 }
 
                 echo json_encode($result);
+            }
+        }
+    }
+    public function removeContactInfo(){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["id"])) {
+                $contUsM = new contactInfo();
+                echo($contUsM->removeRow($_POST["id"]));
+            }
+        }
+    }
+
+    public function sendEmail(){
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+            if(isset($_POST["reciver"]) && isset($_POST["message"])){
+               return(mail($_POST["reciver"],"Answer", $_POST["message"]));
             }
         }
     }
