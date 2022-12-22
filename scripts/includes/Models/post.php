@@ -24,8 +24,8 @@ WHERE id = " . $id
     }
     public function getPost($offset, $limit, $category, $tag)
     {
-        $query = "SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.dateOfPublication, 
-                    blogposts.imgSrc, blogposts.altSrc, blogposts.content, blogposts.state, blogposts.author, 
+        $query = "SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication-date`, 
+                    blogposts.`img_src`, blogposts.`img_alt`, blogposts.content, blogposts.state, blogposts.author, 
                     categories.category, tags.tag
                     FROM blogposts 
                     LEFT JOIN blogcategories

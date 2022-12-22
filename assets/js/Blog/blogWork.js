@@ -2,6 +2,8 @@ window.addEventListener("load", function () {
 
     let $postPagination = $(".blog-pagination-button");
     let $pageChooseContainer = $(".page-choose-container");
+    let $categoryBtns = $(".category-btn");
+    let $tagBtns = $(".tag-btn");
 
     $.ajax({
         url: "/ajax/getPostsCount",
@@ -59,6 +61,33 @@ window.addEventListener("load", function () {
         refreshPostContainer();
     })
 
+    $categoryBtns.on("click", (e) => {
+        let button = e.target;
+
+        if (button.classList.contains("active")) {
+            button.classList.remove("active");
+            currentCategory = "";
+        } else {
+            currentCategory = button.innerHTML;
+            button.classList.add("active");
+        }
+        refreshPostContainer();
+
+    })
+    $tagBtns.on("click", (e) => {
+        let button = e.target;
+
+        if (button.classList.contains("active")) {
+            button.classList.remove("active");
+            currentTag = "";
+        } else {
+            currentTag = button.innerHTML;
+            button.classList.add("active");
+        }
+
+        refreshPostContainer();
+    })
+
     let postContainer = $(".blog-container");
 
     let currentCategory = "";
@@ -72,19 +101,18 @@ window.addEventListener("load", function () {
             method: "get",
             async: true,
             data: {
-                "postsCount": postsCount,
+                "posts-count": postsCount,
                 "startPos": (currentPage - 1) * postsCount,
                 "category": currentCategory,
                 "tag": currentTag,
             },
             success: (data) => {
                 data = JSON.parse(data);
-
                 for (let i = 0; i < data.length; i++) {
                     let value = data[i];
-                    postContainer.append(`<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6>${value.dateOfPublication}</h6>
+                    postContainer.append(`<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6>${value.publicationDate}</h6>
                                             <div class='img-box'>
-                                            <img class='blog-img-box' src='${value.imgSrc}' alt='$value["altSrc"]'>
+                                            <img class='blog-img-box' src='${value.img_src}' alt='${value.alt_src}'>
                                             </div>
                                             <button class='blog-read-button'>
                                             <a href='/blog/post?id=${value.id}'>Go Read</a>

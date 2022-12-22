@@ -1900,3 +1900,7 @@ img {
 .product-remove-button:hover{
     background-color: #c43e3e;
 }
+
+.active{
+    background-color: rgba(0, 0, 0, 0.2);
+}

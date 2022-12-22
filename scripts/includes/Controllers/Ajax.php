@@ -260,9 +260,9 @@ class Ajax extends Controller
     public function getLimitCountOfPosts()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            if (isset($_GET["postsCount"]) && isset($_GET["startPos"])&& isset($_GET["category"])&& isset($_GET["tag"])) {
+            if (isset($_GET["posts-count"]) && isset($_GET["startPos"])&& isset($_GET["category"])&& isset($_GET["tag"])) {
                 $blogM = new post();
-                $res = $blogM->getPost($_GET["startPos"], $_GET["postsCount"], $_GET["category"], $_GET["tag"]);
+                $res = $blogM->getPost($_GET["startPos"], $_GET["posts-count"], $_GET["category"], $_GET["tag"]);
                 echo json_encode($res, JSON_UNESCAPED_UNICODE);
             }
 

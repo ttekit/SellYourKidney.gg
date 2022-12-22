@@ -16,7 +16,7 @@ class tags extends \App\DBEngine
         if(!isset($count)){
             $count = 0;
         }
-        return $this->executeQuery("SELECT tags.tag FROM tags WHERE tags.countPosts > ".$count);
+        return $this->executeQuery("SELECT tags.tag FROM tags WHERE tags.posts_count > ".$count);
     }
     public function getIdByTag($tag)
     {

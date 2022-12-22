@@ -17,7 +17,7 @@
                                         ?>
                                         <div>
                                             <a>
-                                                <button class="filterBtn">
+                                                <button class="tag-btn filterBtn">
                                                     <h6><?= $val["tag"] ?></h6>
                                                 </button>
                                             </a>
@@ -37,7 +37,7 @@
                                         ?>
                                         <div>
                                             <a>
-                                                <button class="filterBtn">
+                                                <button class="category-btn filterBtn">
                                                     <h6><?= $val["category"] ?></h6>
                                                 </button>
                                             </a>

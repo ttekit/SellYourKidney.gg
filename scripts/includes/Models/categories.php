@@ -40,7 +40,7 @@ WHERE blogcategories.post_id = $id");
         ]);
     }
     public function getAllNotEmptyCategories(){
-        return $this->executeQuery("SELECT categories.category FROM categories WHERE categories.countPosts > 0");
+        return $this->executeQuery("SELECT categories.category FROM categories WHERE categories.posts_count > 0");
     }
     public function getAllCategories(){
         return $this->executeQuery("SELECT * FROM categories");
