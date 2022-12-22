@@ -107,7 +107,7 @@ class Ajax extends Controller
                     }
                     $imgPath = "/images/products/" . $_FILES['logo']['name'];
                     $prodM->updateRow($prodData["id"], [
-                        "img_src"=>$imgPath
+                        "img_src" => $imgPath
                     ]);
                 }
 
@@ -170,7 +170,8 @@ class Ajax extends Controller
         }
     }
 
-    public function GetByPrice(){
+    public function GetByPrice()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             if (isset($_GET["min"]) && isset($_GET["max"])) {
                 echo $_GET["min"];
@@ -211,8 +212,8 @@ class Ajax extends Controller
     public function getPostsCount()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                $postM = new post();
-                echo $postM->getAllPostsCount()["0"]["COUNT(*)"];
+            $postM = new post();
+            echo $postM->getAllPostsCount()["0"]["COUNT(*)"];
         }
     }
 
@@ -220,26 +221,32 @@ class Ajax extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["name"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["tags"]) && isset($_POST["categories"])) {
+                $postM = new post();
 
-                $imgPath = "/images/products/template.png";
                 if (isset($_FILES['logo'])) {
-                    $_FILES['logo']['name'] = $_POST["id"];
-                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
+                    $_FILES['logo']['name'] = $_POST["id"] . ".jpg";
+
+                    varDump($_FILES["logo"]);
+                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "blog" . DIRECTORY_SEPARATOR;
                     $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                         echo "BAG";
                     }
-                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
+
+                    $imgPath = "/images/blog/" . $_FILES['logo']['name'];
+                    echo($postM->updateRow($_POST["id"], [
+                        "img_src" => $imgPath
+                    ]));
                 }
 
-                $postM = new post();
-                echo($postM->updateRow($_POST["id"], [
+
+                $postM->updateRow($_POST["id"], [
                     "title" => $_POST["name"],
                     "slogan" => $_POST["slogan"],
                     "content" => $_POST["content"],
-                    "imgSrc" => $imgPath,
-                    "altSrc" => "/"
-                ]));
+                    "img_alt" => "/"
+                ]);
 
                 $categoriesM = new categories();
                 $catId = $categoriesM->getCategoryByCategoryName($_POST["categories"])["id"];
@@ -260,7 +267,7 @@ class Ajax extends Controller
     public function getLimitCountOfPosts()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            if (isset($_GET["posts-count"]) && isset($_GET["startPos"])&& isset($_GET["category"])&& isset($_GET["tag"])) {
+            if (isset($_GET["posts-count"]) && isset($_GET["startPos"]) && isset($_GET["category"]) && isset($_GET["tag"])) {
                 $blogM = new post();
                 $res = $blogM->getPost($_GET["startPos"], $_GET["posts-count"], $_GET["category"], $_GET["tag"]);
                 echo json_encode($res, JSON_UNESCAPED_UNICODE);
@@ -300,18 +307,19 @@ class Ajax extends Controller
         }
     }
 
-    public function updateUserData(){
+    public function updateUserData()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userDB = new UserAcc();
             $userDB->updateUserData($_SESSION["reg"]["userId"], [
-                "fullName"=>$_POST["FullName"],
-                "phone"=>$_POST["Phone"],
-                "mobile"=>$_POST["Mobile"],
-                "address"=>$_POST["Address"],
-                "job"=>$_POST["Job"],
+                "fullName" => $_POST["FullName"],
+                "phone" => $_POST["Phone"],
+                "mobile" => $_POST["Mobile"],
+                "address" => $_POST["Address"],
+                "job" => $_POST["Job"],
             ]);
-            if(isset($_FILES["avatar"])){
-                if($_FILES["avatar"] != "undefined"){
+            if (isset($_FILES["avatar"])) {
+                if ($_FILES["avatar"] != "undefined") {
                     $_FILES["avatar"]["name"] = $_SESSION["reg"]["userId"];
                     $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "avatars" . DIRECTORY_SEPARATOR;
                     $uploadfile = $uploaddir . basename($_FILES['avatar']['name']);
@@ -320,7 +328,7 @@ class Ajax extends Controller
                     }
                     $imgPath = "/images/avatars/" . $_FILES['avatar']['name'];
                     $userDB->updateRow($_SESSION["reg"]["userId"], [
-                        "avatar"=>$imgPath
+                        "avatar" => $imgPath
                     ]);
                 }
             }
@@ -343,9 +351,9 @@ class Ajax extends Controller
     public function getAllCategories()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                $categories = new categories();
-                $result = $categories->getManyRows();
-                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            $categories = new categories();
+            $result = $categories->getManyRows();
+            echo json_encode($result, JSON_UNESCAPED_UNICODE);
         }
     }
 
@@ -366,9 +374,9 @@ class Ajax extends Controller
     public function getAllTags()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                $tagsM = new tags();
-                $result = $tagsM->getManyRows();
-                echo json_encode($result, JSON_UNESCAPED_UNICODE);
+            $tagsM = new tags();
+            $result = $tagsM->getManyRows();
+            echo json_encode($result, JSON_UNESCAPED_UNICODE);
         }
     }
 
@@ -394,14 +402,16 @@ class Ajax extends Controller
         }
     }
 
-    public function getUserData(){
+    public function getUserData()
+    {
         if ($this->CheckOnLogin()) {
             $userDataBase = new userAcc();
             echo json_encode($this->data["userData"] = $userDataBase->getByLogin($_SESSION["reg"]["login"]));
         }
     }
 
-    public function getFavorites(){
+    public function getFavorites()
+    {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["fav"])) {
                 $dataArr = json_decode($_POST["fav"]);
@@ -409,7 +419,7 @@ class Ajax extends Controller
                 $result = [];
                 $productM = new \Models\products();
 
-                foreach ($dataArr as $key=>$val){
+                foreach ($dataArr as $key => $val) {
                     array_push($result, $productM->getByIdWithoutContent($val));
                 }
 

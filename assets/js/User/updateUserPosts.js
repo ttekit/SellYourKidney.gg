@@ -1,9 +1,9 @@
 window.addEventListener("load", () => {
     $updateBtns = $(".updateBtn");
     $deleteBtns = $(".deleteBtn");
-
     $updateBtns.on("click", (e) => {
         let id = $(e.target).parents(".dataContainer").find(".id").val();
+        console.log(`/user/updateOnePost/?id=${id}`);
         location.href = `/user/updateOnePost/?id=${id}`;
     })
     $deleteBtns.on("click", (e) => {

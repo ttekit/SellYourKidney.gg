@@ -154,7 +154,7 @@ class User extends Controller
     public function UserCabinetView()
     {
         if (!$this->CheckOnLogin()) {
-           $this->LoginUserView();
+            $this->LoginUserView();
         } else {
             $this->format_options();
             $this->returnNavigationPanel();
@@ -200,9 +200,10 @@ class User extends Controller
         if (!$this->CheckOnLogin()) {
             $this->format_options();
             $this->returnNavigationPanel();
-            $this->data["title"] = "Write post";
+            $this->data["title"] = "Login";
             View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainRegister" . EXT, $this->data);
         } else {
+            $this->data["title"] = "Write post";
             $this->AddPostView();
         }
     }
@@ -218,7 +219,7 @@ class User extends Controller
                         "title" => $_POST["title"],
                         "slogan" => $_POST["slogan"],
                         "content" => $_POST["content"],
-                        "publication_date" => $dateTime->format('Y\-m\-d\ h:i:s'),
+                        "publication-date" => $dateTime->format('Y\-m\-d\ h:i:s'),
                         "img_alt" => "",
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]
@@ -228,7 +229,6 @@ class User extends Controller
                         "slogan" => $_POST["slogan"],
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
-
                     if (isset($_FILES['logo'])) {
                         $_FILES['logo']['name'] = $thisPost["id"];
                         $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "blog" . DIRECTORY_SEPARATOR;
@@ -241,7 +241,7 @@ class User extends Controller
                         $imgPath = "/images/products/template.png";
                     }
 
-                    $blogM->updateRow($thisPost["id"],[
+                    $blogM->updateRow($thisPost["id"], [
                         "img_src" => $imgPath
                     ]);
 
@@ -267,17 +267,27 @@ class User extends Controller
         }
     }
 
-    public function updateOnePost(){
-        if(isset($_GET["id"])){
-            if($this->CheckOnLogin()){
-                $this->format_options();
-                $this->format_postData($_GET["id"]);
-                $this->data["title"] = "Update post";
-                View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainPostEdit" . EXT, $this->data);
+    public function updateOnePost()
+    {
+        if (isset($_GET["id"])) {
+            if ($this->CheckOnLogin()) {
+                $blogM = new post();
+                $userId = $blogM->getAuthorIdByPostId($_GET["id"])[0]["author"];
+
+                unset($blogM);
+
+                if($_SESSION["reg"]["userId"] == $userId){
+                    $this->format_options();
+                    $this->format_postData($_GET["id"]);
+                    $this->data["title"] = "Update post";
+                    View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainPostEdit" . EXT, $this->data);
+                }
+                else{
+                  Header("Location: /user/updatePosts");
+                }
             }
         }
     }
-
 
 
     private function format_userDataById($id)
@@ -310,16 +320,17 @@ class User extends Controller
         $this->data["reg"]["socLinks"] = $socLinksArr;
     }
 
-    private function format_postData($id){
+    private function format_postData($id)
+    {
         $blogM = new post();
         $this->data["postData"] = $blogM->getPostById($id);
     }
 
     private function format_userPosts()
     {
-        if(isset($this->data["userData"])){
-           $blogM = new post();
-           $this->data["posts"] = $blogM->getPostByAuthorId($this->data["userData"]["id"]);
+        if (isset($this->data["userData"])) {
+            $blogM = new post();
+            $this->data["posts"] = $blogM->getPostByAuthorId($this->data["userData"]["id"]);
         }
     }
 

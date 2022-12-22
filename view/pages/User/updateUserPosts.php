@@ -46,8 +46,8 @@
                                             <input readonly type="text" value="<?= $post['title'] ?>"
                                                    class="form-control title" placeholder=".col-4">
                                         </div>
-                                        <img class="form-control imgContainer" src="<?= $post['imgSrc'] ?>"
-                                             width="200px" height="200px"/>
+                                        <img class="form-control imgContainer" src="<?= $post['img_src'] ?>"
+                                             width="200px" height="200px" alt = "<?= $post["img_alt"] ?>"/>
 
                                         <div class="col-3">
                                             <div class="btn-group w-100">
@@ -77,4 +77,5 @@
     </section>
     <!-- /.content -->
 </div>
+
 <script src="/assets/js/User/updateUserPosts.js"></script>

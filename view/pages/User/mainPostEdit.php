@@ -144,8 +144,3 @@
 </div>
 
 <script src="/assets/js/Blog/tagsCategoriesWork.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#summernote').summernote();
-    });
-</script>
