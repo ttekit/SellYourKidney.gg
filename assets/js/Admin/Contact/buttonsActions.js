@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
             preConfirm: (answ) => {
                 Email.send({
                     Host: "smtp.gmail.com",
-                    Username: "123",
+                    Username: "bootstrapshop.gg@gmail.com",
                     Password: "qwertyua",
                     To: email,
                     From: "bootstrapshop.gg@gmail.com",

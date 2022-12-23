@@ -24,14 +24,11 @@
                         <h5 class="my-3"><label class="w-100">
                                 <input class="user-edit-input" name="login"
                                        value="<?= /** @var $data */
-                                       $data["userData"]["login"] ?> " disabled/>
+                                       $data["userData"]["login"] ?> " placeholder="login" disabled/>
                             </label></h5>
                         <p class="text-muted mb-1"><label class="w-100">
-                                <input class="user-edit-input" name="Job" value="<?= $data["userData"]["job"] ?>"/>
-                            </label></p>
-                        <p class="text-muted mb-4"><label class="w-100">
-                                <input disabled class="user-edit-input" name="Address"
-                                       value="<?= $data["userData"]["address"] ?>"/>
+                                <input class="user-edit-input" name="Job" value="<?= $data["userData"]["job"] ?>"
+                                       placeholder="job"/>
                             </label></p>
                         <div class="d-flex justify-content-center mb-1">
                             <input type="submit" class="btn btn-primary" id="submit"/>
@@ -73,7 +70,8 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="FullName"
-                                               value="<?= $data["userData"]["fullName"] ?>"/>
+                                               value="<?= $data["userData"]["fullName"] ?>"
+                                               placeholder="full name"/>
                                     </label></p>
                             </div>
                         </div>
@@ -85,7 +83,8 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input disabled class="user-edit-input" name="Email"
-                                               value="<?= $data["userData"]["email"] ?>"/>
+                                               value="<?= $data["userData"]["email"] ?>"
+                                               placeholder="email"/>
                                     </label></p>
                             </div>
                         </div>
@@ -97,7 +96,8 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="Phone"
-                                               value="<?= $data["userData"]["phone"] ?>"/>
+                                               value="<?= $data["userData"]["phone"] ?>"
+                                               placeholder="phone"/>
                                     </label></p>
                             </div>
                         </div>
@@ -109,7 +109,8 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="Mobile"
-                                               value="<?= $data["userData"]["mobile"] ?>"/>
+                                               value="<?= $data["userData"]["mobile"] ?>"
+                                               placeholder="mobile"/>
                                     </label></p>
                             </div>
                         </div>
@@ -121,7 +122,8 @@
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0"><label class="w-100">
                                         <input class="user-edit-input" name="Address"
-                                               value="<?= $data["userData"]["address"] ?>"/>
+                                               value="<?= $data["userData"]["address"] ?>"
+                                               placeholder="Address"/>
                                     </label></p>
                             </div>
                         </div>

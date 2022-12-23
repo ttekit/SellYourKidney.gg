@@ -1,3 +1,5 @@
+<div class="currUserData"> <?= /** @var $data */
+    json_encode($data["userData"]) ?></div>
 <!-- Page content-->
 <div class="container mt-5">
     <div class="row">
@@ -7,8 +9,7 @@
                 <!-- Post header-->
                 <header class="post_header mb-4">
                     <!-- Post title-->
-                    <h1 class="fw-bolder mb-1"><?= /** @var $data */
-                        $data["pageData"]["title"] ?></h1>
+                    <h1 class="fw-bolder mb-1"><?= $data["pageData"]["title"] ?></h1>
                     <!-- Post meta content-->
                     <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["publication-date"] ?> by
                         <div class="row text-center" style="height: 50px;">
@@ -29,10 +30,8 @@
 
                     <p class="post_text fs-5 mb-4"><?= $data["pageData"]["content"] ?></p>
                 </section>
-
-                <?php varDump($data["blog"]["author"]) ?>
-
             </article>
+
             <!-- Comments section-->
             <section class="mb-5">
                 <div class="card bg-light">
@@ -42,12 +41,12 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" type="text" class="form-control" id="main-login-input" placeholder="Enter your name ..." value="<?= $data["blog"]["author"]["fullName"]?>" disabled/>
+                                        <input name="login" type="text" class="form-control" id="main-login-input" placeholder="Enter your name ..." value="<?= $data["userData"]["fullName"]?>" disabled/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="email" type="email" class="form-control" id="main-email-input" placeholder="Enter your email ..."  value="<?= $data["blog"]["author"]["email"]?>" disabled/>
+                                        <input name="email" type="email" class="form-control" id="main-email-input" placeholder="Enter your email ..."  value="<?= $data["userData"]["email"]?>" disabled/>
                                     </div>
                                 </div>
                             </div>

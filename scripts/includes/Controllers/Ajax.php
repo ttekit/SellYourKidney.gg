@@ -66,7 +66,7 @@ class Ajax extends Controller
     public function saveComment()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["postId"]) && isset($_POST["login"]) && isset($_POST["email"]) && isset($_POST["message"])) {
+            if (isset($_POST["postId"]) && isset($_POST["login"]) && isset($_POST["email"]) && isset($_POST["message"]) && isset($_POST["avatar"])) {
                 if (isset($_POST["messageId"])) {
                     $messageId = $_POST["messageId"];
                 } else {
@@ -76,8 +76,10 @@ class Ajax extends Controller
                 $login = $_POST["login"];
                 $email = $_POST["email"];
                 $message = $_POST["message"];
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $avatar = $_POST["avatar"];
                 $commentsM = new comments();
-                echo $commentsM->insertNewComment($postId, $login, $email, $message, $messageId);
+                echo $commentsM->insertNewComment($postId, $login, $email, $message, $messageId, $ip, $avatar);
             }
         }
     }

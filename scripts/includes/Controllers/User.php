@@ -87,11 +87,11 @@ class User extends Controller
                     ]);
                     $userAcc = $userDB->getByEmail($email);
                     $this->data["success"] = "Account has been successfully logged!";
-                    $_SESSION["reg"]["email"] = $email;
+                    $_SESSION["reg"]["login"] = $login;
                     $_SESSION["reg"]["userId"] = $userAcc["id"];
                     $_SESSION["reg"]["user_Ip"] = $_SERVER["REMOTE_ADDR"];
                     $_SESSION["reg"]["role"] = "user";
-                    header('Location: /user');
+                    header("Location: /user/");
                 } else {
                     $this->Register();
                 }
@@ -174,12 +174,6 @@ class User extends Controller
         $this->formatSocLinkDataById($id);
         $this->data["title"] = $this->data["userData"]["FullName"];
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainUserNotOwnerCabinet" . EXT, $this->data);
-    }
-
-    public function LogOut()
-    {
-        $_SESSION = [];
-        Header("Location: /");
     }
 
     public function Register()
@@ -289,6 +283,11 @@ class User extends Controller
         }
     }
 
+    public function LogOut()
+    {
+        $_SESSION = [];
+        Header("Location: /");
+    }
 
     private function format_userDataById($id)
     {
