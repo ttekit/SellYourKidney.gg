@@ -1,0 +1,13 @@
+
+.ban-user {
+  border: 2px solid red;
+  border-radius: 5px;
+  margin-top: 2px;
+  background-color: #ff3d3d;
+  color: #000000;
+  transition-duration: 0.2s;
+}
+
+.ban-user:hover {
+  width: calc(120%);
+}

@@ -15,8 +15,6 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
     <!-- font awesome style -->
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
-    <!-- Custom styles for this template -->
-    <link href="/assets/css/style.css" rel="stylesheet"/>
     <!-- responsive style -->
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
 
@@ -31,5 +29,7 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+
+    <link rel="stylesheet" href="/assets/css/client/main.scss">
 
 </head>

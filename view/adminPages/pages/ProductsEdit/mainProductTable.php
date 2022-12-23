@@ -28,7 +28,7 @@
                                                  width="450px"
                                                  alt="<?= $post["img_alt"] ?>">
                                             <div class="post-manage flex-column">
-                                                <div class="hidden id"><?= $post["id"] ?></div>
+                                                <div class="d-none id"><?= $post["id"] ?></div>
                                                 <button href="#"
                                                         class="btn btn-info btn-lg product-edit-button blog-btn">
                                                     <i class="fas fa-info-circle">Edit</i>

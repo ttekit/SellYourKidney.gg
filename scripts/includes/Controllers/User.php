@@ -172,7 +172,7 @@ class User extends Controller
         $this->returnNavigationPanel();
         $this->format_userDataById($id);
         $this->formatSocLinkDataById($id);
-        $this->data["title"] = $this->data["userData"]["FullName"];
+        $this->data["title"] = $this->data["userData"]["fullName"];
         View::render(VIEWS_PATH . "noSliderTemplate" . EXT, USER_PAGES_PATH . "mainUserNotOwnerCabinet" . EXT, $this->data);
     }
 

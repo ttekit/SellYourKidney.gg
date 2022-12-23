@@ -19,14 +19,13 @@ $data['options']['lang']?>">
             rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/assets/css/admin/main.scss" rel="stylesheet">
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
     <!-- font awesome style -->
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
-    <link href="/assets/css/style.css" rel="stylesheet"/>
     <!-- responsive style -->
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
 
