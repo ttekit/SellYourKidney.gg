@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- popper js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-<!-- bootstrap js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
-
-
 <html lang="<?= /** @var $data */
 $data['options']['lang'] ?>">
 <?php require_once(COMPONENTS_PATH . "head.php") ?>
@@ -68,26 +60,7 @@ $data['options']['lang'] ?>">
     <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
 </div>
 
-<!-- custom js -->
-<script src="/assets/js/custom.js"></script>
-<!-- chane color of item on nav panel-->
-<script src="/assets/js/nav-item-color.js"></script>
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script src="/assets/js/scrollRevAnimation.js"></script>
-
-<script src="/assets/js/grapick.min.js"></script>
-
-<script src="/assets/vendor/cropperjs-main/dist/cropper.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
-
-<script src="https://benalman.com/code/projects/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+<?php require_once(COMPONENTS_PATH . "scripts.php") ?>'
 
 </body>
 </html>

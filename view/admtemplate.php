@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html  lang="<?= /** @var $data */
-$data['options']['lang']?>">
+<html lang="<?= /** @var $data */
+$data['options']['lang'] ?>">
 
 <head>
 
@@ -25,13 +25,10 @@ $data['options']['lang']?>">
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
     <!-- font awesome style -->
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
-    <!-- Custom styles for this template -->
     <!-- responsive style -->
     <link href="/assets/css/responsive.css" rel="stylesheet"/>
-
-
+    <link rel="stylesheet" href="/assets/vendor/cropperjs-main/dist/cropper.css">
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
-
 
 
 </head>
@@ -192,8 +189,9 @@ $data['options']['lang']?>">
 </div>
 
 
-<script src="/assets/js/Admin/tableEdit.js"></script>
+<script src="/assets/vendor/cropperjs-main/dist/cropper.js"></script>
 
+<script src="/assets/js/Admin/tableEdit.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="/assets/vendor/jquery/jquery.min.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -202,18 +200,18 @@ $data['options']['lang']?>">
 <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/assets/js/sb-admin-2.min.js"></script>
+<script src="/assets/js/Admin/sb-admin-2.min.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#summernote').summernote();
     });
 </script>
-<script src="/assets/js/custom.js"></script>
+<script src="/assets/js/User/Other/custom.js"></script>
 </body>
 
 </html>

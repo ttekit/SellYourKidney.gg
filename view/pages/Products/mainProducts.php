@@ -112,9 +112,9 @@
         </div>
     </div>
 </section>
-<script src="../../../assets/js/Shop/productsFavorites.js"></script>
-<script src="../../../assets/js/Shop/cartScript.js"></script>
-<script src="../../../assets/js/Shop/priceWork.js"></script>
-<script src="../../../assets/js/Shop/productSearch.js"></script>
-<script src="../../../assets/js/Shop/addToCartAnimation.js"></script>
+<script src="../../../assets/js/User/Shop/productsFavorites.js"></script>
+<script src="../../../assets/js/User/Shop/cartScript.js"></script>
+<script src="../../../assets/js/User/Shop/priceWork.js"></script>
+<script src="../../../assets/js/User/Shop/productSearch.js"></script>
+<script src="../../../assets/js/User/Shop/addToCartAnimation.js"></script>
 <script src="https://www.paypal.com/sdk/js?client-id=Ad0ypubZ_l3K1qOGKieJ-H3Ia1oBMGYOl8cL57rrkl3xLa0Nzo-OtKpZquP2SNMiFOwj6Vol0ZIlJJuW&components=buttons"></script>

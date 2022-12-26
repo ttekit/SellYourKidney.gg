@@ -17,7 +17,7 @@
                         <img src="<?= $data["userData"]["avatar"] ?>"
                              alt="avatar" id="avatar"
                              class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
-                        <div>
+                        <div class="crop-image-container">
                             <img id="image">
                         </div>
                         <input type="file" name="avatar"/>
@@ -136,4 +136,4 @@
 </div>
 </section>
 
-<script src="/assets/js/User/userProfileEdit.js"></script>
+<script src="/assets/js/User/User/userProfileEdit.js"></script>

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+window.addEventListener("load", () => {
     $('#preloader').fadeOut(400);
 });
 

@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- popper js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<!-- bootstrap js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 
 
 <?php use Models\Navigate; ?>
@@ -53,23 +47,13 @@ $data['options']['lang'] ?>">
     <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
 </div>
 
-<!-- custom js -->
-<script src="/assets/js/custom.js"></script>
-<!-- chane color of item on nav panel-->
-<script src="/assets/js/nav-item-color.js"></script>
-
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script src="/assets/js/grapick.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
-
-<script src="/assets/vendor/cropperjs-main/dist/cropper.js"></script>
+<?php require_once(COMPONENTS_PATH . "scripts.php") ?>'
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
+<!-- Round slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/roundSlider/1.3.2/roundslider.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();

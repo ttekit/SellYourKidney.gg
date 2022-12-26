@@ -78,4 +78,4 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/User/updateUserPosts.js"></script>
+<script src="/assets/js/User/User/updateUserPosts.js"></script>

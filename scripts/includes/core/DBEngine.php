@@ -1,10 +1,7 @@
 <?php
 
 namespace App {
-
-    use Cassandra\Varint;
     use PDO;
-    use Exception;
 
     class DBEngine
     {
@@ -151,8 +148,6 @@ namespace App {
             $query .= " WHERE id=" . $id . ";";
 
             $sth = $this->_dbh->prepare($query);
-            varDump($query);
-
             $sth->execute();
             return null;
         }

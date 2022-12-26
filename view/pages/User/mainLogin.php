@@ -65,4 +65,4 @@
     </div>
 </section>
 
-<script src="/assets/js/googlelogin.js"></script>;
+<script src="/assets/js/Users/Libs/googlelogin.js"></script>;

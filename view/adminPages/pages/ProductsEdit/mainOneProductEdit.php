@@ -14,6 +14,9 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="crop-image-container">
+                            <img id="image">
+                        </div>
                         <div class="card-body">
                             Отправить этот файл: <input name="userfile" type="file" value="<?= /** @var $data */
                             $data["prodData"]["img_src"] ?>"/>

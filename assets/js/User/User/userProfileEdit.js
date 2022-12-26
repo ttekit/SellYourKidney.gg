@@ -4,14 +4,15 @@ window.addEventListener("load", function () {
     let cropBoxData;
     let canvasData;
     let cropper;
-    var originalImageURL = image.src;
-    var uploadedImageType = 'image/jpeg';
-    var uploadedImageName = 'cropped.jpg';
-    var uploadedImageURL;
+    let uploadedImageType = 'image/jpeg';
+    let uploadedImageName = 'cropped.jpg';
+    let uploadedImageURL;
 
-    var options = {
-        aspectRatio: 1,
-        viewMode: 1,
+    let options = {
+        cropBoxResizable: false,
+        background: false,
+        highlight: false,
+        guides: false,
         ready: function () {
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
         }
@@ -41,13 +42,13 @@ window.addEventListener("load", function () {
 
     let fileInput = $('input[type=file]');
     let files = fileInput.val();
-    let $addNewSocButtom = $(".add-new-soc-button");
+    let $addNewSocButton = $(".add-new-soc-button");
     let $container = $(".soc-media-group");
     let $deleteSocLinkButton = $(".delete-soc-link-button");
 
     fileInput.on('change', prepareUpload);
 
-    $addNewSocButtom.on("click", () => {
+    $addNewSocButton.on("click", () => {
         $container.append(`
             <li class="inputs-container list-group-item d-flex justify-content-between align-items-center p-3">
                     <input type="text" class="mb-0" placeholder="Name" Name="Name"/>
@@ -115,8 +116,8 @@ window.addEventListener("load", function () {
         let formData = new FormData();
         if(cropper){
             cropper.getCroppedCanvas({
-                width: 150,
-                height: 150,
+                width: 100,
+                height: 100,
             }).toBlob((blob)=>{
                 formData.set("avatar", blob);
                     updateUserData(formData, inputs);
@@ -155,6 +156,5 @@ window.addEventListener("load", function () {
             }
         })
     }
-
 
 })
