@@ -209,6 +209,7 @@ class User extends Controller
                 if (isset($_POST["title"]) && isset($_POST["slogan"]) && isset($_POST["content"]) && isset($_POST["category"])) {
                     $blogM = new \Models\post();
                     $dateTime = new DateTime();
+
                     $blogM->addRow([
                         "title" => $_POST["title"],
                         "slogan" => $_POST["slogan"],
@@ -223,16 +224,17 @@ class User extends Controller
                         "slogan" => $_POST["slogan"],
                         "author" => $_SESSION["reg"]["userId"]
                     ]);
+
                     if (isset($_FILES['logo'])) {
                         $_FILES['logo']['name'] = $thisPost["id"];
-                        $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "blog" . DIRECTORY_SEPARATOR;
-                        $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                        $uploadfile = BLOG_IMAGES_PATH . basename($_FILES['logo']['name']). SAVED_FILE_EXT;
+
                         if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                             echo "BAG";
                         }
-                        $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                        $imgPath = "/images/blog/" . $_FILES['logo']['name'];
                     } else {
-                        $imgPath = "/images/products/template.png";
+                        $imgPath = "/images/blog/template.png";
                     }
 
                     $blogM->updateRow($thisPost["id"], [

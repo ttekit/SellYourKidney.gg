@@ -13,6 +13,7 @@ window.addEventListener("load", function () {
         background: false,
         highlight: false,
         guides: false,
+        minCropBoxWidth: 100,
         ready: function () {
             cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
         }

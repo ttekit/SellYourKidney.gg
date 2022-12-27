@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{aos, bootstrap, jquery, jquery.ba-throttle-debounce, popper.js, roundSlider}" />
+    <file url="PROJECT" libraries="{aos, bootstrap, ion-rangeslider, jquery, jquery.ba-throttle-debounce, popper.js, roundSlider}" />
   </component>
 </project>
