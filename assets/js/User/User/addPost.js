@@ -1,5 +1,5 @@
 window.addEventListener("load", () => {
-
+    const link = '/user/addNewPost';
 
     let image = document.getElementById('image');
     let cropBoxData;
@@ -29,13 +29,14 @@ window.addEventListener("load", () => {
     let fileInput = $('input[type=file]');
 
 
+
     let categories = "";
     let tags = [];
 
     fileInput.on('change', prepareUpload);
     function prepareUpload(event) {
         files = event.target.files;
-        file = files[0];
+        let file = files[0];
 
         uploadedImageType = file.type;
         uploadedImageName = file.name;
@@ -49,7 +50,6 @@ window.addEventListener("load", () => {
         if (cropper) {
             cropper.destroy();
         }
-        console.log(image)
 
         cropper = new Cropper(image, options);
         event.target.value = null;
@@ -71,7 +71,6 @@ window.addEventListener("load", () => {
         }
     });
     $(".addNewTagBtn").on("click", (e) => {
-
         let $button = $(e.target);
         if ($button.hasClass("pressed")) {
             tags.splice(tags.indexOf($button.text()), 1);
@@ -89,6 +88,9 @@ window.addEventListener("load", () => {
             let formData = new FormData();
             formData.append('category', categories);
             formData.append('tags', JSON.stringify(tags));
+            formData.append('title', $("[name='title']").val());
+            formData.append('slogan', $("[name='slogan']").val());
+            formData.append('content', $("[name='content']").val());
 
             if (cropper) {
                 cropper.getCroppedCanvas({
@@ -96,10 +98,10 @@ window.addEventListener("load", () => {
                     height: 450,
                 }).toBlob((blob) => {
                     formData.set("logo", blob);
-                    sendDataToDataBase(formData);
+                    sendDataToDataBase(formData, link);
                 })
             } else {
-                sendDataToDataBase(formData);
+                sendDataToDataBase(formData, link);
             }
 
             return false;
@@ -107,51 +109,3 @@ window.addEventListener("load", () => {
 })
 
 
-let sendDataToDataBase = (formData) => {
-
-    formData.append('title', $("[name='title']").val());
-    formData.append('slogan', $("[name='slogan']").val());
-    formData.append('content', $("[name='content']").val());
-
-
-    $.ajax({
-        url: '/user/addNewPost',
-        type: 'POST',
-        data: formData,
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            console.log(data);
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Are you sure you want to share" + data,
-                icon: "success",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        Swal.fire("Poof! Your post is on checking!", {
-                            icon: "success",
-                        }).then(() => {
-                            location.href = "/Blog/";
-                        });
-                    }
-                });
-        },
-        error: function (err, errmsg) {
-            Swal.fire({
-                title: "Error",
-                text: "Try later pls: " + errmsg,
-                icon: "error"
-            })
-        },
-        beforeSend: function () {
-            $('#preloader').fadeIn(500);
-        },
-        complete: function () {
-            $('#preloader').fadeOut(500);
-        },
-    });
-}

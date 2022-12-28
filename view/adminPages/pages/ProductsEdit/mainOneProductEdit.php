@@ -89,10 +89,9 @@
                 <input type="submit" value="Save Changes" id="submit" class="btn btn-success float-right">
             </div>
         </div>
-        </form>
     </section>
-
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/Admin/Products/saveNewPostImage.js"></script>
+<script src="/assets/js/Libs/MyLibs/ServerFunctions.js"></script>
+<script src="/assets/js/Admin/Products/updateProduct.js"></script>

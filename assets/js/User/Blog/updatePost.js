@@ -1,9 +1,40 @@
+
 window.addEventListener("load", () => {
+    const link = '/ajax/updatePost';
+
+    let image = document.getElementById('image');
+    let cropBoxData;
+    let canvasData;
+    let cropper;
+    let uploadedImageType = 'image/jpeg';
+    let uploadedImageName = 'cropped.jpg';
+    let uploadedImageURL;
+    let options = {
+        aspectRatio: 1,
+        viewMode: 1,
+        cropBoxResizable: false,
+        background: false,
+        highlight: false,
+        guides: false,
+        minCropBoxWidth: 400,
+        maxWidth: 4096,
+        maxHeight: 4096,
+        minWidth: 256,
+        minHeight: 256,
+        ready: function () {
+            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
+        }
+    }
+
 
     let categories = "";
     let tags = [];
 
+
     let categoryBtn = $(".addNewCategoryBtn");
+    let tagBtn = $(".addNewTagBtn");
+    let fileInput = $("input[type=file]");
+
     for (let i = 0; i < categoryBtn.length; i++) {
         if (categoryBtn[i].classList.contains("pressed")) {
             categories = categoryBtn[i].innerHTML;
@@ -22,7 +53,7 @@ window.addEventListener("load", () => {
         }
     });
 
-    let tagBtn = $(".addNewTagBtn");
+
     for (let i = 0; i < tagBtn.length; i++) {
         if (tagBtn[i].classList.contains("pressed")) {
             tags.push(tagBtn[i].innerHTML);
@@ -39,70 +70,57 @@ window.addEventListener("load", () => {
         }
     });
 
-    let fileInput = $("input[type=file]");
+
     let files = fileInput.val();
 
     fileInput.on('change', prepareUpload);
-
     function prepareUpload(event) {
         files = event.target.files;
+        let file = files[0];
+
+        uploadedImageType = file.type;
+        uploadedImageName = file.name;
+
+        if (uploadedImageURL) {
+            URL.revokeObjectURL(uploadedImageURL);
+        }
+
+        image.src = uploadedImageURL = URL.createObjectURL(file);
+
+        if (cropper) {
+            cropper.destroy();
+        }
+
+        cropper = new Cropper(image, options);
+        event.target.value = null;
+
     }
 
     // Отсыл данных на сервер
     $(document).on('click',
         '#submit',
         function () {
-
             let formData = new FormData();
-
+            formData.append('tags', JSON.stringify(tags));
+            formData.append('categories', categories);
+            formData.append('logo', files[0]);
             formData.append('id', $("[name='id']").val());
             formData.append('name', $("[name='title']").val());
             formData.append('slogan', $("[name='slogan']").val());
             formData.append('content', $("[name='content']").val());
-            formData.append('tags', JSON.stringify(tags));
-            formData.append('categories', categories);
-            if(files[0] !== undefined ){
-                formData.append('logo', files[0]);
+
+            if (cropper) {
+                cropper.getCroppedCanvas({
+                    width: 450,
+                    height: 450,
+                }).toBlob((blob) => {
+                    formData.set("logo", blob);
+                    sendDataToDataBase(formData, link);
+                })
+            } else {
+                sendDataToDataBase(formData, link);
             }
-            $.ajax({
-                url: '/ajax/updatePost',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    console.log(data)
-                    // if (willDelete) {
-                    //     Swal.fire("Poof! Your post is on checking!", {
-                    //         icon: "success",
-                    //     }).then(() => {
-                    //     //    location.href = "/User/";
-                    //     });
-                    // } else {
-                    //     Swal.fire("Ok :( ");
-                    // }
-                },
-                error: function (err, errmsg) {
-                    Swal.fire({
-                        title: "Error",
-                        text: "Pls try later",
-                        icon: "error"
-                    })
-                }
-                ,
-                beforeSend: function () {
-                    $('#preloader').fadeIn(500);
-                }
-                ,
-                complete: function () {
-                    $('#preloader').fadeOut(500);
-                }
-                ,
-            });
-
             return false;
-
+//
         })
 })
-;

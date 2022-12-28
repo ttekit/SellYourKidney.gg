@@ -1,3 +1,5 @@
+
+
 <div class="container py-5">
     <div class="row">
         <div class="col">
@@ -129,11 +131,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </form>
 </div>
-</section>
 
+
+<script src="/assets/js/Libs/MyLibs/ServerFunctions.js"></script>
 <script src="/assets/js/User/User/userProfileEdit.js"></script>

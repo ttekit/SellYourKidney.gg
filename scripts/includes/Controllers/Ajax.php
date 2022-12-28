@@ -102,13 +102,12 @@ class Ajax extends Controller
                     "content" => $_POST["content"]
                 ]);
                 if (isset($_FILES['logo'])) {
-                    $_FILES["logo"]["name"] = $prodData["id"];
-                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
-                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    $_FILES["logo"]["name"] = $prodData["id"] . SAVED_FILE_EXT;
+                    $uploadfile = PRODUCT_IMAGES_PATH . basename($_FILES['logo']['name']);
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                         echo "BAG";
                     }
-                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                    $imgPath = "/images/products/" . $_FILES['logo']['name'] . SAVED_FILE_EXT;
                     $prodM->updateRow($prodData["id"], [
                         "img_src" => $imgPath
                     ]);
@@ -126,13 +125,12 @@ class Ajax extends Controller
                 $imgPath = "/images/products/template.png";
                 $prodM = new \Models\products();
                 if (isset($_FILES['logo']) && $_FILES["logo"] != "") {
-                    $_FILES["logo"]["name"] = $_POST["id"];
-                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR;
-                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    $_FILES["logo"]["name"] = $_POST["id"] . SAVED_FILE_EXT;
+                    $uploadfile = PRODUCT_IMAGES_PATH . basename($_FILES['logo']['name']);
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                         echo "BAG";
                     }
-                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
+                    $imgPath = "/images/products/" . $_FILES['logo']['name']. SAVED_FILE_EXT;
 
                     $prodM->updateRow($_POST["id"], [
                         "img_src" => $imgPath,
@@ -227,17 +225,15 @@ class Ajax extends Controller
                 $postM = new post();
 
                 if (isset($_FILES['logo'])) {
-                    $_FILES['logo']['name'] = $_POST["id"] . ".jpg";
+                    $_FILES['logo']['name'] = $_POST["id"] . SAVED_FILE_EXT;
 
-                    varDump($_FILES["logo"]);
-                    $uploaddir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . "blog" . DIRECTORY_SEPARATOR;
-                    $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+                    $uploadfile = BLOG_IMAGES_PATH . basename($_FILES['logo']['name']);
 
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                         echo "BAG";
                     }
 
-                    $imgPath = "/images/blog/" . $_FILES['logo']['name'];
+                    $imgPath = "/images/blog/" . $_FILES['logo']['name'] . SAVED_FILE_EXT;
                     echo($postM->updateRow($_POST["id"], [
                         "img_src" => $imgPath
                     ]));

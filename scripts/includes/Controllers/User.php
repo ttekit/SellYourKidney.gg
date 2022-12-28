@@ -227,12 +227,12 @@ class User extends Controller
 
                     if (isset($_FILES['logo'])) {
                         $_FILES['logo']['name'] = $thisPost["id"];
-                        $uploadfile = BLOG_IMAGES_PATH . basename($_FILES['logo']['name']). SAVED_FILE_EXT;
+                        $uploadfile = BLOG_IMAGES_PATH . basename($_FILES['logo']['name']) . SAVED_FILE_EXT;
 
                         if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                             echo "BAG";
                         }
-                        $imgPath = "/images/blog/" . $_FILES['logo']['name'];
+                        $imgPath = "/images/blog/" . $_FILES['logo']['name'] . SAVED_FILE_EXT;
                     } else {
                         $imgPath = "/images/blog/template.png";
                     }

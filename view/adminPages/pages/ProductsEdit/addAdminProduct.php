@@ -82,5 +82,5 @@
     <!-- /.content -->
 </div>
 
-
+<script src="/assets/js/Libs/MyLibs/ServerFunctions.js"></script>
 <script src="/assets/js/Admin/Products/addProduct.js"></script>

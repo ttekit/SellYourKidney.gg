@@ -1,4 +1,5 @@
 window.addEventListener("load", function () {
+    const link = "/ajax/updateUserData";
 
     let image = document.getElementById('image');
     let cropBoxData;
@@ -7,7 +8,6 @@ window.addEventListener("load", function () {
     let uploadedImageType = 'image/jpeg';
     let uploadedImageName = 'cropped.jpg';
     let uploadedImageURL;
-
     let options = {
         cropBoxResizable: false,
         background: false,
@@ -19,6 +19,16 @@ window.addEventListener("load", function () {
         }
     }
 
+
+
+    let $addNewSocButton = $(".add-new-soc-button");
+    let $container = $(".soc-media-group");
+    let $deleteSocLinkButton = $(".delete-soc-link-button");
+    let fileInput = $('input[type=file]');
+
+    let files = fileInput.val();
+
+    fileInput.on('change', prepareUpload);
     function prepareUpload(event) {
         files = event.target.files;
         file = files[0];
@@ -40,14 +50,6 @@ window.addEventListener("load", function () {
         event.target.value = null;
 
     }
-
-    let fileInput = $('input[type=file]');
-    let files = fileInput.val();
-    let $addNewSocButton = $(".add-new-soc-button");
-    let $container = $(".soc-media-group");
-    let $deleteSocLinkButton = $(".delete-soc-link-button");
-
-    fileInput.on('change', prepareUpload);
 
     $addNewSocButton.on("click", () => {
         $container.append(`
@@ -111,27 +113,11 @@ window.addEventListener("load", function () {
         });
     });
 
+
     $(".main-form").submit((e)=>{
         let cont = $(e.target);
         let inputs = cont.find("input");
         let formData = new FormData();
-        if(cropper){
-            cropper.getCroppedCanvas({
-                width: 100,
-                height: 100,
-            }).toBlob((blob)=>{
-                formData.set("avatar", blob);
-                    updateUserData(formData, inputs);
-            })
-        }else{
-            updateUserData(formData, inputs);
-        }
-
-
-        return false;
-    })
-
-    function updateUserData (formData, inputs) {
 
         for (let i = 1; i < inputs.length; i++){
             if(inputs[i].name != ""){
@@ -139,23 +125,20 @@ window.addEventListener("load", function () {
             }
         }
 
-        $.ajax({
-            url: "/ajax/updateUserData",
-            method: "POST",
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: formData,
-            beforeSend: function () {
-                $('#preloader').fadeIn(500);
-            },
-            complete: function () {
-                $('#preloader').fadeOut(500);
-            },
-            success: function (data){
-                console.log(data);
-            }
-        })
-    }
+        if(cropper){
+            cropper.getCroppedCanvas({
+                width: 100,
+                height: 100,
+            }).toBlob((blob)=>{
+                formData.set("avatar", blob);
+                sendDataToDataBase(formData, link);
+            })
+        }else{
+            sendDataToDataBase(formData, link);
+        }
+
+
+        return false;
+    })
 
 })

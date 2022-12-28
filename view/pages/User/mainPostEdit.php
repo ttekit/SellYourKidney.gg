@@ -20,6 +20,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <img id="image">
                             Отправить этот файл: <input name="userfile" type="file"
                                                         value="<?= $data["postData"]["img_src"] ?>"/>
                         </div>
@@ -143,4 +144,5 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/User/Blog/tagsCategoriesWork.js"></script>
+<script src="/assets/js/Libs/MyLibs/ServerFunctions.js"></script>
+<script src="/assets/js/User/Blog/updatePost.js"></script>

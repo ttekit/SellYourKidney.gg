@@ -58,69 +58,24 @@ window.addEventListener("load", () => {
         function () {
             let formData = new FormData();
 
+            formData.append('name', $("[name='name']").val());
+            formData.append('price', $("[name='price']").val());
+            formData.append('content', $("[name='content']").val());
+            formData.append('id', $("[name='id']").val());
+
             if(cropper){
                 cropper.getCroppedCanvas({
                     width: 150,
                     height: 150,
                 }).toBlob((blob)=>{
                     formData.set("logo", blob);
-                    updateProdData(formData);
+                    sendDataToDataBase(formData, "/ajax/updateProduct");
                 })
             }else{
-                updateProdData(formData);
+                sendDataToDataBase(formData, "/ajax/updateProduct");
             }
 
             return false;
 
         })
     });
-
-let updateProdData = (formData) => {
-    formData.append('name', $("[name='name']").val());
-    formData.append('price', $("[name='price']").val());
-    formData.append('content', $("[name='content']").val());
-    formData.append('id', $("[name='id']").val());
-
-    $.ajax({
-        url: '/ajax/updateProduct',
-        type: 'POST',
-        data: formData,
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            console.log(data);
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Are you sure you want to share" + data,
-                icon: "success",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        Swal.fire("Poof! Your post is on checking!", {
-                            icon: "success",
-                        }).then(() => {
-                            location.href = "";
-                        });
-                    } else {
-                        Swal.fire("Ok :( ");
-                    }
-                });
-        },
-        error: function (err, errmsg) {
-            Swal.fire({
-                title: "Error",
-                text: "Pls try later",
-                icon: "error"
-            })
-        },
-        beforeSend: function () {
-            $('#preloader').fadeIn(500);
-        },
-        complete: function () {
-            $('#preloader').fadeOut(500);
-        },
-    });
-}

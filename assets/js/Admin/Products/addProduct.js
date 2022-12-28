@@ -22,37 +22,7 @@ window.addEventListener("load", () => {
             formData.append('price', $("[name='price']").val());
             formData.append('content', $("[name='content']").val());
 
-
-            $.ajax({
-                url: '/ajax/addNewProd',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    console.log(data);
-                    Swal.fire("Poof! Added new project!", {
-                        icon: "success",
-                    }).then(() => {
-                        location.href = "/Admin/";
-                    });
-                },
-                error: function (err, errmsg) {
-                    Swal.fire({
-                        title: "Error",
-                        text: "Try later pls: " + errmsg,
-                        icon: "error"
-                    })
-                },
-                beforeSend:
-                    function () {
-                        $('#preloader').fadeIn(500);
-                    },
-                complete: function () {
-                    $('#preloader').fadeOut(500);
-                },
-            });
+            sendDataToDataBase(formData, '/ajax/addNewProd')
 
             return false;
         });

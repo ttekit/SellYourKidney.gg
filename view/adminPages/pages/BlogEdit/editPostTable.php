@@ -143,4 +143,4 @@
     <!-- /.content -->
 </div>
 
-<script src="/assets/js/User/Blog/tagsCategoriesWork.js"></script>
+<script src="/assets/js/User/Blog/updatePost.js"></script>
