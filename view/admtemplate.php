@@ -211,7 +211,7 @@ $data['options']['lang'] ?>">
         $('#summernote').summernote();
     });
 </script>
-<script src="/assets/js/User/Other/custom.js"></script>
+<script src="/assets/js/Other/custom.js"></script>
 </body>
 
 </html>

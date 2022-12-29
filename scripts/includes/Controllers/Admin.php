@@ -278,7 +278,6 @@ class admin extends Controller
             if (isset($_POST['name']) && isset($_POST['price']) && isset($_POST['content']) && isset($_POST['files'])) {
                 $postM = new \Models\products();
                 $postM->AddProduct($_POST['name'], $_POST["files"], "/", $_POST["price"], $_POST["content"]);
-                echo $_FILES['file'];
                 if ($_FILES['file'] != "") {
                     $postM->updateRow($_POST["id"], [
                         "img_src" => "/images/products/" . $_FILES['file']['name']

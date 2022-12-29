@@ -107,7 +107,7 @@ class Ajax extends Controller
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                         echo "BAG";
                     }
-                    $imgPath = "/images/products/" . $_FILES['logo']['name'] . SAVED_FILE_EXT;
+                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
                     $prodM->updateRow($prodData["id"], [
                         "img_src" => $imgPath
                     ]);
@@ -130,7 +130,7 @@ class Ajax extends Controller
                     if (!move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
                         echo "BAG";
                     }
-                    $imgPath = "/images/products/" . $_FILES['logo']['name']. SAVED_FILE_EXT;
+                    $imgPath = "/images/products/" . $_FILES['logo']['name'];
 
                     $prodM->updateRow($_POST["id"], [
                         "img_src" => $imgPath,
@@ -233,7 +233,7 @@ class Ajax extends Controller
                         echo "BAG";
                     }
 
-                    $imgPath = "/images/blog/" . $_FILES['logo']['name'] . SAVED_FILE_EXT;
+                    $imgPath = "/images/blog/" . $_FILES['logo']['name'];
                     echo($postM->updateRow($_POST["id"], [
                         "img_src" => $imgPath
                     ]));
