@@ -11,5 +11,8 @@
     <orderEntry type="library" name="jquery.ba-throttle-debounce" level="application" />
     <orderEntry type="library" name="aos" level="application" />
     <orderEntry type="library" name="ion-rangeslider" level="application" />
+    <orderEntry type="library" name="sweetalert2" level="application" />
+    <orderEntry type="library" name="summernote" level="application" />
+    <orderEntry type="library" name="round-slider" level="application" />
   </component>
 </module>

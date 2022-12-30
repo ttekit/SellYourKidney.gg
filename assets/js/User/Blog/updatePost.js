@@ -1,6 +1,6 @@
 
 window.addEventListener("load", () => {
-    const link = '/ajax/updatePost';
+    const link = '/AdminAjax/updatePost';
 
     let image = document.getElementById('image');
     let cropBoxData;

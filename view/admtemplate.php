@@ -24,10 +24,10 @@ $data['options']['lang'] ?>">
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/css/bootstrap.min.css"/>
     <!-- font awesome style -->
-    <link href="/assets/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/css/libs/font-awesome.min.css" rel="stylesheet"/>
     <!-- responsive style -->
-    <link href="/assets/css/responsive.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/assets/vendor/cropperjs-main/dist/cropper.css">
+    <link href="/assets/css/libs/responsive.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/assets/css/libs/cropper.css">
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 
@@ -188,16 +188,14 @@ $data['options']['lang'] ?>">
     </div>
 </div>
 
-
-<script src="/assets/vendor/cropperjs-main/dist/cropper.js"></script>
+<!-- jQuery -->
+<script src="/assets/js/Libs/jquerry.js"></script>
+<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/assets/js/Libs/cropper.js"></script>
 
 <script src="/assets/js/Admin/tableEdit.js"></script>
-<!-- Bootstrap core JavaScript-->
-<script src="/assets/vendor/jquery/jquery.min.js"></script>
-<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- bootstrap js -->
+<script src="/assets/js/Libs/bootstrap.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="/assets/js/Admin/sb-admin-2.min.js"></script>

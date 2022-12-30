@@ -7,7 +7,7 @@ window.addEventListener("load", function () {
         let $userId = $container.find("#id").val();
 
         $.ajax({
-            url: "/ajax/banUser",
+            url: "/AdminAjax/banUser",
             method: "POST",
             data: {
                 "id": $userId
@@ -33,7 +33,7 @@ window.addEventListener("load", function () {
         let login = $input.val();
 
         $.ajax({
-            url: "/ajax/findUserByLogin",
+            url: "/AdminAjax/findUserByLogin",
             method: "POST",
             data: {
                 "login": login

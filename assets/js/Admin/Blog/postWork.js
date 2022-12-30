@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
         let newData = $container.find(".form-control option:selected").val();
 
         $.ajax({
-            url: "/ajax/updatePostStatus",
+            url: "/AdminAjax/updatePostStatus",
             method: "POST",
             data: {
                 "postId": $postId,

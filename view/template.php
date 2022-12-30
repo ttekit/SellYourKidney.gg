@@ -60,7 +60,7 @@ $data['options']['lang'] ?>">
     <p>© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a></p>
 </div>
 
-<?php require_once(COMPONENTS_PATH . "scripts.php") ?>'
+<?php require_once(COMPONENTS_PATH . "scripts.php") ?>
 
 </body>
 </html>

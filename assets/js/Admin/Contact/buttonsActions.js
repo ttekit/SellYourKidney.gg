@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
     $answBtns.on("click", (e) => {
         let cont = $(e.target).parent().parent().parent();
         let email = cont.find(".email").text()
-        console.log(email);
+
         Swal.fire({
             title: 'Answer',
             input: 'text',

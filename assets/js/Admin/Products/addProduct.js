@@ -8,6 +8,8 @@ window.addEventListener("load", () => {
     let uploadedImageName = 'cropped.jpg';
     let uploadedImageURL;
 
+    let link = "/AdminAjax/addNewProd";
+
     let options = {
         aspectRatio: 1,
         viewMode: 1,
@@ -69,10 +71,10 @@ window.addEventListener("load", () => {
                     height: 150,
                 }).toBlob((blob)=>{
                     formData.set("logo", blob);
-                    sendDataToDataBase(formData, "/ajax/addNewProd");
+                    sendDataToDataBase(formData, link);
                 })
             }else{
-                sendDataToDataBase(formData, "/ajax/addNewProd");
+                sendDataToDataBase(formData, link);
             }
             
             return false;

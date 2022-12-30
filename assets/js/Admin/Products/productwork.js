@@ -13,7 +13,7 @@ window.addEventListener("load", function (){
         let $container = $(e.target).closest("div");
         let $prodId = $container.find(".id").text();
         $.ajax({
-            url: "/ajax/deleteOneProduct",
+            url: "/AdminAjax/deleteOneProduct",
             method: "POST",
             data: {
                 "prodId": $prodId
