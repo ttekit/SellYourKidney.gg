@@ -51,7 +51,7 @@ class admin extends Controller
                 $this->data["postId"] = $_GET["postId"];
                 $postM = new \Models\post();
                 $this->data["postData"] = $postM->getById($_GET["postId"]);
-                View::render(VIEWS_PATH . "admtemplate" . EXT, ADM_BLOG_EDIT_PATH . "mainPostEdit" . EXT, $this->data);
+                View::render(VIEWS_PATH . "admtemplate" . EXT, USER_PAGES_PATH . "mainPostEdit" . EXT, $this->data);
             }
         }
     }

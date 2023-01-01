@@ -18,6 +18,7 @@ $data['options']['lang'] ?>">
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
+
     <!-- Custom styles for this template-->
     <link href="/assets/css/admin/main.scss" rel="stylesheet">
     <!-- bootstrap core css -->
@@ -28,6 +29,7 @@ $data['options']['lang'] ?>">
     <!-- responsive style -->
     <link href="/assets/css/libs/responsive.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/assets/css/libs/cropper.css">
+    <link rel="stylesheet" href="/assets/css/admin/custom.scss">
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
 
@@ -188,10 +190,24 @@ $data['options']['lang'] ?>">
     </div>
 </div>
 
+
 <!-- jQuery -->
 <script src="/assets/js/Libs/jquerry.js"></script>
 <script src="/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="/assets/js/Libs/cropper.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#summernote').summernote();
+    });
+</script>
+
+
+
 
 <script src="/assets/js/Admin/tableEdit.js"></script>
 <!-- bootstrap js -->
@@ -200,15 +216,9 @@ $data['options']['lang'] ?>">
 <!-- Custom scripts for all pages-->
 <script src="/assets/js/Admin/sb-admin-2.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#summernote').summernote();
-    });
-</script>
+
 <script src="/assets/js/Other/custom.js"></script>
 </body>
 

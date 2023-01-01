@@ -15,4 +15,29 @@
 .crop-image-container{
  max-width: 100px;
 }
-
+.addNewCategoryBtn {
+  background-color: #d5d5d5;
+  border-radius: 200px;
+  border: 0;
+  margin: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-decoration: none;
+  color: black;
+}
+.addNewTagBtn {
+  background-color: #d5d5d5;
+  border-radius: 200px;
+  border: 0;
+  margin: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  text-decoration: none;
+  color: black;
+}
+.active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.pressed{
+  background-color: rgba(0, 0, 0, 0.5);
+}
