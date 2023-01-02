@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="m-5">
                     <a href="#" class="btn btn-secondary">Cancel</a>
                     <input type="submit" id="#submit" value="Save Changes" class="btn btn-success float-right">
                 </div>
