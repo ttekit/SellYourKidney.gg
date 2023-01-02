@@ -1189,6 +1189,7 @@ footer {
   background-color: white;
   min-width: 20px;
   min-height: 100px;
+  max-width: 400px;
   z-index: 10;
   top: 90px;
   right: 100px;
@@ -1198,10 +1199,57 @@ footer {
 
 .cart-li {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-right: 15px;
-  border-top: 2px solid gray;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.cart-product-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-right: 10px;
+}
+
+.cart-product-name .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 99999;
+}
+
+.cart-product-name .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent black;
+}
+
+.cart-product-name:hover .tooltiptext {
+  visibility: visible;
+}
+
+.cart-product-price {
+  font-weight: 900;
+}
+
+.remove-cart-elem {
+  background-color: #e86262;
+  height: 100%;
+  color: white;
+  margin-left: 15px;
 }
 
 /*Cart selection*/
@@ -1520,6 +1568,7 @@ img {
 .remove_line_bt h2::after {
   display: none;
 }
+
 .pressed {
   background-color: rgba(121, 121, 121, 0.55);
 }
@@ -1531,6 +1580,7 @@ img {
 .file-input {
   margin-bottom: 12px;
 }
+
 .loading {
   background-color: rgba(52, 52, 52, 0.2);
 }
@@ -1547,6 +1597,7 @@ img {
 .blog-container {
   background-clip: initial;
 }
+
 .blog {
   display: flex;
   flex-direction: column;
@@ -1645,6 +1696,7 @@ img {
 .form_sub {
   position: relative;
 }
+
 .blog-page-count-container {
   display: flex;
   width: 100%;
@@ -1708,6 +1760,7 @@ img {
 .author-text {
   color: black;
 }
+
 /*Blog Selection*/
 
 /*Comments Selection*/
@@ -1738,6 +1791,7 @@ img {
 .comments-form {
   padding: 2px;
 }
+
 /*Comments Selection*/
 
 /*Search Selection*/
@@ -1788,6 +1842,7 @@ img {
   width: 100%;
 
 }
+
 .heading_container.heading_center h3 {
   position: relative;
   margin-bottom: 15px;
@@ -1911,6 +1966,7 @@ img {
 .active {
   background-color: rgba(0, 0, 0, 0.2);
 }
-.pressed{
+
+.pressed {
   background-color: rgba(0, 0, 0, 0.5);
 }
