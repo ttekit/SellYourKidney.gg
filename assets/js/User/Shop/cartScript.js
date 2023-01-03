@@ -1,14 +1,28 @@
 window.addEventListener("load", function () {
     let $addToCartBtn = $(".addToCartBtn");
     let cartArr = [];
-    $addToCartBtn.on("click", (e) => {
-        let product = {
-            id: $(e.target).parent().find(".product-id").text(),
-            name: $(e.target).parent().find(".name").text().toUpperCase(),
-            price: $(e.target).parent().find(".price").text(),
-            prodCount: 1
-        };
-        cartArr.push(product);
+    $addToCartBtn.on("click", async (e) => {
+        let button = $(e.target);
+        if (!button.hasClass("in-cart-product")) {
+            let product = {
+                id: button.parent().find(".product-id").text(),
+                name: button.parent().find(".name").text().toUpperCase(),
+                price: button.parent().find(".price").text(),
+                prodCount: 1
+            };
+            cartArr.push(product);
+            button.text("In Cart");
+            button.addClass("in-cart-product");
+        } else {
+            $('body,html').animate({scrollTop: 0}, 200);
+            await delay(1000);
+
+            //reset animation
+            $(".cart-button").addClass('animate');
+            setTimeout(function () {
+                $(".cart-button").removeClass('animate');
+            }, 700);
+        }
     })
 
     let $cartButton = $(".cart-button");
@@ -106,3 +120,7 @@ window.addEventListener("load", function () {
         }
     })
 })
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
