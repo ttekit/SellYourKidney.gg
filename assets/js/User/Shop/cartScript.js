@@ -73,21 +73,22 @@ window.addEventListener("load", function () {
                         $(".summary-prise").text("summary price: " + summaryPrise + "$");
                     })
 
-                    cartItem.find(".add-cart-elem").on("click", () => {
+                    cartItem.find(".add-cart-elem").on("click", (e) => {
                         summaryPrise += parseInt(cartArr[i].price);
                         cartArr[i].prodCount++;
-                        cartItem.find(".count-cart-elem").text(cartArr[i].prodCount);
+                        $(e.target).closest(".cart-product-price").text(cartArr[i].prodCount);
                         $(".summary-prise").text("summary price: " + summaryPrise + "$");
+
+                        $(e.target).closest("li").find(".cart-product-price").text(parseInt(cartArr[i].price) * cartArr[i].prodCount + "$");
                     });
 
-                    cartItem.find(".decrease-cart-elem").on("click", () => {
+                    cartItem.find(".decrease-cart-elem").on("click", (e) => {
                         if (cartArr[i].prodCount > 1) {
-
-                            cartArr[i].prodCount--;
                             summaryPrise -= parseInt(cartArr[i].price);
-
+                            cartArr[i].prodCount--;
                             cartItem.find(".count-cart-elem").text(cartArr[i].prodCount);
-                            $(".summary-prise").text("summary price: " + summaryPrise + "$");
+
+                            $(e.target).closest("li").find(".cart-product-price").text(parseInt(cartArr[i].price) * cartArr[i].prodCount + "$");
                         }
 
                     })
