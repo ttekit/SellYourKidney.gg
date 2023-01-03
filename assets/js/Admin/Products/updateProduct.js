@@ -13,7 +13,6 @@ window.addEventListener("load", () => {
     let options = {
         aspectRatio: 1,
         viewMode: 1,
-        cropBoxResizable: false,
         background: false,
         highlight: false,
         guides: false,
