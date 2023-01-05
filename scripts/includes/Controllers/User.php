@@ -66,10 +66,11 @@ class User extends Controller
                 $passwordConfirm = htmlspecialchars(trim($_POST["passwordConfirm"]));
                 $userDB = new userAcc();
                 if (!Validator::email($email)) {
-                    $this->data["error"]["email"] = "email is incorrect";
-                    if ($userDB->getByEmail($email) != null) {
-                        $this->data["error"]["accReg"] = "This email has been registered";
-                    }
+                    $this->data["error"]["login"] = "This email is incorrect";
+                }
+                if ($userDB->getByLogin($login) != null) {
+                    $this->data["error"]["login"] = "This login is in use";
+
                 }
                 if (strlen($password) < 8 || strlen($password) > 24) {
                     $this->data["error"]["password"] = "Password must to be from 8 to 24 symbols";
@@ -79,13 +80,12 @@ class User extends Controller
                 }
                 if ($this->data["error"] == null) {
 
-                    $userDB = new userAcc();
                     $userDB->AddNewUser([
                         "login" => $login,
                         "email" => $email,
                         "password" => hash('sha256', $password)
                     ]);
-                    $userAcc = $userDB->getByEmail($email);
+                    $userAcc = $userDB->getByLogin($login);
                     $this->data["success"] = "Account has been successfully logged!";
                     $_SESSION["reg"]["login"] = $login;
                     $_SESSION["reg"]["userId"] = $userAcc["id"];
