@@ -1,4 +1,4 @@
-<div class="favorites-main-container w-100">
+<div class="all-favorites-container w-100">
 
 </div>
 <div class="favorites-container "></div>

@@ -10,21 +10,8 @@ window.addEventListener("load", ()=>{
         success: (data)=>{
             data = JSON.parse(data);
             for(let i = 0; i < data.length; i++){
-                let elem = $(`<div class="favorites-main-container w-100">
-                        <div class="product-image">
-                            <img alt="" src="${data[i].img_src}" width="80%" class="product-img-container" />
-                        </div>
-                        <div class="product-info" style="border:0px solid gray">
-                            <h3 class="text-white bold">${data[i].name}</h3>                   
-                            <h3 class="product-price">${data[i].price} $</h3>                    
-                            <div>
-                                <a href="/products/product?device=6" class="product-goto-button">buy now</a>                  
-                                <button class="product-remove-button">remove</button>                     
-                            </div>
-                
-                        </div>
-                    </div>`)
-                elem.find(".product-remove-button").on("click", (e)=>{
+                let elem = getContainerElem(data[i])
+                elem.find(".removeFromFavorites").on("click", (e)=>{
                     let locData = localStorage.getItem("favorites");
                     locData = JSON.parse(locData);
                     locData.splice(i, 1);
@@ -35,5 +22,28 @@ window.addEventListener("load", ()=>{
             }
         }
     })
+    function getContainerElem(data) {
+        return $(`
+                <div class="favorites-main-container">
+                    <div class="favorites-info-container">
+                        <div class="img-container">
+                            <img src="${data.img_src}" alt="${data.img_alt}" class="favorites-img" width="200px" height="200px">
+                        </div>
+                        <div class="favorites-detail-container">
+                            <div class="title">
+                                ${data.name}
+                            </div>
+                            <div class="price">
+                                ${data.price}$
+                            </div>
+                        </div>
+                    </div>
+                    <div class="favorites-button-container">
+                        <button class="removeFromFavorites">Remove</button>
+                       <a href="/products/product?device=${data.id}" class="buy-now-button">Buy Now</a>
+                    </div>
+                </div>
+                `);
+    }
 
 })
