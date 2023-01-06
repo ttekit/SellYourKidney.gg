@@ -110,7 +110,7 @@ window.addEventListener("load", function () {
                 data = JSON.parse(data);
                 for (let i = 0; i < data.length; i++) {
                     let value = data[i];
-                    postContainer.append(`<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6>${value.publicationDate}</h6>
+                    postContainer.append(`<div class='blog-page-prew col-sm-6 col-md-4 col-lg-3 blog-container' name='blog-container'> <div class='box'><h6>${value.publication_date}</h6>
                                             <div class='img-box'>
                                             <img class='blog-img-box' src='${value.img_src}' alt='${value.alt_src}'>
                                             </div>

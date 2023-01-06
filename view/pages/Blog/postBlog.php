@@ -11,20 +11,19 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1"><?= $data["pageData"]["title"] ?></h1>
                     <!-- Post meta content-->
-                    <div class="post_date_of_publication text-muted fst-italic mb-2">Posted on <?= $data["pageData"]["publication-date"] ?> by
-                        <div class="row text-center" style="height: 50px;">
-                                <img class="img-fluid rounded-circle" width="50px" height="50px" src="<?= $data["blog"]["author"]["avatar"]?>" alt="No Avatar"/>
-                          <a class="author-text" href="/user/?id=1"><?=$data["blog"]["author"]["fullName"]?></a>
+                        <div class="post_date_of_publication text-muted fst-italic mb-2 row">Posted on <?= $data["pageData"]["publication_date"] ?> by
+                            <div style="width: 100px">
+                                <div class="img-container" style="height: 50px; width: 50px">
+                                    <img class=" rounded-circle" src="<?= $data["blog"]["author"]["avatar"]?>" alt="No Avatar" width="50px" height="50px"/>
+                                </div>
+                                <a class="author-text" href="/user/?id=1"><?=$data["blog"]["author"]["fullName"]?></a>
+                            </div>
                         </div>
-
-                    </div>
                     <!-- Post categories-->
                     <div class="hidden" id="post-id"><?= $data["pageData"]["id"] ?></div>
                     <div class="post_tags badge bg-secondary text-decoration-none link-light"><?= $data["pageData"]["tags"] ?></div>
 
                 </header>
-                <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="<?= $data["pageData"]["imgSrc"] ?>"/></figure>
                 <!-- Post content-->
                 <section class="mb-5">
 

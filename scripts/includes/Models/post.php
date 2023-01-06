@@ -10,7 +10,7 @@ class post extends \App\DBEngine
 
     public function getPostById($id)
     {
-        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication-date`, blogposts.img_src, blogposts.img_alt, blogposts.content,blogposts.author, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
+        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication_date`, blogposts.img_src, blogposts.img_alt, blogposts.content,blogposts.author, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
 	LEFT JOIN categories ON blogcategories.category_id = categories.id
 	LEFT JOIN blogposts ON blogcategories.post_id = blogposts.id
 	WHERE blogposts.slug =" . $id . ") AS tags,
@@ -25,7 +25,7 @@ WHERE id = " . $id
 
     public function getPost($offset, $limit, $category, $tag)
     {
-        $query = "SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication-date`, 
+        $query = "SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication_date`, 
                     blogposts.`img_src`, blogposts.`img_alt`, blogposts.content, blogposts.state, blogposts.author, 
                     categories.category, tags.tag
                     FROM blogposts 
@@ -57,7 +57,7 @@ WHERE id = " . $id
     pst.altSrc,
     pst.slug,
     pst.slogan,
-    pst.dateOfPublication,
+    pst.publication_date,
     (SELECT categories.category FROM categories WHERE categories.Id =
         (SELECT blogcategories.category_id FROM blogcategories WHERE blogcategories.post_id = pst.Id LIMIT 1) ) AS categoryName,
    (SELECT tags.tag FROM tags WHERE tags.Id =
@@ -86,7 +86,7 @@ WHERE id = " . $id
     }
 
     public function getPostByAuthorId($id){
-        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication-date`, blogposts.img_src, blogposts.img_alt, blogposts.content, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
+        return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication_date`, blogposts.img_src, blogposts.img_alt, blogposts.content, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
 	LEFT JOIN categories ON blogcategories.category_id = categories.id
 	LEFT JOIN blogposts ON blogcategories.post_id = blogposts.id
 	WHERE blogposts.author =" . $id . ") AS tags,
