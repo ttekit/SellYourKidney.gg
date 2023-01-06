@@ -38,14 +38,15 @@ WHERE id = " . $id
                     LEFT JOIN tags
                     ON tags.id = posttags.tag_id
                     WHERE blogposts.state = 'published'";
-        if($category != ""){
-            $query .= "AND categories.category = '".$category."'";
+        if ($category != "") {
+            $query .= "AND categories.category = '" . $category . "'";
         }
-        if($tag != ""){
-            $query .= "AND tags.tag = '".$tag."'";
+        if ($tag != "") {
+            $query .= "AND tags.tag = '" . $tag . "'";
         }
-        $query .= "LIMIT ".$limit." OFFSET ". $offset;
-        return $this->executeQuery($query);
+        $result = $this->executeQuery($query);
+        $result = array_unique_key($result, "id");
+        return array_slice($result, $offset, $limit, SORT_REGULAR);
     }
 
     public function getAllPosts()
@@ -85,7 +86,8 @@ WHERE id = " . $id
         return $this->executeQuery("SELECT COUNT(*) FROM blogposts");
     }
 
-    public function getPostByAuthorId($id){
+    public function getPostByAuthorId($id)
+    {
         return $this->executeQuery("SELECT blogposts.id, blogposts.title, blogposts.slogan, blogposts.`publication_date`, blogposts.img_src, blogposts.img_alt, blogposts.content, (SELECT GROUP_CONCAT(DISTINCT categories.category SEPARATOR ', ') AS categories FROM blogcategories
 	LEFT JOIN categories ON blogcategories.category_id = categories.id
 	LEFT JOIN blogposts ON blogcategories.post_id = blogposts.id
@@ -106,7 +108,8 @@ WHERE author = " . $id
         ]);
     }
 
-    public function getAuthorIdByPostId($id){
+    public function getAuthorIdByPostId($id)
+    {
         return $this->executeQuery("SELECT blogposts.author FROM blogposts WHERE blogposts.id = $id");
     }
 }
