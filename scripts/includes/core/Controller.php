@@ -14,6 +14,7 @@ abstract class Controller
         $this->data["error"] = null;
         $this->data["success"] = null;
         $this->data["message"] = null;
+        $this->data["title"] = "";
         $this->data["cart"] = [];
 
         $this->format_options();

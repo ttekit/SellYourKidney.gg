@@ -83,7 +83,8 @@ class User extends Controller
                     $userDB->AddNewUser([
                         "login" => $login,
                         "email" => $email,
-                        "password" => hash('sha256', $password)
+                        "password" => hash('sha256', $password),
+                        "fullName" => $login
                     ]);
                     $userAcc = $userDB->getByLogin($login);
                     $this->data["success"] = "Account has been successfully logged!";

@@ -37,6 +37,7 @@ class Blog extends Controller
     }
 
     public function post(){
+        if($this->CheckOnLogin()){
             if(isset($_GET["id"])){
                 $this->data["error"] = null;
                 $id = $_GET["id"];
@@ -52,6 +53,10 @@ class Blog extends Controller
                     View::render(VIEWS_PATH . "template" . EXT, BLOG_PAGES_PATH . "postBlog" . EXT, $this->data);
                 }
             }
+        }
+        else{
+            header('Location: /user/login');
+        }
     }
 
 

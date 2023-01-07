@@ -8,7 +8,7 @@ window.addEventListener("load", async function () {
 
 
     let postId = parseInt($("#post-id").text());
-    getAndFillComments(postId)
+    getAndFillComments(postId, userData)
 
     let $messageForm = $("#comment-form");
     $messageForm.submit(function (e) {
@@ -16,30 +16,31 @@ window.addEventListener("load", async function () {
         let $messageInput = $messageForm.find("textarea[name*='message']");
 
         let userMessage = {
-            postId: postId,
-            login: userData.login,
-            email: userData.email,
-            message: $messageInput.val(),
-            messageId: null,
-            avatar: userData.avatar,
+            "post_id": postId,
+            "login": userData.login,
+            "email": userData.email,
+            "message": $messageInput.val(),
+            "message_id": null,
+            "avatar": userData.avatar,
         };
         if (userMessage.message.length > 10 && userMessage.message.length < 150) {
             sendDataToServer(userMessage);
         } else {
             Swal.fire({
                 title: "Error",
-                message: "Comment must to be from 10 to 150 symbols",
+                text: "Comment must to be from 10 to 150 symbols",
                 icon: "error"
             })
         }
 
     })
+
+
+
 })
 
 
-
-
-let getAndFillComments = function (postId) {
+let getAndFillComments = function (postId, userData) {
     if (!isNaN(postId)) {
         let $commContainer = $('.card-body');
         $.ajax({
@@ -52,7 +53,7 @@ let getAndFillComments = function (postId) {
                 let comments = JSON.parse(data);
                 if (comments.length > 0) {
                     comments.forEach((item) => {
-                        $commContainer.append(getOneCommentBlock(item))
+                        $commContainer.append(getOneCommentBlock(item, userData))
                     })
                 }
 
@@ -70,7 +71,7 @@ let getAndFillComments = function (postId) {
     }
 }
 
-let getOneCommentBlock = function (comment) {
+let getOneCommentBlock = function (comment, userData) {
     let $block = getCommentBlockHTML(comment);
 
     $block.find(".comment-btn").on("click", function (e) {
@@ -80,35 +81,36 @@ let getOneCommentBlock = function (comment) {
 
     $block.find(".comment-answer-btn").on("click", function (e) {
         $(e.target).addClass("hidden");
-        $block.append(getAnswerFrom($block, comment));
+        $block.append(getAnswerFrom($block, comment, userData));
     })
 
     return $block;
 }
 
-let getAnswerFrom = function ($parent, oldData) {
+let getAnswerFrom = function ($parent, oldData, userData) {
     let $data;
-    $data = getAnswerFormHTML();
+    $data = getAnswerFormHTML(userData);
 
     $data.submit(dataSubmitFunc)
+
     function dataSubmitFunc(e) {
 
         e.preventDefault();
 
-        let $nameInput = $data.find("input[name*='login']");
-        let $emailInput = $data.find("input[name*='email']");
         let $messageInput = $data.find("textarea[name*='message']");
+        let postId = parseInt($("#post-id").text());
 
         let userMessage = {
-            postId: postId,
-            login: $nameInput.val(),
-            email: $emailInput.val(),
-            message: $messageInput.val(),
-            messageId: oldData.id
+            "post_id": postId,
+            "login": userData.login,
+            "email": userData.email,
+            "message": $messageInput.val(),
+            "message_id": oldData.id,
+            "avatar": userData.avatar
         }
 
         if (userMessage.message.length > 2 && userMessage.message.length < 150) {
-            sendDataToServer(userData);
+            sendDataToServer(userMessage);
         } else {
             Swal.fire({
                 title: "Error",
@@ -125,7 +127,7 @@ let getAnswerFrom = function ($parent, oldData) {
     return $data;
 }
 
-let getSubComments = function (parent_id, $block) {
+let getSubComments = function (parent_id, $block, userData) {
     $.ajax({
         url: "/ajax/getSubComments",
         method: "POST",
@@ -139,7 +141,7 @@ let getSubComments = function (parent_id, $block) {
             }
             let comments = JSON.parse(data);
             for (let i = 0; i < comments.length; i++) {
-                $block.append(getOneChildBlock(comments[i]));
+                $block.append(getOneChildBlock(comments[i], userData));
             }
         },
         error: (msg) => {
@@ -154,7 +156,7 @@ let getSubComments = function (parent_id, $block) {
     })
 }
 
-let getOneChildBlock = function (data) {
+let getOneChildBlock = function (data, userData) {
     let $block = getChildCommentHTML(data);
 
     $block.find(".comment-btn").on("click", function (e) {
@@ -163,7 +165,7 @@ let getOneChildBlock = function (data) {
     });
     $block.find(".comment-answer-btn").on("click", function (e) {
         $(e.target).addClass("hidden");
-        $block.append(getAnswerFrom($block, data));
+        $block.append(getAnswerFrom($block, data, userData));
     })
 
     return $block;
@@ -193,13 +195,13 @@ let getCommentBlockHTML = function (commentData) {
                  </li>`)
 }
 
-let getAnswerFormHTML = function () {
+let getAnswerFormHTML = function (userData) {
     return $(`<form action="saveComment" method="post" id="comment-form" class="form-horizontal form-wizzard">
                             <h3 class="h3">Answer a comment</h3>
                             <div class="row">
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <input name="login" class="form-control" placeholder="Enter your name ..." value="${userData.FullName}" disabled/>
+                                        <input name="login" class="form-control" placeholder="Enter your name ..." value="${userData.fullName}" disabled/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-4 col-sm-12 col-xs-12">
@@ -244,7 +246,6 @@ let sendDataToServer = function (userData) {
         method: "POST",
         data: userData,
         success: (data) => {
-            console.log(data);
             if (data === "1 row affected") {
                 $(".comments-form").trigger("reset");
                 Swal.fire({

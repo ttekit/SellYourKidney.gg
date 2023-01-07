@@ -27,4 +27,5 @@
 
     <link rel="stylesheet" href="/assets/css/client/main.scss">
 
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 </head>

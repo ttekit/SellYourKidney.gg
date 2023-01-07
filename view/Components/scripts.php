@@ -9,7 +9,7 @@
 <!-- chane color of item on nav panel-->
 <script src="/assets/js/Libs/nav-item-color.js"></script>
 <!-- custom alerts -->
-<script src="/assets/js/Libs/sweetalerts.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <!-- animations -->
 <script src="/assets/js/Libs/aos.js"></script>
 <script src="/assets/js/Other/scrollRevAnimation.js"></script>

@@ -45,6 +45,7 @@ WHERE id = " . $id
             $query .= "AND tags.tag = '" . $tag . "'";
         }
         $result = $this->executeQuery($query);
+
         $result = array_unique_key($result, "id");
         return array_slice($result, $offset, $limit, SORT_REGULAR);
     }

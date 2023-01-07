@@ -65,20 +65,15 @@ class Ajax extends Controller
     public function saveComment()
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (isset($_POST["postId"]) && isset($_POST["login"]) && isset($_POST["email"]) && isset($_POST["message"]) && isset($_POST["avatar"])) {
-                if (isset($_POST["messageId"])) {
-                    $messageId = $_POST["messageId"];
+            if (isset($_POST["post_id"]) && isset($_POST["login"]) && isset($_POST["email"]) && isset($_POST["message"]) && isset($_POST["avatar"])) {
+                if (isset($_POST["message_id"])) {
+                    $messageId = $_POST["message_id"];
                 } else {
                     $messageId = "NULL";
                 }
-                $postId = $_POST["postId"];
-                $login = $_POST["login"];
-                $email = $_POST["email"];
-                $message = $_POST["message"];
                 $ip = $_SERVER['REMOTE_ADDR'];
-                $avatar = $_POST["avatar"];
                 $commentsM = new comments();
-                echo $commentsM->insertNewComment($postId, $login, $email, $message, $messageId, $ip, $avatar);
+                echo $commentsM->insertNewComment($_POST["post_id"], $_POST["login"], $_POST["email"], $_POST["message"], $messageId, $ip, $_POST["avatar"]);
             }
         }
     }
@@ -304,10 +299,11 @@ class Ajax extends Controller
         }
     }
 
-    public function sendEmail(){
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            if(isset($_POST["reciver"]) && isset($_POST["message"])){
-               return(mail($_POST["reciver"],"Answer", $_POST["message"]));
+    public function sendEmail()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (isset($_POST["reciver"]) && isset($_POST["message"])) {
+                return (mail($_POST["reciver"], "Answer", $_POST["message"]));
             }
         }
     }
