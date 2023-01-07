@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
 
     let $btnsDelete = $(".ban-user");
-    $btnsDelete.on("click", function (e){
+    $btnsDelete.on("click", function (e) {
 
         let $container = $(e.target).parent();
         let $userId = $container.find("#id").val();
@@ -13,21 +13,21 @@ window.addEventListener("load", function () {
                 "id": $userId
             },
             success: () => {
-                    $container.parent("div").remove();
+                $container.parent("div").remove();
             },
             error: (msg) => {
                 alert(msg);
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#preloader').fadeIn(500);
             },
-            complete: function() {
+            complete: function () {
                 $('#preloader').fadeOut(500);
             },
         })
     })
 
-    $("#submit").on("click", (e)=>{
+    $("#submit").on("click", (e) => {
         let $container = $(e.target).closest(".input-group");
         let $input = $(e.target).parent().parent().find("input");
         let login = $input.val();
@@ -41,10 +41,9 @@ window.addEventListener("load", function () {
             success: (res) => {
                 $container.fadeIn(500);
 
-                if(res === "false"){
+                if (res === "false") {
                     Swal.fire("Incorrect login")
-                }
-                else{
+                } else {
                     console.log(res);
                     let data = JSON.parse(res);
 
@@ -64,17 +63,17 @@ window.addEventListener("load", function () {
                                     "id": data.id
                                 },
                                 success: () => {
-                                    Swal.fire('BAN!', '', 'success').then(()=>{
+                                    Swal.fire('BAN!', '', 'success').then(() => {
                                         location.reload();
                                     })
                                 },
                                 error: (msg) => {
                                     alert(msg);
                                 },
-                                beforeSend: function() {
+                                beforeSend: function () {
                                     $('#preloader').fadeIn(500);
                                 },
-                                complete: function() {
+                                complete: function () {
                                     $('#preloader').fadeOut(500);
                                 },
                             })
@@ -86,7 +85,7 @@ window.addEventListener("load", function () {
             error: (msg) => {
                 alert(msg);
             },
-            beforeSend: function() {
+            beforeSend: function () {
                 $container.fadeOut(500);
             },
         })

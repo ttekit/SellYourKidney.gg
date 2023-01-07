@@ -215,7 +215,7 @@ class User extends Controller
                         "title" => $_POST["title"],
                         "slogan" => $_POST["slogan"],
                         "content" => $_POST["content"],
-                        "publication-date" => $dateTime->format('Y\-m\-d\ h:i:s'),
+                        "publication_date" => $dateTime->format('Y\-m\-d\ h:i:s'),
                         "img_alt" => "",
                         "state" => "created",
                         "author" => $_SESSION["reg"]["userId"]

@@ -1,7 +1,7 @@
 <!-- jQuery -->
 <script src="/assets/js/Libs/jquerry.js"></script>
 <!-- popper js -->
-<script src="/assets/js/Libs/propper.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
 <!-- bootstrap js -->
 <script src="/assets/js/Libs/bootstrap.js"></script>
 <!-- custom js -->

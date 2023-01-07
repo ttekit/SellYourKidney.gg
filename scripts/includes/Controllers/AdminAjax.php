@@ -181,8 +181,12 @@ class AdminAjax extends Controller
     {
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($_POST["id"])) {
-                $prodM = new \Models\userAcc();
-                $result = $prodM->removeUser($_POST["id"]);
+                $userM = new \Models\userAcc();
+                $blogM = new \Models\post();
+                $socLinkM = new \Models\userSocLincs();
+                $blogM->removeAllUserPosts($_POST["id"]);
+                $socLinkM->removeAllUserSocLinks($_POST["id"]);
+                $result = $userM->removeUser($_POST["id"]);
                 echo json_encode($result, JSON_UNESCAPED_UNICODE);
             }
         }

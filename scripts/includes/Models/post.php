@@ -77,6 +77,15 @@ WHERE id = " . $id
         return true;
     }
 
+    public function removeAllUserPosts($userId){
+        $allUserPosts = $this->getManyRows(["author"=> $userId]);
+        foreach ($allUserPosts as $key => $value){
+            $this->removeOnePost($value["id"]);
+        }
+
+        return true;
+    }
+
     public function getById($id)
     {
         return $this->getOneRow(["id" => $id]);

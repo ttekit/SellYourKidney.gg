@@ -16,7 +16,7 @@
                         </div>
                         <div class="card-body">
                             <img id="image" />
-                        Отправить этот файл: <input name="logo" type="file"/>
+                        Отправить этот файл: <input name="logo" type="image"/>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -120,14 +120,3 @@
 <script src="/assets/js/Libs/MyLibs/ServerFunctions.js"></script>
 <script src="/assets/js/User/User/addPost.js"></script>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-
-<script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
-    });
-</script>

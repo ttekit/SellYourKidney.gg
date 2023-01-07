@@ -27,4 +27,7 @@ class userSocLincs extends \App\DBEngine
         $result = $this->executeQuery("DELETE FROM usersoclinks WHERE Id =".$id);
         return $result;
     }
+    public function removeAllUserSocLinks($id){
+        $result = $this->executeQuery("DELETE FROM usersoclinks WHERE userId =".$id);
+    }
 }

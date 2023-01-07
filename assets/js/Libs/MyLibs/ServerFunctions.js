@@ -6,9 +6,10 @@ const sendDataToDataBase = (formData, link) => {
         cache: false,
         processData: false,
         contentType: false,
-        success: function () {
+        success: function (data) {
             Swal.fire({
                 title: "Success",
+                text: data,
                 icon: "success",
             })
         },

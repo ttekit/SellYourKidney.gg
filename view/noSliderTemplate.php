@@ -7,7 +7,6 @@
 $data['options']['lang'] ?>">
 
 <?php require_once(COMPONENTS_PATH . "head.php") ?>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
 <body>
 
@@ -49,7 +48,7 @@ $data['options']['lang'] ?>">
 
 
 
-<?php require_once(COMPONENTS_PATH . "scripts.php") ?>'
+<?php require_once(COMPONENTS_PATH . "scripts.php") ?>
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
