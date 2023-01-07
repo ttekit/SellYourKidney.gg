@@ -18,7 +18,7 @@ window.addEventListener("load", function () {
         let $postId = $container.find(".id").text();
         $container.parent("div").parent("div").addClass("d-none");
         $.ajax({
-            url: "/ajax/deleteOnePost",
+            url: "/AdminAjax/deleteOnePost",
             method: "POST",
             data: {
                 "postId": $postId
@@ -26,6 +26,18 @@ window.addEventListener("load", function () {
             success: (data) => {
                 if (data == "POST_REMOVED") {
                     $container.parent("div").parent("div").remove();
+                    Swal.fire({
+                        title: "Success",
+                        text: "Post successfully deleted",
+                        icon: "success"
+                    })
+                }
+                else{
+                    Swal.fire({
+                        title: "Error",
+                        text: "Pls try latter",
+                        icon: "error"
+                    })
                 }
             },
             error: (msg) => {

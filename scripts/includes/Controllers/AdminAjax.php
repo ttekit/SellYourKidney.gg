@@ -24,6 +24,7 @@ class AdminAjax extends Controller
                     "name" => $_POST["name"],
                     "price" => $_POST["price"],
                     "img_alt" => "/",
+                    "img_src" => "/images/default.jpg",
                     "content" => $_POST["content"]
                 ]);
                 $prodData = $prodM->getOneRow([

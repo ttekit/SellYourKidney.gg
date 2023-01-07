@@ -15,6 +15,7 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <img id="image">
                             Отправить этот файл: <input name="logo" type="file"/>
                         </div>
                         <!-- /.card-body -->

@@ -82,7 +82,7 @@ $data['options']['lang'] ?>">
                     <a class="collapse-item" href="/admin/userManage">user accounts</a>
                     <a class="collapse-item" href="/admin/productManage">Products</a>
                     <a class="collapse-item" href="/admin/blogManage">Blog</a>
-                    <a class="collapse-item" href="/admin/tables">Options</a>
+                    <a class="collapse-item" href="/admin/options">Options</a>
                 </div>
             </div>
         </li>
