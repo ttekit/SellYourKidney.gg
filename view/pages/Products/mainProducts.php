@@ -102,7 +102,7 @@
                            class="go-next-page swipe-page-button">></a>
                         <?
                     } ?>
-                    <a href="/products/?count=<?= $data["count"] ?>&page=<?=$data["pageCount"]?>>" class="go-last-page swipe-page-button">>></a>
+                    <a href="/products/?count=<?= $data["count"] ?>&page=<?=$data["pageCount"]?>" class="go-last-page swipe-page-button">>></a>
                 </div>
             <?
             }
