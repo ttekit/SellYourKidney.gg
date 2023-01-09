@@ -1,55 +1,12 @@
 window.addEventListener("load", function () {
     const link = "/ajax/updateUserData";
 
-    let image = document.getElementById('image');
-    let cropBoxData;
-    let canvasData;
-    let cropper;
-    let uploadedImageType = 'image/jpeg';
-    let uploadedImageName = 'cropped.jpg';
-    let uploadedImageURL;
-    let options = {
-        cropBoxResizable: false,
-        background: false,
-        highlight: false,
-        guides: false,
-        minCropBoxWidth: 100,
-        ready: function () {
-            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-        }
-    }
-
-
-
     let $addNewSocButton = $(".add-new-soc-button");
     let $container = $(".soc-media-group");
     let $deleteSocLinkButton = $(".delete-soc-link-button");
     let fileInput = $('input[type=file]');
 
-    let files = fileInput.val();
-
     fileInput.on('change', prepareUpload);
-    function prepareUpload(event) {
-        files = event.target.files;
-        file = files[0];
-
-        uploadedImageType = file.type;
-        uploadedImageName = file.name;
-
-        if (uploadedImageURL) {
-            URL.revokeObjectURL(uploadedImageURL);
-        }
-
-        image.src = uploadedImageURL = URL.createObjectURL(file);
-
-        if (cropper) {
-            cropper.destroy();
-        }
-
-        cropper = new Cropper(image, options);
-        event.target.value = null;
-
-    }
 
     $addNewSocButton.on("click", () => {
         $container.append(`

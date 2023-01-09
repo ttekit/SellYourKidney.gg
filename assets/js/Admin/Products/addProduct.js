@@ -1,57 +1,7 @@
 window.addEventListener("load", () => {
 
-    let image = document.getElementById('image');
-    let cropBoxData;
-    let canvasData;
-    let cropper;
-    let uploadedImageType = 'image/jpeg';
-    let uploadedImageName = 'cropped.jpg';
-    let uploadedImageURL;
-
     let link = "/AdminAjax/addNewProd";
 
-    let options = {
-        aspectRatio: 1,
-        viewMode: 1,
-        cropBoxResizable: false,
-        background: false,
-        highlight: false,
-        guides: false,
-        minCropBoxWidth: 400,
-        maxWidth: 4096,
-        maxHeight: 4096,
-        minWidth: 256,
-        minHeight: 256,
-        ready: function () {
-            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-        }
-    }
-
-    function prepareUpload(event) {
-        files = event.target.files;
-        file = files[0];
-
-        uploadedImageType = file.type;
-        uploadedImageName = file.name;
-
-        if (uploadedImageURL) {
-            URL.revokeObjectURL(uploadedImageURL);
-        }
-
-        image.src = uploadedImageURL = URL.createObjectURL(file);
-
-        if (cropper) {
-            cropper.destroy();
-        }
-
-        cropper = new Cropper(image, options);
-        event.target.value = null;
-
-    }
-
-
-
-    let files;
 
     $('input[type=file]').on('change', prepareUpload);
 
@@ -61,22 +11,51 @@ window.addEventListener("load", () => {
         function () {
 
             let formData = new FormData();
-            formData.append('name', $("[name='name']").val());
-            formData.append('price', $("[name='price']").val());
-            formData.append('content', $("[name='content']").val());
-
-            if(cropper){
-                cropper.getCroppedCanvas({
-                    width: 150,
-                    height: 150,
-                }).toBlob((blob)=>{
-                    formData.set("logo", blob);
-                    sendDataToDataBase(formData, link);
-                })
-            }else{
-                sendDataToDataBase(formData, link);
+            let name = $("[name='name']").val();
+            let price = $("[name='price']").val();
+            let content = $("[name='content']").val();
+            let corr = 0;
+            let error;
+            if (name.length > 5) {
+                corr++;
+            } else {
+                error = "name is too short";
             }
-            
+            if (price > 10) {
+                corr++;
+            } else {
+                error = "price is too small...";
+            }
+            if (content.length  > 50) {
+                corr++;
+            } else {
+                error = "add more info over product";
+            }
+
+            if (corr === 3) {
+                formData.append('name', name);
+                formData.append('price', price);
+                formData.append('content', content);
+                if (cropper) {
+                    cropper.getCroppedCanvas({
+                        width: 150,
+                        height: 150,
+                    }).toBlob((blob) => {
+                        formData.set("logo", blob);
+                        sendDataToDataBase(formData, link);
+                    })
+                } else {
+                    sendDataToDataBase(formData, link);
+                }
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: error,
+                    icon: "warning"
+                });
+            }
+
+
             return false;
         });
 })

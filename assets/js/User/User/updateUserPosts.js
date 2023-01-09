@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
             if (result.isConfirmed) {
                 let container = $(e.target).parents(".dataContainer");
                 $.ajax({
-                    url: "/ajax/deleteOnePost",
+                    url: "/AdminAjax/deleteOnePost",
                     method: "post",
                     data: {
                         postId: container.find(".id").val()

@@ -2,60 +2,12 @@ window.addEventListener("load", () => {
     const link = '/user/addNewPost';
 
     let image = document.getElementById('image');
-    let cropBoxData;
-    let canvasData;
-    let cropper;
-    let uploadedImageType = 'image/jpeg';
-    let uploadedImageName = 'cropped.jpg';
-    let uploadedImageURL;
-    let options = {
-        aspectRatio: 1,
-        viewMode: 1,
-        cropBoxResizable: false,
-        background: false,
-        highlight: false,
-        guides: false,
-        minCropBoxWidth: 400,
-        maxWidth: 4096,
-        maxHeight: 4096,
-        minWidth: 256,
-        minHeight: 256,
-        ready: function () {
-            cropper.setCropBoxData(cropBoxData).setCanvasData(canvasData);
-        }
-    }
-
-    let files;
     let fileInput = $('input[type=file]');
-
-
 
     let categories = "";
     let tags = [];
 
     fileInput.on('change', prepareUpload);
-    function prepareUpload(event) {
-        files = event.target.files;
-        let file = files[0];
-
-        uploadedImageType = file.type;
-        uploadedImageName = file.name;
-
-        if (uploadedImageURL) {
-            URL.revokeObjectURL(uploadedImageURL);
-        }
-
-        image.src = uploadedImageURL = URL.createObjectURL(file);
-
-        if (cropper) {
-            cropper.destroy();
-        }
-
-        cropper = new Cropper(image, options);
-        event.target.value = null;
-
-    }
-
 
     $(".addNewCategoryBtn").on("click", (e) => {
         let $button = $(e.target);
@@ -86,22 +38,57 @@ window.addEventListener("load", () => {
         '#submit',
         function () {
             let formData = new FormData();
-            formData.append('category', categories);
-            formData.append('tags', JSON.stringify(tags));
-            formData.append('title', $("[name='title']").val());
-            formData.append('slogan', $("[name='slogan']").val());
-            formData.append('content', $("[name='content']").val());
-
-            if (cropper) {
-                cropper.getCroppedCanvas({
-                    width: 450,
-                    height: 450,
-                }).toBlob((blob) => {
-                    formData.set("logo", blob);
-                    sendDataToDataBase(formData, link);
-                })
+            let name = $("[name='title']").val();
+            let slogan = $("[name='slogan']").val();
+            let content = $("[name='content']").val();
+            // pagination
+            let corr = 0;
+            let error = "";
+            if (name.length > 5) {
+                corr++;
             } else {
-                sendDataToDataBase(formData, link);
+                error = "Name is too short!";
+            }
+            if (slogan.length > 12) {
+                corr++;
+            } else {
+                error = "Slogan is too short!";
+            }
+            if (categories !== "") {
+                corr++;
+            } else {
+                error = "You need to choose a category";
+            }
+            if (content.length > 150) {
+                corr++;
+            } else {
+                error = "Content size is too small to post";
+            }
+
+            if (corr >= 4) {
+                formData.append('category', categories);
+                formData.append('tags', JSON.stringify(tags));
+                formData.append('title', name);
+                formData.append('slogan', slogan);
+                formData.append('content', content);
+
+                if (cropper) {
+                    cropper.getCroppedCanvas({
+                        width: 450,
+                        height: 450,
+                    }).toBlob((blob) => {
+                        formData.set("logo", blob);
+                        sendDataToDataBase(formData, link);
+                    })
+                } else {
+                    sendDataToDataBase(formData, link);
+                }
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: error,
+                    icon: "warning"
+                });
             }
 
             return false;

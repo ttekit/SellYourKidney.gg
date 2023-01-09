@@ -4,21 +4,23 @@
         <section class="content col-12">
             <div class="row">
                 <div class="col-md-12 file-input">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Logo</h3>
+                    <div class="col-md-12 file-input">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Logo</h3>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                                <img src="" alt="" id="image">
                             </div>
+                            <div class="card-body">
+                                Отправить этот файл: <input name="userfile" type="file"/>
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <div class="card-body">
-                            <img id="image" />
-                        Отправить этот файл: <input name="logo" type="image"/>
-                        </div>
-                        <!-- /.card-body -->
                     </div>
                     <!-- /.card -->
                 </div>
@@ -51,10 +53,10 @@
 
                                     $catM = new \Models\categories();
                                     $allCats = $catM->getAllCategories();
-                                    foreach ($allCats as $key=>$value){
+                                    foreach ($allCats as $key => $value) {
                                         ?>
-                                            <a type="button" class="addNewCategoryBtn"><?=$value["category"]?></a>
-                                    <?php
+                                        <a type="button" class="addNewCategoryBtn"><?= $value["category"] ?></a>
+                                        <?php
                                     }
                                     ?>
 
@@ -68,9 +70,9 @@
                                     $tagM = new \Models\tags();
                                     $allCats = $tagM->getManyRows();
 
-                                    foreach ($allCats as $key=>$value){
+                                    foreach ($allCats as $key => $value) {
                                         ?>
-                                        <a type="button" class="addNewTagBtn"><?=$value["tag"]?></a>
+                                        <a type="button" class="addNewTagBtn"><?= $value["tag"] ?></a>
                                         <?php
                                     }
                                     ?>
@@ -112,6 +114,7 @@
                     <input type="submit" value="Save Changes" id="submit" class="btn btn-success float-right">
                 </div>
             </div>
+
         </section>
     </form>
     <!-- /.content -->
