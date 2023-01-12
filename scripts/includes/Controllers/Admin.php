@@ -262,7 +262,7 @@ class admin extends Controller
                     "price" => $_POST['price'],
                     "content" => $_POST['content'],
                 ]);
-                if($_POST["file"] != ""){
+                if ($_POST["file"] != "") {
                     $postM->updateRow($_POST["id"], [
                         "img_src" => $_POST["file"]
                     ]);
@@ -305,6 +305,11 @@ class admin extends Controller
         }
     }
 
+    public function test (){
+        $mail = new mailingList();
+        varDump($mail->getAllEmails());
+    }
+
     public function logOut()
     {
         session_destroy();
@@ -312,7 +317,8 @@ class admin extends Controller
         "Location: /main";
     }
 
-    public function format_contact_us_data(){
+    public function format_contact_us_data()
+    {
         $contactUsM = new contactInfo();
 
         $this->data["contactUs"] = $contactUsM->getManyRows();

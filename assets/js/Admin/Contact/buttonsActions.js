@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
                 Email.send({
                     Host: "smtp.gmail.com",
                     Username: "bootstrapshop.gg@gmail.com",
-                    Password: "qwertyua",
+                    Password: "jwufnrhszxlsxgau",
                     To: email,
                     From: "bootstrapshop.gg@gmail.com",
                     Subject: "Answering",

@@ -27,11 +27,10 @@ class mailingList extends \App\DBEngine
     public function sendAllEmails($subject, $message)
     {
         $mailM = new mailingList();
-
         foreach ($mailM->getAllEmails() as $key=>$email){
             $res = mail
             (
-                $email,
+                $email["email"],
                 $subject,
                 $message
             );

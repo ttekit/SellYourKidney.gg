@@ -1,8 +1,7 @@
 <div class="content-wrapper adminBlogCont">
     <!-- Main content -->
-    <section class="content col-12">
+    <section class="content -align-center text-center">
         <form method="post" action="/admin/newMail" class="row">
-            <div class="col-md-6">
                 <div class="card card-secondary">
                     <div class="card-header">
                         <h3 class="card-title">Content</h3>
@@ -21,8 +20,6 @@
                     </div>
                 </div>
                 <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
         </form>
         <div class="card card-info">
             <!-- /.card -->
