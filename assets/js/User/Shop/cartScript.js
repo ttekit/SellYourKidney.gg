@@ -43,7 +43,7 @@ window.addEventListener("load", function () {
                 hasPressed = true;
 
                 for (let i = 0; i < cartArr.length; i++) {
-                    if(cartArr != null){
+                    if(cartArr[i] != null){
                         let cartItem = $(`
                 <li class="cart-li">
                     <div class="count-cart-elem">${cartArr[i].prodCount}</div>
@@ -62,16 +62,21 @@ window.addEventListener("load", function () {
                 </li>`);
 
                         cartItem.find(".remove-cart-elem").on("click", () => {
-                            summaryPrise -= parseInt(cartArr[i].price) * parseInt(cartArr[i].prodCount);
-                            cartArr[i] = null;
-                            cartItem.remove();
+                            summaryPrise -= parseInt(cartArr[i].price) * cartArr[i].prodCount;
+                            let removeClassButton = $(`#${parseInt(cartArr[i].id)}`);
+                            removeClassButton.text("Add to cart");
+                            removeClassButton.removeClass("in-cart-product");
+                            $(".summary-prise").text("summary price: " + summaryPrise + "$");
+
                             if (summaryPrise <= 0) {
                                 cartArr = [];
                                 $cartContainer.fadeOut(500);
                                 hasPressed = false;
                                 $elemContainer.empty();
                             }
-                            $(".summary-prise").text("summary price: " + summaryPrise + "$");
+
+                            cartArr[i] = null;
+                            cartItem.remove();
                         })
 
                         cartItem.find(".add-cart-elem").on("click", (e) => {

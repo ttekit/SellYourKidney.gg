@@ -51,7 +51,7 @@
                                 <a type="button" class="addToFavorites bubbly-button">
                                     Add to favorites
                                 </a>
-                                <a type="button" class="option1 addToCartBtn bubbly-button">
+                                <a type="button" class="option1 addToCartBtn bubbly-button" id="<?php echo $value["id"] ?>">
                                     Add to cart
                                 </a>
                                 <a href="/products/product?device=<?php echo $value["id"] ?>" class="option2">
