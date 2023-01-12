@@ -10,6 +10,6 @@ images -> images?
 
 scripts -> includes main PHP code 
 
-#About Core
+# About Core
 
 All work in MVC pattern as a usuall site lol
